@@ -12,8 +12,8 @@
 
     <!-- Global Header -->
     <header class="bg-gray-100 py-4 px-6 flex justify-between items-center">
-        <div class="text-2xl font-semibold text-gray-800">EduQuest</div>
-        <button class="px-6 py-2 rounded-md bg-black text-white hover:bg-gray-800 focus:outline-none">Logout</button>
+        <div class="text-2xl font-semibold text-gray-800">EduQuest</div>  <!-- EduQuest brand -->
+        <button class="px-6 py-2 rounded-md bg-black text-white hover:bg-gray-800 focus:outline-none">Logout</button> <!-- Logout Button -->
     </header>
 
 
@@ -43,7 +43,30 @@
             <div class="mt-auto text-sm text-gray-500">Up date too pro now</div>
         </div>
 
+        <!-- Main Content -->
+        <div class="flex-1 p-8">
 
+            <!-- Content Header (Search and Filters) -->
+            <header class="flex justify-between items-center mb-8">
+                <!-- Search Bar -->
+                <div class="flex-1 mr-4">
+                    <input type="text" placeholder="search ..."
+                        class="w-full px-4 py-2 rounded-md bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <!-- Filters -->
+                <div class="flex space-x-2">
+                    <button
+                        class="px-4 py-2 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 focus:outline-none">categorie</button>
+                    <button
+                        class="px-4 py-2 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 focus:outline-none">type</button>
+                </div>
+
+                <!-- Removed Logout Here -->
+            </header>
+
+
+        </div>
     </div>
 </body>
 
