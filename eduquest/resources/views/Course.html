@@ -16,7 +16,36 @@
 
 <body class="bg-white">
 
+    <!-- Global Header -->
+    <header class="bg-gray-100 py-4 px-6 flex justify-between items-center fixed top-0 left-0 w-full z-10 shadow-md">
+        <div class="text-2xl font-semibold text-gray-800">EduQuest</div>
+        <button class="px-6 py-2 rounded-md bg-black text-white hover:bg-gray-800 focus:outline-none">Logout</button>
+    </header>
 
+    <div class="flex min-h-screen pt-16">
+
+        <!-- Sidebar -->
+        <div class="bg-white border-r border-gray-200 w-64 py-8 px-4 space-y-6 fixed left-0 top-16 h-full overflow-y-auto shadow-md">
+
+            <!-- Profile -->
+            <div class="flex flex-col items-center space-y-2">
+                <div class="w-24 h-24 rounded-full bg-gray-300"></div>
+                <div class="text-lg font-medium text-gray-800">Name</div>
+                <div class="text-sm text-gray-600">email@gmail.com</div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="flex flex-col space-y-2">
+                <a href="#" class="block py-2 px-4 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900">All Courses</a>
+                <a href="#" class="block py-2 px-4 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900">My Courses</a>
+                <a href="#" class="block py-2 px-4 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900">Support & FAQ</a>
+            </nav>
+
+            <!-- Footer -->
+            <div class="mt-auto text-sm text-gray-500">Upgrade to Pro now</div>
+        </div>
+
+    </div>
 
 </body>
 
