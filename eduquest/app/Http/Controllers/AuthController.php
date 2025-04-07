@@ -49,4 +49,35 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
+    public function register(Request $request)
+    {
+        // validation des donnees du formulaire
+
+        $data = $request->only('name', 'email', 'password');
+
+        $validator = Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        // cretion de new user
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        
+        Session::put('user_id', $user->id);
+        Session::put('user_name', $user->name);
+        Session::put('user_email', $user->email);
+
+        return redirect()->route('login');
+    }
+
 }
