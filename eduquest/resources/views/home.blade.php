@@ -47,7 +47,7 @@
         <li><a href="#" class="text-gray-700 hover:text-gray-900">HOME</a></li>
         <li><a href="#" class="text-gray-700 hover:text-gray-900">ABOUT</a></li>
         <li><a href="#" class="text-gray-700 hover:text-gray-900">CONTACT</a></li>
-        <li><a href="#" class="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full">GET START</a></li>
+        <li><a href="/login" class="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full">GET START</a></li>
       </ul>
     </nav>
   </div>
