@@ -44,4 +44,9 @@ class AuthController extends Controller
         return redirect()->back()->withErrors(['email' => 'informations non valider , veuillez ressayer']);
     }
 
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
+
 }
