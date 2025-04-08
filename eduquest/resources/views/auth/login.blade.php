@@ -28,7 +28,7 @@
             </div>
             <nav>
                 <ul class="flex space-x-8">
-                    <li><a href="#" class="hover:text-gray-600">
+                    <li><a href="{{ route('home') }}" class="hover:text-gray-600"> {{-- Lien vers l'accueil --}}
                             <!-- Icône Home Font Awesome -->
                             <i class="fas fa-home text-lg"></i>
                         </a></li>
@@ -50,43 +50,81 @@
                 <p class="text-center text-gray-600 mb-8">connecte-toi à eduquest et commence ton aventure
                     d'apprentissage.</p>
 
+                {{-- Affichage du message de statut (ex: après inscription) --}}
+                @if (session('status'))
+                    <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+                        role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
+                {{-- Affichage des erreurs générales (optionnel, si $errors->any() existe mais pas spécifique à un
+                champ) --}}
+                @if ($errors->any() && !$errors->has('email') && !$errors->has('password'))
+                    <div class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        Une erreur inattendue est survenue. Veuillez réessayer.
+                    </div>
+                @endif
+
                 <form action="{{ route('login') }}" method="POST">
                     @csrf
                     <div class="mb-4">
-                        <label for="email" class="block mb-2">email address</label>
-                        <input type="email" name="email" id="email" class="w-full border border-gray-300 rounded-md p-2"
-                            value="{{ old('email') }}" required>
+                        <label for="email" class="block mb-2">Adresse Email</label> {{-- Traduit --}}
+                        <input type="email" name="email" id="email"
+                            class="w-full border border-gray-300 rounded-md p-2 @error('email') border-red-500 @enderror"
+                            value="{{ old('email') }}" required autocomplete="email" autofocus> {{-- Ajout
+                        autocomplete/autofocus --}}
+                        {{-- L'erreur 'auth.failed' sera affichée ici car mappée sur 'email' dans le controller --}}
                         @error('email')
-                            <p class="text-red-500 text-sm">{{ $message }}</p>
+                            <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p> {{-- text-xs italic mt-2 pour
+                            style commun --}}
                         @enderror
                     </div>
 
                     <div class="mb-4">
-                        <label for="password" class="block mb-2">password</label>
+                        <label for="password" class="block mb-2">Mot de passe</label> {{-- Traduit --}}
                         <input type="password" name="password" id="password"
-                            class="w-full border border-gray-300 rounded-md p-2" required>
+                            class="w-full border border-gray-300 rounded-md p-2 @error('password') border-red-500 @enderror"
+                            required autocomplete="current-password"> {{-- Ajout autocomplete --}}
                         @error('password')
-                            <p class="text-red-500 text-sm">{{ $message }}</p>
+                            <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
                         @enderror
                     </div>
 
+                    {{-- Case "Se souvenir de moi" --}}
+                    <div class="block mb-4">
+                        <label for="remember_me" class="inline-flex items-center">
+                            <input id="remember_me" type="checkbox"
+                                class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500"
+                                name="remember">
+                            <span class="ml-2 text-sm text-gray-600">Se souvenir de moi</span>
+                        </label>
+                    </div>
+
                     <div class="flex justify-between items-center mb-6">
-                        <button type="submit" class="bg-black text-white px-8 py-2 rounded-full">login</button>
-                        <a href="#" class="text-blue-500 hover:underline">forgot password?</a>
+                        <button type="submit" class="bg-black text-white px-8 py-2 rounded-full hover:bg-gray-800">Se
+                            connecter</button> {{-- Traduit + hover --}}
+                        {{-- Mettre à jour ce lien si/quand la fonctionnalité est implémentée --}}
+                        @if (Route::has('password.request'))
+                            <a href="{{ route('password.request') }}" class="text-sm text-blue-500 hover:underline">Mot de
+                                passe oublié ?</a> {{-- Traduit + text-sm --}}
+                        @endif
                     </div>
                 </form>
+                {{-- Section connexion sociale (à implémenter séparément) --}}
                 <div class="text-center mb-4">
                     <p class="text-gray-600">connecte-toi avec</p>
                 </div>
-
                 <div class="flex gap-4 mb-8">
-                    <button class="w-1/2 border border-gray-300 rounded-md py-3 flex justify-center">google</button>
-                    <button class="w-1/2 border border-gray-300 rounded-md py-3 flex justify-center">github</button>
+                    <button
+                        class="w-1/2 border border-gray-300 rounded-md py-3 flex justify-center hover:bg-gray-50">Google</button>
+                    <button
+                        class="w-1/2 border border-gray-300 rounded-md py-3 flex justify-center hover:bg-gray-50">GitHub</button>
                 </div>
 
                 <div class="text-center mb-4">
-                    <p class="text-gray-600">pas encore inscrit ? <a href="{{ route('register') }}"
-                            class="text-gray-600 hover:underline">inscrivez-vous</a></p>
+                    <p class="text-gray-600">Pas encore inscrit ? <a href="{{ route('register') }}"
+                            class="text-blue-500 hover:underline">Inscrivez-vous</a></p> {{-- Traduit + text-blue --}}
                 </div>
             </div>
         </div>
