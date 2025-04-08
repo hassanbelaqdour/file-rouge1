@@ -28,7 +28,7 @@
             </div>
             <nav>
                 <ul class="flex space-x-8">
-                    <li><a href="#" class="hover:text-gray-600">
+                    <li><a href="{{ route('home') }}" class="hover:text-gray-600"> {{-- Lien vers l'accueil --}}
                             <i class="fas fa-home text-lg"></i>
                         </a></li>
                 </ul>
@@ -45,42 +45,71 @@
             <div class="w-full md:w-1/2 bg-white border border-gray-200 rounded-lg p-4">
                 <h2 class="text-2xl font-bold text-center mb-2">Rejoins EduQuest</h2>
                 <p class="text-center text-gray-600 mb-4">Crée un compte pour commencer à explorer le savoir.</p>
+
+                {{-- Affichage des erreurs générales --}}
+                @if ($errors->any() && !$errors->has('first_name') && !$errors->has('last_name') && !$errors->has('email') && !$errors->has('password'))
+                    <div class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        Une erreur est survenue. Veuillez vérifier vos informations.
+                    </div>
+                @endif
+
                 <form action="{{ route('register') }}" method="POST">
                     @csrf
+                    {{-- CHAMP PRÉNOM (first_name) --}}
                     <div class="mb-4">
-                        <label for="name" class="block mb-2">Nom complet</label>
-                        <input type="text" name="name" id="name" class="w-full border border-gray-300 rounded-md p-2"
-                            value="{{ old('name') }}" required>
-                        @error('name')
-                            <p class="text-red-500 text-sm">{{ $message }}</p>
+                        <label for="first_name" class="block mb-2">Prénom</label>
+                        <input type="text" name="first_name" id="first_name"
+                            class="w-full border border-gray-300 rounded-md p-2 @error('first_name') border-red-500 @enderror"
+                            value="{{ old('first_name') }}" required autocomplete="given-name" autofocus>
+                        @error('first_name')
+                            <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
                         @enderror
                     </div>
 
+                    {{-- CHAMP NOM DE FAMILLE (last_name) --}}
+                    <div class="mb-4">
+                        <label for="last_name" class="block mb-2">Nom de famille</label>
+                        <input type="text" name="last_name" id="last_name"
+                            class="w-full border border-gray-300 rounded-md p-2 @error('last_name') border-red-500 @enderror"
+                            value="{{ old('last_name') }}" required autocomplete="family-name">
+                        @error('last_name')
+                            <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    {{-- CHAMP EMAIL --}}
                     <div class="mb-4">
                         <label for="email" class="block mb-2">Email</label>
-                        <input type="email" name="email" id="email" class="w-full border border-gray-300 rounded-md p-2"
-                            value="{{ old('email') }}" required>
+                        <input type="email" name="email" id="email"
+                            class="w-full border border-gray-300 rounded-md p-2 @error('email') border-red-500 @enderror"
+                            value="{{ old('email') }}" required autocomplete="email">
                         @error('email')
-                            <p class="text-red-500 text-sm">{{ $message }}</p>
+                            <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
                         @enderror
                     </div>
 
+                    {{-- CHAMP MOT DE PASSE --}}
                     <div class="mb-4">
                         <label for="password" class="block mb-2">Mot de passe</label>
                         <input type="password" name="password" id="password"
-                            class="w-full border border-gray-300 rounded-md p-2" required>
+                            class="w-full border border-gray-300 rounded-md p-2 @error('password') border-red-500 @enderror"
+                            required autocomplete="new-password">
+                        {{-- Les erreurs de confirmation s'affichent souvent ici --}}
                         @error('password')
-                            <p class="text-red-500 text-sm">{{ $message }}</p>
+                            <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
                         @enderror
                     </div>
 
+                    {{-- CHAMP CONFIRMATION MOT DE PASSE --}}
                     <div class="mb-4">
                         <label for="password_confirmation" class="block mb-2">Confirmer le mot de passe</label>
                         <input type="password" name="password_confirmation" id="password_confirmation"
-                            class="w-full border border-gray-300 rounded-md p-2" required>
+                            class="w-full border border-gray-300 rounded-md p-2" required autocomplete="new-password">
+                        {{-- Pas besoin d'@error ici en général, l'erreur est sur 'password' --}}
                     </div>
 
-                    <button type="submit" class="w-full bg-black text-white py-2 rounded-full">S'inscrire</button>
+                    <button type="submit"
+                        class="w-full bg-black text-white py-2 rounded-full hover:bg-gray-800">S'inscrire</button>
                 </form>
 
                 <div class="text-center mt-4">
