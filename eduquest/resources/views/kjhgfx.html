@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduPortal - Tableau de bord</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {}
+      }
+    }
+  </script>
+</head>
+<body class="min-h-screen bg-white">
+  <!-- Header -->
+  <header class="border-b border-gray-200">
+    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center space-x-8">
+        <a href="/" class="text-[#2563eb] text-2xl font-bold">
+          EduPortal
+        </a>
+        <nav class="hidden md:flex space-x-6">
+          <a href="/dashboard" class="text-gray-700 hover:text-[#2563eb]">
+            Tableau de bord
+          </a>
+          <a href="/courses" class="text-gray-700 hover:text-[#2563eb]">
+            Mes cours
+          </a>
+          <a href="/catalog" class="text-gray-700 hover:text-[#2563eb]">
+            Catalogue
+          </a>
+          <a href="/certificates" class="text-gray-700 hover:text-[#2563eb]">
+            Certificats
+          </a>
+        </nav>
+      </div>
+      <div class="flex items-center space-x-4">
+        <button class="text-gray-700 hover:text-[#2563eb]">
+          <i class="ri-notification-3-line text-xl"></i>
+        </button>
+        <div class="h-8 w-8 rounded-full overflow-hidden">
+          <img src="https://via.placeholder.com/32" alt="Profile" class="h-full w-full object-cover">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-8">
+    <!-- Welcome Section -->
+    <div class="mb-8">
+      <h1 class="text-2xl font-bold text-[#1f2937]">Bienvenue, Marie!</h1>
+      <p class="text-[#4b5563]">Continuez votre apprentissage là où vous vous êtes arrêté</p>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+      <div class="bg-[#f9fafb] p-6 rounded-lg">
+        <div class="flex justify-between items-start mb-4">
+          <span class="text-[#4b5563] text-sm">Cours en cours</span>
+          <i class="ri-layout-grid-line text-[#374151]"></i>
+        </div>
+        <p class="text-4xl font-bold text-[#1f2937]">4</p>
+      </div>
+
+      <div class="bg-[#f9fafb] p-6 rounded-lg">
+        <div class="flex justify-between items-start mb-4">
+          <span class="text-[#4b5563] text-sm">Cours complétés</span>
+          <i class="ri-checkbox-circle-line text-[#2563eb]"></i>
+        </div>
+        <p class="text-4xl font-bold text-[#1f2937]">12</p>
+      </div>
+
+      <div class="bg-[#f9fafb] p-6 rounded-lg">
+        <div class="flex justify-between items-start mb-4">
+          <span class="text-[#4b5563] text-sm">Certificats</span>
+          <div class="h-5 w-5 bg-[#1f2937] rounded-full flex items-center justify-center">
+            <div class="h-2.5 w-2.5 bg-white rounded-full"></div>
+          </div>
+        </div>
+        <p class="text-4xl font-bold text-[#1f2937]">3</p>
+      </div>
+
+      <div class="bg-[#f9fafb] p-6 rounded-lg">
+        <div class="flex justify-between items-start mb-4">
+          <span class="text-[#4b5563] text-sm">Heures d'apprentissage</span>
+          <i class="ri-time-line text-[#374151]"></i>
+        </div>
+        <p class="text-4xl font-bold text-[#1f2937]">86</p>
+      </div>
+    </div>
+
+    <!-- Current Courses -->
+    <div class="mb-10">
+      <h2 class="text-xl font-bold text-[#1f2937] mb-4">Cours en cours</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white border border-[#e5e7eb] p-6 rounded-lg">
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <h3 class="font-medium text-[#1f2937]">Introduction au Machine Learning</h3>
+              <p class="text-sm text-[#6b7280]">Prof. David Martin</p>
+            </div>
+            <span class="text-xs bg-[#dbeafe] text-[#2563eb] px-3 py-1 rounded-full">En cours</span>
+          </div>
+          <div class="mt-4">
+            <p class="text-xs text-[#6b7280] mb-1">Progression</p>
+            <div class="w-full bg-[#e5e7eb] rounded-full h-2">
+              <div class="bg-[#2563eb] h-2 rounded-full" style="width: 75%"></div>
+            </div>
+            <div class="text-right mt-1">
+              <span class="text-xs text-[#6b7280]">75%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-[#e5e7eb] p-6 rounded-lg">
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <h3 class="font-medium text-[#1f2937]">Data Science Avancée</h3>
+              <p class="text-sm text-[#6b7280]">Prof. Sarah Chen</p>
+            </div>
+            <span class="text-xs bg-[#dbeafe] text-[#2563eb] px-3 py-1 rounded-full">En cours</span>
+          </div>
+          <div class="mt-4">
+            <p class="text-xs text-[#6b7280] mb-1">Progression</p>
+            <div class="w-full bg-[#e5e7eb] rounded-full h-2">
+              <div class="bg-[#2563eb] h-2 rounded-full" style="width: 45%"></div>
+            </div>
+            <div class="text-right mt-1">
+              <span class="text-xs text-[#6b7280]">45%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certificates -->
+    <div class="mb-10">
+      <h2 class="text-xl font-bold text-[#1f2937] mb-4">Mes Certificats</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white border border-[#e5e7eb] p-6 rounded-lg">
+          <div class="flex justify-between items-start mb-4">
+            <div class="h-8 w-8 bg-[#1f2937] rounded-full flex items-center justify-center">
+              <div class="h-4 w-4 bg-white rounded-full"></div>
+            </div>
+            <span class="text-xs text-[#6b7280]">Obtenu le 15 Jan 2025</span>
+          </div>
+          <h3 class="font-medium text-[#1f2937] mb-1">Python pour Data Science</h3>
+          <p class="text-sm text-[#6b7280]">Certification Niveau Avancé</p>
+        </div>
+
+        <div class="bg-white border border-[#e5e7eb] p-6 rounded-lg">
+          <div class="flex justify-between items-start mb-4">
+            <div class="h-8 w-8 bg-[#1f2937] rounded-full flex items-center justify-center">
+              <div class="h-4 w-4 bg-white rounded-full"></div>
+            </div>
+            <span class="text-xs text-[#6b7280]">Obtenu le 5 Mar 2025</span>
+          </div>
+          <h3 class="font-medium text-[#1f2937] mb-1">Deep Learning Fundamentals</h3>
+          <p class="text-sm text-[#6b7280]">Certification Niveau Intermédiaire</p>
+        </div>
+
+        <div class="bg-white border border-[#e5e7eb] p-6 rounded-lg">
+          <div class="flex justify-between items-start mb-4">
+            <div class="h-8 w-8 bg-[#1f2937] rounded-full flex items-center justify-center">
+              <div class="h-4 w-4 bg-white rounded-full"></div>
+            </div>
+            <span class="text-xs text-[#6b7280]">Obtenu le 20 Feb 2025</span>
+          </div>
+          <h3 class="font-medium text-[#1f2937] mb-1">SQL pour l'Analyse de Données</h3>
+          <p class="text-sm text-[#6b7280]">Certification Niveau Expert</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Discover More Courses -->
+    <div>
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold text-[#1f2937]">Découvrez plus de cours</h2>
+        <a href="/catalog" class="text-[#2563eb] text-sm flex items-center hover:underline">
+          Voir tout <i class="ri-arrow-right-line ml-1"></i>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white border border-[#e5e7eb] rounded-lg overflow-hidden">
+          <div class="h-48 relative">
+            <img src="https://images.unsplash.com/photo-1563089145-599997674d42" alt="Intelligence Artificielle pour Débutants" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="font-medium text-[#1f2937] mb-2">Intelligence Artificielle pour Débutants</h3>
+            <p class="text-sm text-[#6b7280] mb-4">Une introduction complète aux concepts de l'IA</p>
+            <div class="flex justify-between items-center">
+              <span class="text-[#2563eb]">40 heures</span>
+              <button class="bg-[#2563eb] text-white px-4 py-2 rounded-md text-sm hover:bg-[#1e40af] transition-colors">
+                S'inscrire
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-[#e5e7eb] rounded-lg overflow-hidden">
+          <div class="h-48 relative">
+            <img src="https://images.unsplash.com/photo-1563089145-599997674d42" alt="Big Data Analytics" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="font-medium text-[#1f2937] mb-2">Big Data Analytics</h3>
+            <p class="text-sm text-[#6b7280] mb-4">Maîtrisez l'analyse des données massives</p>
+            <div class="flex justify-between items-center">
+              <span class="text-[#2563eb]">35 heures</span>
+              <button class="bg-[#2563eb] text-white px-4 py-2 rounded-md text-sm hover:bg-[#1e40af] transition-colors">
+                S'inscrire
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-[#e5e7eb] rounded-lg overflow-hidden">
+          <div class="h-48 relative">
+            <img src="https://images.unsplash.com/photo-1563089145-599997674d42" alt="Cloud Computing Avancé" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="font-medium text-[#1f2937] mb-2">Cloud Computing Avancé</h3>
+            <p class="text-sm text-[#6b7280] mb-4">Solutions cloud pour entreprises modernes</p>
+            <div class="flex justify-between items-center">
+              <span class="text-[#2563eb]">50 heures</span>
+              <button class="bg-[#2563eb] text-white px-4 py-2 rounded-md text-sm hover:bg-[#1e40af] transition-colors">
+                S'inscrire
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-200 mt-16 py-8">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-sm text-[#6b7280] mb-4 md:mb-0">© 2025 EduPortal. Tous droits réservés.</p>
+        <div class="flex space-x-6">
+          <a href="/help" class="text-sm text-[#6b7280] hover:text-[#2563eb]">
+            Aide
+          </a>
+          <a href="/privacy" class="text-sm text-[#6b7280] hover:text-[#2563eb]">
+            Confidentialité
+          </a>
+          <a href="/terms" class="text-sm text-[#6b7280] hover:text-[#2563eb]">
+            Conditions
+          </a>
+          <a href="/contact" class="text-sm text-[#6b7280] hover:text-[#2563eb]">
+            Contact
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
