@@ -1,263 +1,270 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EduPortal - Tableau de bord</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {}
-      }
-    }
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnHub - Find your next learning path</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#1e293b',
+                        lightblue: '#f0f7ff'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
 </head>
-<body class="min-h-screen bg-white">
-  <!-- Header -->
-  <header class="border-b border-gray-200">
-    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-      <div class="flex items-center space-x-8">
-        <a href="/" class="text-[#2563eb] text-2xl font-bold">
-          EduPortal
-        </a>
-        <nav class="hidden md:flex space-x-6">
-          <a href="/dashboard" class="text-gray-700 hover:text-[#2563eb]">
-            Tableau de bord
-          </a>
-          <a href="/courses" class="text-gray-700 hover:text-[#2563eb]">
-            Mes cours
-          </a>
-          <a href="/catalog" class="text-gray-700 hover:text-[#2563eb]">
-            Catalogue
-          </a>
-          <a href="/certificates" class="text-gray-700 hover:text-[#2563eb]">
-            Certificats
-          </a>
-        </nav>
-      </div>
-      <div class="flex items-center space-x-4">
-        <button class="text-gray-700 hover:text-[#2563eb]">
-          <i class="ri-notification-3-line text-xl"></i>
+<body class="bg-white">
+    <!-- Navigation Bar -->
+    <header class="border-b border-gray-200 bg-white">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="#" class="text-2xl font-bold text-primary">LearnHub</a>
+                <nav class="ml-10 hidden md:block">
+                    <ul class="flex space-x-8">
+                        <li><a href="#" class="text-gray-700 hover:text-primary">Home</a></li>
+                        <li><a href="#" class="text-gray-700 hover:text-primary">My Courses</a></li>
+                        <li><a href="#" class="text-gray-700 hover:text-primary">FAQ</a></li>
+                        <li><a href="#" class="text-gray-700 hover:text-primary">Support</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="flex items-center">
+                <div class="relative">
+                    <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="User Avatar" class="w-8 h-8 rounded-full border-2 border-gray-200">
+                    <button class="ml-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-lightblue py-12">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8">Find your next learning path</h1>
+            <div class="flex max-w-xl">
+                <div class="relative flex-grow">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                    <input type="text" placeholder="Search courses..." class="w-full pl-10 pr-4 py-3 rounded-l-md border-0 focus:ring-2 focus:ring-primary">
+                </div>
+                <button class="bg-primary hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-r-md">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row">
+                <!-- Filters Sidebar -->
+                <div class="w-full md:w-1/4 mb-8 md:mb-0 md:pr-8">
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold mb-4">Categories</h3>
+                        <div class="space-y-3">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
+                                <span class="ml-2">Programming</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
+                                <span class="ml-2">Design</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
+                                <span class="ml-2">Business</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold mb-4">Level</h3>
+                        <div class="space-y-3">
+                            <label class="flex items-center">
+                                <input type="radio" name="level" class="text-primary focus:ring-primary">
+                                <span class="ml-2">Beginner</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="level" class="text-primary focus:ring-primary">
+                                <span class="ml-2">Intermediate</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="level" class="text-primary focus:ring-primary">
+                                <span class="ml-2">Advanced</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Status</h3>
+                        <div class="relative">
+                            <select class="w-full rounded-md border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 appearance-none py-2 pl-3 pr-10">
+                                <option>All Courses</option>
+                                <option>In Progress</option>
+                                <option>Completed</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Cards -->
+                <div class="w-full md:w-3/4 grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Web Development Card -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md border border-gray-100">
+                        <div class="h-48 bg-gradient-to-r from-pink-500 to-purple-500 flex items-center justify-center p-4">
+                            <img src="/placeholder.svg?height=150&width=200" alt="Web Development" class="h-32 object-contain">
+                        </div>
+                        <div class="p-5">
+                            <div class="inline-block px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-md mb-2">Beginner</div>
+                            <h3 class="text-xl font-semibold mb-2">Web Development Fundamentals</h3>
+                            <p class="text-gray-600 text-sm mb-4">Learn the basics of web development with HTML, CSS, and JavaScript.</p>
+                            <div class="flex justify-between items-center">
+                                <button class="bg-primary hover:bg-blue-700 text-white font-medium py-2 px-4 rounded">Enroll Now</button>
+                                <div class="flex items-center text-gray-500 text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    8 weeks
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- UI/UX Design Card -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md border border-gray-100">
+                        <div class="h-48 bg-blue-100 flex items-center justify-center p-4">
+                            <img src="/placeholder.svg?height=150&width=200" alt="UI/UX Design" class="h-32 object-contain">
+                        </div>
+                        <div class="p-5">
+                            <div class="inline-block px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-md mb-2">Intermediate</div>
+                            <h3 class="text-xl font-semibold mb-2">UI/UX Design Essentials</h3>
+                            <p class="text-gray-600 text-sm mb-4">Master the principles of user interface and experience design.</p>
+                            <div class="flex justify-between items-center">
+                                <button class="bg-primary hover:bg-blue-700 text-white font-medium py-2 px-4 rounded">Enroll Now</button>
+                                <div class="flex items-center text-gray-500 text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    12 weeks
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Science Card -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md border border-gray-100">
+                        <div class="h-48 bg-blue-800 flex items-center justify-center p-4">
+                            <img src="/placeholder.svg?height=150&width=200" alt="Data Science" class="h-32 object-contain">
+                        </div>
+                        <div class="p-5">
+                            <div class="inline-block px-2 py-1 bg-red-100 text-red-800 text-xs font-medium rounded-md mb-2">Advanced</div>
+                            <h3 class="text-xl font-semibold mb-2">Data Science Advanced</h3>
+                            <p class="text-gray-600 text-sm mb-4">Advanced data analysis and machine learning techniques.</p>
+                            <div class="flex justify-between items-center">
+                                <button class="bg-primary hover:bg-blue-700 text-white font-medium py-2 px-4 rounded">Enroll Now</button>
+                                <div class="flex items-center text-gray-500 text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    16 weeks
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Column 1 -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">LearnHub</h3>
+                    <p class="text-gray-400 text-sm">Empowering students through online education.</p>
+                </div>
+
+                <!-- Column 2 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">About Us</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                        <li><a href="#" class="hover:text-white">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Connect</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-10 pt-6 text-center text-gray-400 text-sm">
+                © 2025 LearnHub. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Support Button -->
+    <div class="fixed bottom-6 right-6">
+        <button class="bg-primary hover:bg-blue-700 text-white rounded-full p-4 shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            </svg>
         </button>
-        <div class="h-8 w-8 rounded-full overflow-hidden">
-          <img src="https://via.placeholder.com/32" alt="Profile" class="h-full w-full object-cover">
-        </div>
-      </div>
     </div>
-  </header>
-
-  <!-- Main Content -->
-  <main class="container mx-auto px-4 py-8">
-    <!-- Welcome Section -->
-    <div class="mb-8">
-      <h1 class="text-2xl font-bold text-[#1f2937]">Bienvenue, Marie!</h1>
-      <p class="text-[#4b5563]">Continuez votre apprentissage là où vous vous êtes arrêté</p>
-    </div>
-
-    <!-- Stats Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-      <div class="bg-[#f9fafb] p-6 rounded-lg">
-        <div class="flex justify-between items-start mb-4">
-          <span class="text-[#4b5563] text-sm">Cours en cours</span>
-          <i class="ri-layout-grid-line text-[#374151]"></i>
-        </div>
-        <p class="text-4xl font-bold text-[#1f2937]">4</p>
-      </div>
-
-      <div class="bg-[#f9fafb] p-6 rounded-lg">
-        <div class="flex justify-between items-start mb-4">
-          <span class="text-[#4b5563] text-sm">Cours complétés</span>
-          <i class="ri-checkbox-circle-line text-[#2563eb]"></i>
-        </div>
-        <p class="text-4xl font-bold text-[#1f2937]">12</p>
-      </div>
-
-      <div class="bg-[#f9fafb] p-6 rounded-lg">
-        <div class="flex justify-between items-start mb-4">
-          <span class="text-[#4b5563] text-sm">Certificats</span>
-          <div class="h-5 w-5 bg-[#1f2937] rounded-full flex items-center justify-center">
-            <div class="h-2.5 w-2.5 bg-white rounded-full"></div>
-          </div>
-        </div>
-        <p class="text-4xl font-bold text-[#1f2937]">3</p>
-      </div>
-
-      <div class="bg-[#f9fafb] p-6 rounded-lg">
-        <div class="flex justify-between items-start mb-4">
-          <span class="text-[#4b5563] text-sm">Heures d'apprentissage</span>
-          <i class="ri-time-line text-[#374151]"></i>
-        </div>
-        <p class="text-4xl font-bold text-[#1f2937]">86</p>
-      </div>
-    </div>
-
-    <!-- Current Courses -->
-    <div class="mb-10">
-      <h2 class="text-xl font-bold text-[#1f2937] mb-4">Cours en cours</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-white border border-[#e5e7eb] p-6 rounded-lg">
-          <div class="flex justify-between items-start mb-2">
-            <div>
-              <h3 class="font-medium text-[#1f2937]">Introduction au Machine Learning</h3>
-              <p class="text-sm text-[#6b7280]">Prof. David Martin</p>
-            </div>
-            <span class="text-xs bg-[#dbeafe] text-[#2563eb] px-3 py-1 rounded-full">En cours</span>
-          </div>
-          <div class="mt-4">
-            <p class="text-xs text-[#6b7280] mb-1">Progression</p>
-            <div class="w-full bg-[#e5e7eb] rounded-full h-2">
-              <div class="bg-[#2563eb] h-2 rounded-full" style="width: 75%"></div>
-            </div>
-            <div class="text-right mt-1">
-              <span class="text-xs text-[#6b7280]">75%</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-white border border-[#e5e7eb] p-6 rounded-lg">
-          <div class="flex justify-between items-start mb-2">
-            <div>
-              <h3 class="font-medium text-[#1f2937]">Data Science Avancée</h3>
-              <p class="text-sm text-[#6b7280]">Prof. Sarah Chen</p>
-            </div>
-            <span class="text-xs bg-[#dbeafe] text-[#2563eb] px-3 py-1 rounded-full">En cours</span>
-          </div>
-          <div class="mt-4">
-            <p class="text-xs text-[#6b7280] mb-1">Progression</p>
-            <div class="w-full bg-[#e5e7eb] rounded-full h-2">
-              <div class="bg-[#2563eb] h-2 rounded-full" style="width: 45%"></div>
-            </div>
-            <div class="text-right mt-1">
-              <span class="text-xs text-[#6b7280]">45%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Certificates -->
-    <div class="mb-10">
-      <h2 class="text-xl font-bold text-[#1f2937] mb-4">Mes Certificats</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white border border-[#e5e7eb] p-6 rounded-lg">
-          <div class="flex justify-between items-start mb-4">
-            <div class="h-8 w-8 bg-[#1f2937] rounded-full flex items-center justify-center">
-              <div class="h-4 w-4 bg-white rounded-full"></div>
-            </div>
-            <span class="text-xs text-[#6b7280]">Obtenu le 15 Jan 2025</span>
-          </div>
-          <h3 class="font-medium text-[#1f2937] mb-1">Python pour Data Science</h3>
-          <p class="text-sm text-[#6b7280]">Certification Niveau Avancé</p>
-        </div>
-
-        <div class="bg-white border border-[#e5e7eb] p-6 rounded-lg">
-          <div class="flex justify-between items-start mb-4">
-            <div class="h-8 w-8 bg-[#1f2937] rounded-full flex items-center justify-center">
-              <div class="h-4 w-4 bg-white rounded-full"></div>
-            </div>
-            <span class="text-xs text-[#6b7280]">Obtenu le 5 Mar 2025</span>
-          </div>
-          <h3 class="font-medium text-[#1f2937] mb-1">Deep Learning Fundamentals</h3>
-          <p class="text-sm text-[#6b7280]">Certification Niveau Intermédiaire</p>
-        </div>
-
-        <div class="bg-white border border-[#e5e7eb] p-6 rounded-lg">
-          <div class="flex justify-between items-start mb-4">
-            <div class="h-8 w-8 bg-[#1f2937] rounded-full flex items-center justify-center">
-              <div class="h-4 w-4 bg-white rounded-full"></div>
-            </div>
-            <span class="text-xs text-[#6b7280]">Obtenu le 20 Feb 2025</span>
-          </div>
-          <h3 class="font-medium text-[#1f2937] mb-1">SQL pour l'Analyse de Données</h3>
-          <p class="text-sm text-[#6b7280]">Certification Niveau Expert</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Discover More Courses -->
-    <div>
-      <div class="flex justify-between items-center mb-4">
-        <h2 class="text-xl font-bold text-[#1f2937]">Découvrez plus de cours</h2>
-        <a href="/catalog" class="text-[#2563eb] text-sm flex items-center hover:underline">
-          Voir tout <i class="ri-arrow-right-line ml-1"></i>
-        </a>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white border border-[#e5e7eb] rounded-lg overflow-hidden">
-          <div class="h-48 relative">
-            <img src="https://images.unsplash.com/photo-1563089145-599997674d42" alt="Intelligence Artificielle pour Débutants" class="w-full h-full object-cover">
-          </div>
-          <div class="p-6">
-            <h3 class="font-medium text-[#1f2937] mb-2">Intelligence Artificielle pour Débutants</h3>
-            <p class="text-sm text-[#6b7280] mb-4">Une introduction complète aux concepts de l'IA</p>
-            <div class="flex justify-between items-center">
-              <span class="text-[#2563eb]">40 heures</span>
-              <button class="bg-[#2563eb] text-white px-4 py-2 rounded-md text-sm hover:bg-[#1e40af] transition-colors">
-                S'inscrire
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-white border border-[#e5e7eb] rounded-lg overflow-hidden">
-          <div class="h-48 relative">
-            <img src="https://images.unsplash.com/photo-1563089145-599997674d42" alt="Big Data Analytics" class="w-full h-full object-cover">
-          </div>
-          <div class="p-6">
-            <h3 class="font-medium text-[#1f2937] mb-2">Big Data Analytics</h3>
-            <p class="text-sm text-[#6b7280] mb-4">Maîtrisez l'analyse des données massives</p>
-            <div class="flex justify-between items-center">
-              <span class="text-[#2563eb]">35 heures</span>
-              <button class="bg-[#2563eb] text-white px-4 py-2 rounded-md text-sm hover:bg-[#1e40af] transition-colors">
-                S'inscrire
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-white border border-[#e5e7eb] rounded-lg overflow-hidden">
-          <div class="h-48 relative">
-            <img src="https://images.unsplash.com/photo-1563089145-599997674d42" alt="Cloud Computing Avancé" class="w-full h-full object-cover">
-          </div>
-          <div class="p-6">
-            <h3 class="font-medium text-[#1f2937] mb-2">Cloud Computing Avancé</h3>
-            <p class="text-sm text-[#6b7280] mb-4">Solutions cloud pour entreprises modernes</p>
-            <div class="flex justify-between items-center">
-              <span class="text-[#2563eb]">50 heures</span>
-              <button class="bg-[#2563eb] text-white px-4 py-2 rounded-md text-sm hover:bg-[#1e40af] transition-colors">
-                S'inscrire
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="border-t border-gray-200 mt-16 py-8">
-    <div class="container mx-auto px-4">
-      <div class="flex flex-col md:flex-row justify-between items-center">
-        <p class="text-sm text-[#6b7280] mb-4 md:mb-0">© 2025 EduPortal. Tous droits réservés.</p>
-        <div class="flex space-x-6">
-          <a href="/help" class="text-sm text-[#6b7280] hover:text-[#2563eb]">
-            Aide
-          </a>
-          <a href="/privacy" class="text-sm text-[#6b7280] hover:text-[#2563eb]">
-            Confidentialité
-          </a>
-          <a href="/terms" class="text-sm text-[#6b7280] hover:text-[#2563eb]">
-            Conditions
-          </a>
-          <a href="/contact" class="text-sm text-[#6b7280] hover:text-[#2563eb]">
-            Contact
-          </a>
-        </div>
-      </div>
-    </div>
-  </footer>
 </body>
 </html>
