@@ -110,10 +110,16 @@
     <button id="profileBtn" class="px-2 py-2 w-10 h-10 rounded-full bg-gray-300 focus:outline-none"></button>
 
     <!-- Div des options de profil (masquée par défaut) -->
-    <div id="profileOptions" class="hidden absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg border border-gray-200">
-        <a href="/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Voir Profil</a>
-        <a href="/logout" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">logout</a>
-    </div>
+<div id="profileOptions" class="hidden absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg border border-gray-200">
+    <!-- Lien Voir Profil avec icône -->
+    <a href="/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">
+        <span class="material-icons mr-2">account_circle</span> Voir Profil
+    </a>
+    <!-- Lien Logout avec icône -->
+    <a href="/logout" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">
+        <span class="material-icons mr-2">logout</span> Logout
+    </a>
+</div>
 </div>
 
 </header>
