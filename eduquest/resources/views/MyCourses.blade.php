@@ -114,7 +114,7 @@
 
         <!-- Menu de profil (visible au hover) -->
         <div
-            class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg border border-gray-200 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-200 z-10">
+            class="absolute right-0 -mt-1 w-48 bg-white shadow-lg rounded-lg border border-gray-200 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-200 z-10">
             <a href="/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">
                 <span class="material-icons mr-2">account_circle</span> Voir Profil
             </a>
