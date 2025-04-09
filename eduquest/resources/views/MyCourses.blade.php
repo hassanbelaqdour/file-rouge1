@@ -116,9 +116,12 @@
         <span class="material-icons mr-2">account_circle</span> Voir Profil
     </a>
     <!-- Lien Logout avec icône -->
-    <a href="/logout" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">
-        <span class="material-icons mr-2">logout</span> Logout
-    </a>
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-200">
+            <span class="material-icons mr-2">logout</span> Logout
+        </button>
+    </form>
 </div>
 </div>
 

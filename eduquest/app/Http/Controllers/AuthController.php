@@ -53,7 +53,7 @@ class AuthController extends Controller
             // Redirection vers la page souhaitée après connexion (ex: dashboard)
             // redirect()->intended() est utile si l'utilisateur essayait d'accéder
             // à une page protégée avant d'être redirigé vers login.
-            return redirect()->intended(route('dashboard')); // Assurez-vous d'avoir une route nommée 'dashboard'
+            return redirect()->intended(route('MyCourses')); // Assurez-vous d'avoir une route nommée 'dashboard'
         }
 
         // --- Échec de l'authentification ---

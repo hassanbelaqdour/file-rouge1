@@ -44,13 +44,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // Exemple : Route pour un tableau de bord
-    Route::get('/dashboard', function () {
+    Route::get('/MyCourses', function () {
         // L'utilisateur est forcément authentifié et approuvé ici (vérifié lors du login)
         // Vous pouvez accéder à l'utilisateur connecté avec auth()->user()
         // $user = auth()->user();
         // Log::info("Utilisateur connecté au dashboard: " . $user->email);
-        return view('dashboard'); // Assurez-vous que resources/views/dashboard.blade.php existe
-    })->name('dashboard');
+        return view('MyCourses'); // Assurez-vous que resources/views/dashboard.blade.php existe
+    })->name('MyCourses');
 
     // Ajoutez ici toutes les autres routes qui nécessitent que l'utilisateur soit connecté
     // Exemple :
