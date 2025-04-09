@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AllCourses</title>
+    <title>MyCourses</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Sniglet&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -21,48 +21,70 @@
 
     <!-- Global Header -->
     <header class="bg-gray-100 py-4 px-6 flex justify-between items-center fixed top-0 left-0 w-full z-10 shadow-md">
-        <div class="text-2xl font-semibold text-gray-800">EduQuest</div>
-        
-        <!-- Profile -->
-        <div class="flex items-center space-x-4">
-            <button class="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 hover:text-gray-700 hover:border-gray-700">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-    </svg>
-</button>
-            <button class="px-2 py-2 w-10 h-10 rounded-full bg-gray-300 focus:outline-none"></button>
-        </div>
+    <!-- Logo -->
+    <div class="text-2xl font-semibold text-gray-800">EduQuest</div>
 
-    </header>
+    <!-- Navigation Links -->
+    <nav class="flex items-center gap-6">
+        <a href="#"
+           class="flex items-center gap-1 text-blue-600 font-semibold hover:text-blue-800">
+            <span class="material-symbols-outlined">menu_book</span>
+            All Courses
+        </a>
+        <a href="#"
+           class="flex items-center gap-1 text-gray-700 hover:text-blue-800">
+            <span class="material-symbols-outlined">school</span>
+            My Courses
+        </a>
+        <a href="#"
+           class="flex items-center gap-1 text-gray-700 hover:text-blue-800">
+            <span class="material-symbols-outlined">help</span>
+            Support & FAQ
+        </a>
+    </nav>
+
+    <!-- Notifications & Profile -->
+    <div class="flex items-center space-x-4">
+        <button class="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 hover:text-gray-700 hover:border-gray-700">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 
+                       0v.341C7.67 6.165 6 8.388 6 11v3.159c0 
+                       .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 
+                       3 0 11-6 0v-1m6 0H9" />
+            </svg>
+        </button>
+        <button class="px-2 py-2 w-10 h-10 rounded-full bg-gray-300 focus:outline-none"></button>
+    </div>
+</header>
+
 
     <div class="flex min-h-screen pt-16">
 
         <!-- Sidebar -->
-        <div class="bg-white border-r border-gray-200 w-64 py-8 px-4 space-y-6 fixed left-0 top-16 h-full overflow-y-auto shadow-md">
+<div class="bg-white border-r border-gray-200 w-64 py-8 px-4 space-y-6 fixed left-0 top-16 h-full overflow-y-auto shadow-md">
+    <!-- Catégories -->
+    <div>
+        <h2 class="text-lg font-bold text-gray-800 mb-2">Catégories</h2>
+        <ul class="space-y-1">
+            <li><a href="#" class="block py-2 px-4 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900">Développement</a></li>
+            <li><a href="#" class="block py-2 px-4 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900">UX/UI</a></li>
+            <li><a href="#" class="block py-2 px-4 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900">Data Science</a></li>
+            <li><a href="#" class="block py-2 px-4 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900">Marketing</a></li>
+        </ul>
+    </div>
 
-            
+    <!-- Type -->
+    <div>
+        <h2 class="text-lg font-bold text-gray-800 mb-2">Type</h2>
+        <ul class="space-y-1">
+            <li><a href="#" class="block py-2 px-4 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900">Gratuit</a></li>
+            <li><a href="#" class="block py-2 px-4 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900">Payant</a></li>
+        </ul>
+    </div>
+</div>
 
-            <!-- Navigation -->
-<nav class="flex flex-col space-y-2">
-    <a href="#" class="flex items-center gap-2 py-2 px-4 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-        <span class="material-symbols-outlined">menu_book</span>
-        All Courses
-    </a>
-    <a href="#" class="flex items-center gap-2 py-2 px-4 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-        <span class="material-symbols-outlined">school</span>
-        My Courses
-    </a>
-    <a href="#" class="flex items-center gap-2 py-2 px-4 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-        <span class="material-symbols-outlined">help</span>
-        Support & FAQ
-    </a>
-</nav>
-
-
-            <!-- Footer -->
-            <div class="mt-auto text-sm text-gray-500">Upgrade to Pro now</div>
-        </div>
 
         <!-- Main Content -->
         <div class="flex-1 p-8 ml-64">
