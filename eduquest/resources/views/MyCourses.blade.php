@@ -94,38 +94,40 @@
 
     </nav>
 
-    <!-- Notifications & Profile -->
-<div class="flex items-center space-x-4">
+<!-- Notifications & Profile -->
+<div class="flex items-center space-x-4 relative">
     <!-- Bouton de notification -->
-    <button class="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 hover:text-gray-700 hover:border-gray-700">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-            viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 
+    <button
+        class="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 hover:text-gray-700 hover:border-gray-700">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 
                    0v.341C7.67 6.165 6 8.388 6 11v3.159c0 
                    .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 
-                   3 0 11-6 0v-1m6 0H9" />
+                   3 0 11-6 0v-1m6 0H9" /> 
         </svg>
     </button>
-    
-    <!-- Bouton Profil (clic pour afficher les options) -->
-    <button id="profileBtn" class="px-2 py-2 w-10 h-10 rounded-full bg-gray-300 focus:outline-none"></button>
 
-    <!-- Div des options de profil (masquée par défaut) -->
-<div id="profileOptions" class="hidden absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg border border-gray-200">
-    <!-- Lien Voir Profil avec icône -->
-    <a href="/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">
-        <span class="material-icons mr-2">account_circle</span> Voir Profil
-    </a>
-    <!-- Lien Logout avec icône -->
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button type="submit" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-200">
-            <span class="material-icons mr-2">logout</span> Logout
-        </button>
-    </form>
+    <!-- Profil + Menu -->
+    <div class="relative group">
+        <!-- Bouton de profil -->
+        <button class="px-2 py-2 w-10 h-10 rounded-full bg-gray-300 focus:outline-none"></button>
+
+        <!-- Menu de profil (visible au hover) -->
+        <div
+            class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg border border-gray-200 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-200 z-10">
+            <a href="/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">
+                <span class="material-icons mr-2">account_circle</span> Voir Profil
+            </a>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-200">
+                    <span class="material-icons mr-2">logout</span> Logout
+                </button>
+            </form>
+        </div>
+    </div>
 </div>
-</div>
+
 
 </header>
 
@@ -295,13 +297,4 @@
         </div>
     </div>
 </body>
-<script>
-    document.getElementById('profileBtn').addEventListener('click', function() {
-    const profileOptions = document.getElementById('profileOptions');
-    
-    // Basculer l'affichage de la div (afficher/masquer)
-    profileOptions.classList.toggle('hidden');
-});
-
-</script>
 </html>
