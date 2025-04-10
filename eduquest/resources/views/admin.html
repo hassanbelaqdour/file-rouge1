@@ -13,25 +13,29 @@
         {{-- Sidebar complete... --}}
         <aside class="w-64 bg-white shadow-lg flex-shrink-0 hidden md:block border-r border-gray-200"> <div class="py-6 px-4 h-full flex flex-col"> <div class="flex flex-col items-center mb-6 pb-6 border-b border-gray-200"> <img src="https://via.placeholder.com/96/4b5563/ffffff?text=ADM" alt="Admin Avatar" class="w-16 h-16 rounded-full object-cover border-2 border-gray-300 mb-2"> <h4 class="font-semibold text-gray-800 text-sm">Admin EduQuest</h4> <p class="text-xs text-gray-500 mt-1">Administrateur</p> </div> <nav id="sidebarNav" class="flex-grow"> <ul class="space-y-1"> <li> <a href="#" class="sidebar-link active flex items-center px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100 hover:text-green-700" data-target="stats-section"> <span class="material-icons text-base mr-3 text-gray-500">bar_chart</span> Tableau de Bord </a> </li> <li> <a href="#" class="sidebar-link flex items-center px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100 hover:text-green-700" data-target="users-section"> <span class="material-icons text-base mr-3 text-gray-500">group</span> Utilisateurs </a> </li> <li> <a href="#" class="sidebar-link flex items-center px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100 hover:text-green-700" data-target="courses-section"> <span class="material-icons text-base mr-3 text-gray-500">school</span> Cours </a> </li> </ul> </nav> <div class="mt-auto pt-4 border-t border-gray-200"> <form method="POST" action="/logout"> <button type="submit" class="w-full flex items-center px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-red-50 hover:text-red-700"> <span class="material-icons text-base mr-3">logout</span> Déconnexion </button> </form> </div> </div> </aside>
 
-         <!-- Contenu Principal -->
         <main class="flex-grow p-6 md:p-8 lg:p-10 bg-gray-100 overflow-y-auto">
-
-            <!-- Section Tableau de Bord / Statistiques -->
             <div id="stats-section" class="content-section">
                  <h1 class="text-2xl font-semibold text-gray-800 mb-6">Tableau de Bord</h1>
-                 
                  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                     {{-- Cartes stats a venir --}}
+                     <div class="bg-white p-6 rounded-lg shadow-md flex items-center space-x-4">
+                         <div class="p-3 rounded-full bg-green-100 text-green-600"> <span class="material-icons">group</span> </div>
+                         <div> <p class="text-sm text-gray-500">Étudiants Inscrits</p> <p class="text-2xl font-bold text-gray-900">1,250</p> </div>
+                     </div>
+                      <div class="bg-white p-6 rounded-lg shadow-md flex items-center space-x-4">
+                         <div class="p-3 rounded-full bg-blue-100 text-blue-600"> <span class="material-icons">school</span> </div>
+                         <div> <p class="text-sm text-gray-500">Cours Publiés</p> <p class="text-2xl font-bold text-gray-900">85</p> </div>
+                     </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md flex items-center space-x-4">
+                         <div class="p-3 rounded-full bg-yellow-100 text-yellow-600"> <span class="material-icons">pending_actions</span> </div>
+                         <div> <p class="text-sm text-gray-500">Cours en Attente</p> <p class="text-2xl font-bold text-gray-900">12</p> </div>
+                     </div>
                  </div>
-
-                 {{-- Placeholder autres stats --}}
                  <div class="bg-white p-6 rounded-lg shadow-md">
                      <h3 class="text-lg font-semibold text-gray-800 mb-4">Activité Récente (Placeholder)</h3>
+                      <p class="text-gray-600">Graphique ou liste des dernières inscriptions/publications...</p>
                  </div>
             </div>
-
              {{-- Autres sections a venir --}}
-
         </main>
     </div>
 
