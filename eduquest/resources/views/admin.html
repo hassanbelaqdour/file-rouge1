@@ -13,30 +13,33 @@
         <main class="flex-grow p-6 md:p-8 lg:p-10 bg-gray-100 overflow-y-auto">
             {{-- Section Stats complete... --}}
             <div id="stats-section" class="content-section"> <h1 class="text-2xl font-semibold text-gray-800 mb-6">Tableau de Bord</h1> <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"> <div class="bg-white p-6 rounded-lg shadow-md flex items-center space-x-4"> <div class="p-3 rounded-full bg-green-100 text-green-600"> <span class="material-icons">group</span> </div> <div> <p class="text-sm text-gray-500">Étudiants Inscrits</p> <p class="text-2xl font-bold text-gray-900">1,250</p> </div> </div> <div class="bg-white p-6 rounded-lg shadow-md flex items-center space-x-4"> <div class="p-3 rounded-full bg-blue-100 text-blue-600"> <span class="material-icons">school</span> </div> <div> <p class="text-sm text-gray-500">Cours Publiés</p> <p class="text-2xl font-bold text-gray-900">85</p> </div> </div> <div class="bg-white p-6 rounded-lg shadow-md flex items-center space-x-4"> <div class="p-3 rounded-full bg-yellow-100 text-yellow-600"> <span class="material-icons">pending_actions</span> </div> <div> <p class="text-sm text-gray-500">Cours en Attente</p> <p class="text-2xl font-bold text-gray-900">12</p> </div> </div> </div> <div class="bg-white p-6 rounded-lg shadow-md"> <h3 class="text-lg font-semibold text-gray-800 mb-4">Activité Récente (Placeholder)</h3> <p class="text-gray-600">Graphique ou liste des dernières inscriptions/publications...</p> </div> </div>
-             
-            <!-- Section Gestion des Utilisateurs -->
-            <div id="users-section" class="content-section hidden">
-                <h1 class="text-2xl font-semibold text-gray-800 mb-6">Gestion des Utilisateurs</h1>
-                <div class="mb-4 flex justify-between items-center">
-                     <input type="text" placeholder="Rechercher un utilisateur..." class="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm w-1/3">
-                    <button class="px-4 py-2 bg-green-600 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 inline-flex items-center">
-                        <span class="material-icons text-sm mr-1">add</span> Ajouter Utilisateur
-                    </button>
-                </div>
-                <div class="bg-white shadow-lg rounded-lg overflow-x-auto">
-                    <table class="w-full table-auto">
+            
+             {{-- Section Users complete (structure)... --}}
+             <div id="users-section" class="content-section hidden"> <h1 class="text-2xl font-semibold text-gray-800 mb-6">Gestion des Utilisateurs</h1> <div class="mb-4 flex justify-between items-center"> <input type="text" placeholder="Rechercher un utilisateur..." class="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm w-1/3"> <button class="px-4 py-2 bg-green-600 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 inline-flex items-center"> <span class="material-icons text-sm mr-1">add</span> Ajouter Utilisateur </button> </div> <div class="bg-white shadow-lg rounded-lg overflow-x-auto"> <table class="w-full table-auto"> <thead class="bg-gray-50"> {{-- Entetes a venir --}} </thead> <tbody class="bg-white divide-y divide-gray-200"> {{-- Lignes a venir --}} </tbody> </table> </div> {{-- Pagination a venir --}} </div>
+
+             <!-- Section Gestion/Validation des Cours -->
+            <div id="courses-section" class="content-section hidden">
+                 <h1 class="text-2xl font-semibold text-gray-800 mb-6">Gestion des Cours</h1>
+                 <div class="mb-4 border-b border-gray-200">
+                    <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+                        <a href="#" class="border-green-500 text-green-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" aria-current="page">En Attente de Validation (12)</a>
+                        <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Approuvés (85)</a>
+                        <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Rejetés (5)</a>
+                    </nav>
+                 </div>
+                 <div class="bg-white shadow-lg rounded-lg overflow-x-auto">
+                     <table class="w-full table-auto">
                         <thead class="bg-gray-50">
-                           {{-- Entetes a venir --}}
+                            {{-- Entetes a venir --}}
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                            {{-- Lignes a venir --}}
                         </tbody>
                     </table>
-                </div>
-                 {{-- Pagination a venir --}}
+                 </div>
+                  {{-- Pagination a venir --}}
             </div>
-
-            {{-- Autres sections a venir --}}
+             {{-- Autres sections a venir --}}
         </main>
     </div>
 
