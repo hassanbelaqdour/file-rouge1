@@ -9,26 +9,41 @@
     {{-- Header complet... --}}
     <header class="bg-white py-4 px-6 flex justify-between items-center fixed top-0 left-0 w-full z-20 shadow-md border-b border-gray-200"> <div class="text-2xl font-semibold text-black">EduQuest</div> <nav class="hidden md:flex items-center gap-6"> </nav> <div class="flex items-center space-x-4 relative"> <button class="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 hover:text-black hover:bg-gray-100"> <span class="material-symbols-outlined text-lg">notifications</span> </button> <div class="relative group"> <button class="w-10 h-10 rounded-full bg-gray-200 focus:outline-none flex items-center justify-center text-gray-500"> <span class="material-symbols-outlined text-lg">admin_panel_settings</span> </button> <div class="absolute right-0 mt-1 w-48 bg-white shadow-lg rounded-lg border border-gray-200 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200 z-10"> <div class="px-4 py-3 text-sm text-gray-600"> <p class="font-medium text-gray-900">Admin EduQuest</p> <p class="truncate">admin@eduquest.com</p> </div> <hr class="border-gray-200"> <a href="/admin/settings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> <span class="material-icons mr-2 align-middle text-sm">settings</span> Paramètres </a> <form method="POST" action="/logout"> <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> <span class="material-icons mr-2 align-middle text-sm">logout</span> Logout </button> </form> </div> </div> </div> </header>
 
-     <!-- Wrapper Principal -->
     <div class="flex pt-16 md:pt-20 min-h-screen"> 
-        
-        <!-- Sidebar -->
         <aside class="w-64 bg-white shadow-lg flex-shrink-0 hidden md:block border-r border-gray-200">
-             <div class="py-6 px-4 h-full flex flex-col">
-                <!-- Mini Profile Admin -->
+            <div class="py-6 px-4 h-full flex flex-col">
                 <div class="flex flex-col items-center mb-6 pb-6 border-b border-gray-200">
                      <img src="https://via.placeholder.com/96/4b5563/ffffff?text=ADM" alt="Admin Avatar" class="w-16 h-16 rounded-full object-cover border-2 border-gray-300 mb-2">
                      <h4 class="font-semibold text-gray-800 text-sm">Admin EduQuest</h4>
                      <p class="text-xs text-gray-500 mt-1">Administrateur</p>
                 </div>
-
-                <!-- Navigation Sidebar Admin -->
                 <nav id="sidebarNav" class="flex-grow">
                     <ul class="space-y-1">
-                        {{-- Liens a venir --}}
+                        <li>
+                            <a href="#" class="sidebar-link active flex items-center px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100 hover:text-green-700" data-target="stats-section"> 
+                                <span class="material-icons text-base mr-3 text-gray-500">bar_chart</span> Tableau de Bord
+                            </a>
+                        </li>
+                         <li>
+                            <a href="#" class="sidebar-link flex items-center px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100 hover:text-green-700" data-target="users-section">
+                                <span class="material-icons text-base mr-3 text-gray-500">group</span> Utilisateurs
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="sidebar-link flex items-center px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100 hover:text-green-700" data-target="courses-section">
+                                <span class="material-icons text-base mr-3 text-gray-500">school</span> Cours
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 {{-- Logout en bas a venir --}}
+                 <div class="mt-auto pt-4 border-t border-gray-200">
+                    <form method="POST" action="/logout"> 
+                         <button type="submit" class="w-full flex items-center px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-red-50 hover:text-red-700"> 
+                             <span class="material-icons text-base mr-3">logout</span> Déconnexion
+                         </button> 
+                     </form>
+                 </div>
             </div>
         </aside>
 
