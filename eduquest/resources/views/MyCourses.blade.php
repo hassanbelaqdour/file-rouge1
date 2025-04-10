@@ -134,40 +134,8 @@
 
     <div class="flex min-h-screen pt-16">
 
-<!-- Sidebar -->
-<div class="bg-white border-r border-gray-200 w-64 py-4 px-4 space-y-4 fixed left-0 top-16 h-full overflow-y-auto shadow-md">
-    <!-- Section des Cours les Plus Consultés -->
-    <div>
-        <h2 class="text-xl font-semibold text-gray-800 mb-3">Les Cours les Plus Consultés</h2>
-        
-        <ul class="space-y-1">
-            <li><a href="#" class="block py-1 px-3 text-gray-700 rounded-md hover:bg-gray-100">Développement Web</a></li>
-            <li><a href="#" class="block py-1 px-3 text-gray-700 rounded-md hover:bg-gray-100">Design</a></li>
-            <li><a href="#" class="block py-1 px-3 text-gray-700 rounded-md hover:bg-gray-100">Marketing</a></li>
-            <li><a href="#" class="block py-1 px-3 text-gray-700 rounded-md hover:bg-gray-100">Data Science</a></li>
-            <li><a href="#" class="block py-1 px-3 text-gray-700 rounded-md hover:bg-gray-100">Gestion</a></li>
-        </ul>
-    </div>
-
-    <!-- Section des Certificats Existants -->
-    <div>
-        <h2 class="text-xl font-semibold text-gray-800 mb-3">Certificats Existants</h2>
-        
-        <ul class="space-y-1">
-            <li><a href="#" class="block py-1 px-3 text-gray-700 rounded-md hover:bg-gray-100">Certification Développement Web</a></li>
-            <li><a href="#" class="block py-1 px-3 text-gray-700 rounded-md hover:bg-gray-100">Certification Design</a></li>
-            <li><a href="#" class="block py-1 px-3 text-gray-700 rounded-md hover:bg-gray-100">Certification Marketing</a></li>
-            <li><a href="#" class="block py-1 px-3 text-gray-700 rounded-md hover:bg-gray-100">Certification Data Science</a></li>
-            <li><a href="#" class="block py-1 px-3 text-gray-700 rounded-md hover:bg-gray-100">Certification Gestion</a></li>
-        </ul>
-    </div>
-</div>
-
-
-
-
         <!-- Main Content -->
-        <div class="flex-1 p-8 ml-64">
+        <div class="flex-1 p-8">
 
             <!-- Content Header (Search and Filters) -->
 <header class="flex justify-between items-center mb-8">
@@ -296,5 +264,7 @@
 
         </div>
     </div>
+    
+    
 </body>
 </html>
