@@ -7,7 +7,7 @@
     <title>votre plateforme d'education en ligne</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Liens Head (partie ajoutee) -->
+    <!-- Liens Head -->
     <link
         href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Sniglet&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
         rel="stylesheet">
@@ -16,7 +16,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style>
-        /* Style Head (partie ajoutee) */
         body {
             font-family: 'Sniglet', cursive;
         }
@@ -37,65 +36,85 @@
 
 <body class="bg-gray-100" style="font-family: 'Sniglet', cursive;">
 
-    <!-- Header Global (partie ajoutee - reste en noir et blanc comme demande precedemment) -->
+    <!-- Header Global -->
     <header
         class="bg-white py-4 px-6 flex justify-between items-center fixed top-0 left-0 w-full z-20 shadow-md border-b border-gray-200">
-        <!-- Logo -->
         <div class="text-2xl font-semibold text-black">EduQuest</div>
-        <!-- Navigation Links -->
         <nav class="hidden md:flex items-center gap-6">
-            <!-- ... (liens de navigation du header restent ici) ... -->
-            <div class="relative group"> <button
+            <!-- All Courses Dropdown -->
+            <div class="relative group">
+                <button
                     class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
-                    <span class="material-symbols-outlined">menu_book</span> All Courses </button>
+                    <span class="material-symbols-outlined">menu_book</span> All Courses
+                </button>
                 <div
-                    class="absolute left-0 mt-1 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Tous les cours</a> <a
-                        href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Populaires</a> <a
-                        href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Nouveaux cours</a>
+                    class="absolute left-0 -mt-1 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48">
+                    <!-- Liens dropdown header en vert -->
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Tous les cours</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Populaires</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Nouveaux cours</a>
                 </div>
             </div>
-            <div class="relative group"> <button
+            <!-- My Courses Dropdown -->
+            <div class="relative group">
+                <button
                     class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
-                    <span class="material-symbols-outlined">school</span> My Courses </button>
+                    <span class="material-symbols-outlined">school</span> My Courses
+                </button>
                 <div
-                    class="absolute left-0 mt-1 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Cours en cours</a> <a
-                        href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Favoris</a> <a href="#"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Historique</a> </div>
+                    class="absolute left-0 -mt-1 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48">
+                    <!-- Liens dropdown header en vert -->
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Cours en cours</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Favoris</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Historique</a>
+                </div>
             </div>
-            <div class="relative group"> <button
+            <!-- FAQ Dropdown -->
+            <div class="relative group">
+                <button
                     class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
-                    <span class="material-symbols-outlined">help</span> Support & FAQ </button>
+                    <span class="material-symbols-outlined">help</span> Support & FAQ
+                </button>
                 <div
-                    class="absolute left-0 mt-1 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Questions generales</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Paiement</a> <a href="#"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Support technique</a> </div>
+                    class="absolute left-0 -mt-1 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48">
+                    <!-- Liens dropdown header en vert -->
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Questions generales</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Paiement</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Support technique</a>
+                </div>
             </div>
-            <div class="relative group"> <button
+            <!-- Course Categories Dropdown -->
+            <div class="relative group">
+                <button
                     class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
-                    <span class="material-symbols-outlined">category</span> Categories </button>
+                    <span class="material-symbols-outlined">category</span> Categories
+                </button>
                 <div
-                    class="absolute left-0 mt-1 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Developpement</a> <a
-                        href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Design</a> <a href="#"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Marketing</a> <a href="#"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Management</a> </div>
+                    class="absolute left-0 -mt-1 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48">
+                    <!-- Liens dropdown header en vert -->
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Developpement</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Design</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Marketing</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Management</a>
+                </div>
             </div>
-            <div class="relative group"> <button
+            <!-- Course Types Dropdown -->
+            <div class="relative group">
+                <button
                     class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
-                    <span class="material-symbols-outlined">local_offer</span> Types de Cours </button>
+                    <span class="material-symbols-outlined">local_offer</span> Types de Cours
+                </button>
                 <div
-                    class="absolute left-0 mt-1 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Gratuit</a> <a href="#"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Payant</a> <a href="#"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Certifie</a> </div>
+                    class="absolute left-0 -mt-1 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48">
+                    <!-- Liens dropdown header en vert -->
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Gratuit</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Payant</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Certifie</a>
+                </div>
             </div>
         </nav>
         <!-- Notifications & Profile -->
         <div class="flex items-center space-x-4 relative">
-            <!-- ... (icones notification et profil restent ici) ... -->
             <button
                 class="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 hover:text-black hover:bg-gray-100">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -107,7 +126,7 @@
                     class="w-10 h-10 rounded-full bg-gray-200 focus:outline-none flex items-center justify-center text-gray-500">
                     <span class="material-symbols-outlined">person</span> </button>
                 <div
-                    class="absolute right-0 mt-1 w-48 bg-white shadow-lg rounded-lg border border-gray-200 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200 z-10">
+                    class="absolute right-0 -mt-1 w-48 bg-white shadow-lg rounded-lg border border-gray-200 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200 z-10">
                     <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"> <span
                             class="material-icons mr-2 align-middle">account_circle</span> Voir Profil </a>
                     <form method="POST" action="#"> <button type="submit"
@@ -123,7 +142,6 @@
 
         <!-- Section Heros (CODE ORIGINAL - Theme Vert) -->
         <section class="bg-green-900 text-white py-20 md:py-32">
-            <!-- ... (contenu hero vert reste ici) ... -->
             <div class="container mx-auto px-6 text-center">
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight"> developpez votre <span
                         class="text-green-400">potentiel</span> </h1>
@@ -159,7 +177,6 @@
 
         <!-- Section Categories de Cours (CODE ORIGINAL - Theme Vert/Blanc) -->
         <section class="bg-white py-16">
-            <!-- ... (contenu categories vert/blanc reste ici) ... -->
             <div class="container mx-auto px-6">
                 <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-8 text-center"> <a href="#"
                         class="group flex flex-col items-center text-gray-700 hover:text-green-700 transition">
@@ -233,8 +250,69 @@
             </div>
         </section>
 
-        <!-- Section Grille de Cours (partie ajoutee - MAINTENANT THEME VERT) -->
-        <div class="bg-gray-50 flex-1 p-8">
+        <!-- NOUVELLE SECTION: Filtres -->
+        <section class="bg-gray-50 py-8">
+            <div class="container mx-auto px-6 flex flex-wrap items-center gap-4 md:gap-6">
+                <span class="text-gray-700 font-medium">Filtrer par :</span>
+
+                <!-- Dropdown Filtre Prix -->
+                <div class="relative group">
+                    <button
+                        class="flex items-center justify-between w-40 px-4 py-2 bg-white border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                        <span>Prix</span>
+                        <svg class="w-5 h-5 ml-2 -mr-1 text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <div
+                        class="absolute left-0 -mt-1 w-40 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10">
+                        <!-- Liens dropdown filtre en vert -->
+                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Tous</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Gratuit</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Payant</a>
+                    </div>
+                </div>
+
+                <!-- Dropdown Filtre Catégorie -->
+                <div class="relative group">
+                    <button
+                        class="flex items-center justify-between w-48 px-4 py-2 bg-white border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                        <span>Catégorie</span>
+                        <svg class="w-5 h-5 ml-2 -mr-1 text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <div
+                        class="absolute left-0 -mt-1 w-48 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 max-h-60 overflow-y-auto">
+                        <!-- Liens dropdown filtre en vert -->
+                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Toutes les
+                            catégories</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Developpement
+                            Web</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Data Science</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Marketing
+                            Digital</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Design
+                            Graphique</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Langues</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Photographie</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Business</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Developpement
+                            Personnel</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- FIN NOUVELLE SECTION: Filtres -->
+
+        <!-- Section Grille de Cours (partie ajoutee - THEME VERT) -->
+        <div class="bg-gray-50 flex-1 p-8 pt-0 md:pt-8"> <!-- Ajustement padding top pour coller a la section filtre -->
             <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 <!-- Premiere carte -->
                 <div class="rounded-md overflow-hidden shadow-md bg-white">
@@ -243,16 +321,14 @@
                             alt="Image Developpement" class="w-full h-full object-cover"> </div>
                     <div class="p-4">
                         <h3 class="font-semibold text-lg text-green-800">Developpement Web Moderne</h3>
-                        <!-- Titre en vert fonce -->
                         <p class="text-gray-600 text-sm mt-1">Apprenez les bases du html, css, javascript et explorez
                             les frameworks modernes comme react et vue.</p>
                         <div class="mt-4 flex items-center justify-between">
                             <div>
                                 <p class="text-gray-700 font-medium">Prix : <span
-                                        class="text-green-600 font-bold">99€</span></p> <!-- Prix en vert -->
+                                        class="text-green-600 font-bold">99€</span></p>
                                 <p class="text-gray-500 text-sm">35 personnes inscrites</p>
                             </div>
-                            <!-- Bouton vert -->
                             <button
                                 class="px-6 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 focus:outline-none transition duration-150 ease-in-out">
                                 En savoir plus </button>
@@ -266,16 +342,14 @@
                             alt="Image Python" class="w-full h-full object-cover"> </div>
                     <div class="p-4">
                         <h3 class="font-semibold text-lg text-green-800">Python pour Debutants</h3>
-                        <!-- Titre en vert fonce -->
                         <p class="text-gray-600 text-sm mt-1">Decouvrez les bases de la programmation avec python, le
                             langage de programmation polyvalent et populaire.</p>
                         <div class="mt-4 flex items-center justify-between">
                             <div>
                                 <p class="text-gray-700 font-medium">Prix : <span
-                                        class="text-green-600 font-bold">79€</span></p> <!-- Prix en vert -->
+                                        class="text-green-600 font-bold">79€</span></p>
                                 <p class="text-gray-500 text-sm">50 personnes inscrites</p>
                             </div>
-                            <!-- Bouton vert -->
                             <button
                                 class="px-6 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 focus:outline-none transition duration-150 ease-in-out">
                                 En savoir plus </button>
@@ -289,16 +363,14 @@
                             alt="Image Data Science" class="w-full h-full object-cover"> </div>
                     <div class="p-4">
                         <h3 class="font-semibold text-lg text-green-800">Introduction a la Data Science</h3>
-                        <!-- Titre en vert fonce -->
                         <p class="text-gray-600 text-sm mt-1">Explorez les concepts de base de la data science et
                             apprenez a analyser des donnees avec des outils comme python et r.</p>
                         <div class="mt-4 flex items-center justify-between">
                             <div>
                                 <p class="text-gray-700 font-medium">Prix : <span
-                                        class="text-green-600 font-bold">119€</span></p> <!-- Prix en vert -->
+                                        class="text-green-600 font-bold">119€</span></p>
                                 <p class="text-gray-500 text-sm">60 personnes inscrites</p>
                             </div>
-                            <!-- Bouton vert -->
                             <button
                                 class="px-6 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 focus:outline-none transition duration-150 ease-in-out">
                                 En savoir plus </button>
@@ -312,16 +384,14 @@
                             alt="Image Data Science" class="w-full h-full object-cover"> </div>
                     <div class="p-4">
                         <h3 class="font-semibold text-lg text-green-800">Data Science pour Debutants</h3>
-                        <!-- Titre en vert fonce -->
                         <p class="text-gray-600 text-sm mt-1">Apprenez les bases de l'analyse de donnees, de
                             l'apprentissage automatique et des outils comme python et r.</p>
                         <div class="mt-4 flex items-center justify-between">
                             <div>
                                 <p class="text-gray-700 font-medium">Prix : <span
-                                        class="text-green-600 font-bold">150€</span></p> <!-- Prix en vert -->
+                                        class="text-green-600 font-bold">150€</span></p>
                                 <p class="text-gray-500 text-sm">120 personnes inscrites</p>
                             </div>
-                            <!-- Bouton vert -->
                             <button
                                 class="px-6 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 focus:outline-none transition duration-150 ease-in-out">
                                 En savoir plus </button>
@@ -334,16 +404,15 @@
                             src="https://cdn.prod.website-files.com/66153b9f3cb891501ecbf45d/667c02946b3ae9b49f406d3a_UX-UI-Design-web.jpg"
                             alt="Image UI/UX" class="w-full h-full object-cover"> </div>
                     <div class="p-4">
-                        <h3 class="font-semibold text-lg text-green-800">Design UI/UX</h3> <!-- Titre en vert fonce -->
+                        <h3 class="font-semibold text-lg text-green-800">Design UI/UX</h3>
                         <p class="text-gray-600 text-sm mt-1">Maitrisez les concepts de l'experience utilisateur et du
                             design d'interface avec des outils comme sketch et figma.</p>
                         <div class="mt-4 flex items-center justify-between">
                             <div>
                                 <p class="text-gray-700 font-medium">Prix : <span
-                                        class="text-green-600 font-bold">80€</span></p> <!-- Prix en vert -->
+                                        class="text-green-600 font-bold">80€</span></p>
                                 <p class="text-gray-500 text-sm">200 personnes inscrites</p>
                             </div>
-                            <!-- Bouton vert -->
                             <button
                                 class="px-6 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 focus:outline-none transition duration-150 ease-in-out">
                                 En savoir plus </button>
@@ -355,15 +424,14 @@
                     <div class="h-40 bg-gray-200 flex items-center justify-center"> <span class="text-gray-400">Image
                             Cours</span> </div>
                     <div class="p-4">
-                        <h3 class="font-semibold text-lg text-green-800">Autre Cours</h3> <!-- Titre en vert fonce -->
+                        <h3 class="font-semibold text-lg text-green-800">Autre Cours</h3>
                         <p class="text-gray-600 text-sm mt-1">Description de cet autre cours passionnant.</p>
                         <div class="mt-4 flex items-center justify-between">
                             <div>
                                 <p class="text-gray-700 font-medium">Prix : <span
-                                        class="text-green-600 font-bold">XX€</span></p> <!-- Prix en vert -->
+                                        class="text-green-600 font-bold">XX€</span></p>
                                 <p class="text-gray-500 text-sm">XX personnes inscrites</p>
                             </div>
-                            <!-- Bouton vert -->
                             <button
                                 class="px-6 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 focus:outline-none transition duration-150 ease-in-out">
                                 En savoir plus </button>
@@ -372,7 +440,6 @@
                 </div>
             </div>
         </div>
-        <!-- Fin Section Grille de Cours (MAINTENANT THEME VERT) -->
 
     </div>
 
