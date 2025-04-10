@@ -21,12 +21,20 @@
         .material-icons, .material-symbols-outlined { vertical-align: middle; } 
 
         .sidebar-link.active {
-            background-color: #f3f4f6; /* bg-gray-100 */
-            color: #047857; /* text-green-700 */
-            font-weight: 600; /* font-semibold */
+            background-color: #f3f4f6; 
+            color: #047857; 
+            font-weight: 600; 
         }
         .sidebar-link.active .material-icons {
-             color: #047857; /* text-green-700 */
+             color: #047857; 
+        }
+         input[type="file"].hidden-file-input {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
         }
     </style>
 </head>
