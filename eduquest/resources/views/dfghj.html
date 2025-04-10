@@ -19,7 +19,30 @@
             <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
                 avec nos cours en ligne
             </h2>
-            <!-- barre de recherche et partenaires a venir -->
+
+            <!-- barre de recherche -->
+            <form class="max-w-2xl mx-auto mt-10 mb-16" action="/recherche" method="get">
+                <div class="flex items-center rounded-md shadow-sm">
+                    <input 
+                        type="search" 
+                        name="q" 
+                        id="search" 
+                        placeholder="que voulez-vous apprendre ? ex: python, marketing digital..."
+                        class="flex-grow px-4 py-3 text-gray-900 rounded-l-md border-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 outline-none"
+                    >
+                    <button 
+                        type="submit"
+                        aria-label="rechercher"
+                        class="bg-green-600 hover:bg-green-700 text-white px-5 py-3 rounded-r-md transition duration-150 ease-in-out"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                        </svg>                          
+                    </button>
+                </div>
+            </form>
+
+            <!-- section partenaires a venir -->
         </div>
     </section>
 
