@@ -125,14 +125,23 @@
             <div class="relative group"> <button
                     class="w-10 h-10 rounded-full bg-gray-200 focus:outline-none flex items-center justify-center text-gray-500">
                     <span class="material-symbols-outlined">person</span> </button>
-                <div
-                    class="absolute right-0 -mt-1 w-48 bg-white shadow-lg rounded-lg border border-gray-200 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200 z-10">
-                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"> <span
-                            class="material-icons mr-2 align-middle">account_circle</span> Voir Profil </a>
-                    <form method="POST" action="#"> <button type="submit"
-                            class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"> <span
-                                class="material-icons mr-2 align-middle">logout</span> Logout </button> </form>
-                </div>
+                                <div class="absolute right-0 -mt-1 w-48 bg-white shadow-lg rounded-lg border border-gray-200 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200 z-10">
+                                
+                                    {{-- Lien vers le profil (Adaptez le href si vous avez une route nommee) --}}
+                                    <a href="{{-- route('profile.show') --}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                        <span class="material-icons mr-2 align-middle">account_circle</span> Voir Profil
+                                    </a>
+                                
+                                    {{-- Formulaire de deconnexion Laravel --}}
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf {{-- Directive Blade pour la protection CSRF --}}
+                                
+                                        <button type="submit" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                            <span class="material-icons mr-2 align-middle">logout</span>
+                                            Logout
+                                        </button>
+                                    </form>
+                                </div>
             </div>
         </div>
     </header>
