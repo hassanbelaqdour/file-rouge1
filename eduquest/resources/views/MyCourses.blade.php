@@ -440,7 +440,56 @@
                 </div>
             </div>
         </div>
+<footer class="bg-gray-800 text-white py-8 mt-20">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
 
+            <!-- Section 1: Logo et Description -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">EduQuest</h3>
+                <p class="text-gray-400">Votre plateforme d'apprentissage en ligne pour un avenir meilleur.</p>
+            </div>
+
+            <!-- Section 2: Liens Rapides -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">Liens Rapides</h3>
+                <ul class="list-none pl-0">
+                    <li><a href="#" class="text-gray-300 hover:text-white">Accueil</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white">Cours</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white">À Propos</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Section 3: Ressources -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">Ressources</h3>
+                <ul class="list-none pl-0">
+                    <li><a href="#" class="text-gray-300 hover:text-white">Blog</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white">FAQ</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white">Conditions d'utilisation</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white">Politique de confidentialité</a></li>
+                </ul>
+            </div>
+
+            <!-- Section 4: Newsletter -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">Abonnez-vous à notre Newsletter</h3>
+                <p class="text-gray-400 mb-2">Recevez les dernières nouvelles et mises à jour.</p>
+                <div class="flex">
+                    <input type="email" placeholder="Votre adresse e-mail"
+                        class="bg-gray-700 text-white py-2 px-4 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-r-md">S'abonner</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-8 text-center text-gray-500">
+            <p>© 2024 EduQuest. Tous droits réservés.</p>
+        </div>
+    </div>
+</footer>
     </div>
 
 </body>
