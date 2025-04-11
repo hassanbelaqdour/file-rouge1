@@ -45,11 +45,7 @@ Route::middleware('auth')->group(function () {
 
     // Exemple : Route pour un tableau de bord
     Route::get('/MyCourses', function () {
-        // L'utilisateur est forcément authentifié et approuvé ici (vérifié lors du login)
-        // Vous pouvez accéder à l'utilisateur connecté avec auth()->user()
-        // $user = auth()->user();
-        // Log::info("Utilisateur connecté au dashboard: " . $user->email);
-        return view('MyCourses'); // Assurez-vous que resources/views/dashboard.blade.php existe
+        return view('student.MyCourses');
     })->name('MyCourses');
 
     // Ajoutez ici toutes les autres routes qui nécessitent que l'utilisateur soit connecté
