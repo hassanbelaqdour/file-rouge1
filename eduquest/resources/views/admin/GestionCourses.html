@@ -53,5 +53,46 @@
         </div>
     </header>
 
+    <div class="flex pt-16 md:pt-20 min-h-screen"> 
+        <aside class="w-64 bg-white shadow-lg flex-shrink-0 hidden md:block border-r border-gray-200">
+            <div class="py-6 px-4 h-full flex flex-col">
+                <div class="flex flex-col items-center mb-6 pb-6 border-b border-gray-200">
+                     <img src="https://via.placeholder.com/96/4b5563/ffffff?text=ADM" alt="Admin Avatar" class="w-16 h-16 rounded-full object-cover border-2 border-gray-300 mb-2">
+                     <h4 class="font-semibold text-gray-800 text-sm">Admin EduQuest</h4>
+                     <p class="text-xs text-gray-500 mt-1">Administrateur</p>
+                </div>
+                <nav id="sidebarNav" class="flex-grow">
+                    <ul class="space-y-1">
+                        <li>
+                            <a href="admin_dashboard.html" class="sidebar-link flex items-center px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100 hover:text-green-700"> 
+                                <span class="material-icons text-base mr-3 text-gray-500">bar_chart</span> Tableau de Bord
+                            </a>
+                        </li>
+                         <li>
+                            <a href="admin_users.html" class="sidebar-link flex items-center px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100 hover:text-green-700">
+                                <span class="material-icons text-base mr-3 text-gray-500">group</span> Utilisateurs
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin_courses.html" class="sidebar-link active flex items-center px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100 hover:text-green-700">
+                                <span class="material-icons text-base mr-3 text-gray-500">school</span> Cours
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                 <div class="mt-auto pt-4 border-t border-gray-200">
+                    <form method="POST" action="/logout"> 
+                         <button type="submit" class="w-full flex items-center px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-red-50 hover:text-red-700"> 
+                             <span class="material-icons text-base mr-3">logout</span> Déconnexion
+                         </button> 
+                     </form>
+                 </div>
+            </div>
+        </aside>
+
+        <!-- Contenu principal viendra ici -->
+
+    </div>
+
 </body>
 </html>
