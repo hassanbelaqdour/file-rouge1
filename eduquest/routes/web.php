@@ -54,12 +54,12 @@ Route::middleware('auth')->group(function () {
     // un middleware de rôle ici si vous voulez une protection supplémentaire.
 
     // Route pour les ADMINISTRATEURS
-    Route::get('/admin/StatistiqueAdmin', function () {
+    Route::get('/admin/Users', function () {
         // Vérification optionnelle mais recommandée du rôle ici ou via middleware dédié
         if (auth()->user()->role !== 'admin') {
             abort(403, 'Accès non autorisé.'); // Ou rediriger ailleurs
         }
-        return view('admin.StatistiqueAdmin'); // Assurez-vous que cette vue existe
+        return view('admin.Users'); // Assurez-vous que cette vue existe
     })->name('admin.stats'); // Nom utilisé dans AuthController
 
     // Route pour les ENSEIGNANTS
