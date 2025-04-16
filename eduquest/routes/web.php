@@ -56,21 +56,27 @@ Route::middleware('auth')->group(function () {
     // Route pour les ADMINISTRATEURS
     Route::get('/admin/StatistiqueAdmin', function () {
         // Vérification optionnelle mais recommandée du rôle ici ou via middleware dédié
-        
+        if (auth()->user()->role !== 'admin') {
+            abort(403, 'Accès non autorisé.'); // Ou rediriger ailleurs
+        }
         return view('admin.StatistiqueAdmin'); // Assurez-vous que cette vue existe
     })->name('admin.stats'); // Nom utilisé dans AuthController
 
     // Route pour les ENSEIGNANTS
     Route::get('/teacher/CreationCourse', function () {
         // Vérification optionnelle du rôle
-        
+        if (auth()->user()->role !== 'teacher') {
+            abort(403, 'Accès non autorisé.');
+        }
         return view('teacher.CreateCourse'); // Assurez-vous que cette vue existe
     })->name('teacher.createCourse'); // Nom utilisé dans AuthController
 
     // Route pour les ÉTUDIANTS (existante, conservée)
     Route::get('/MyCourses', function () {
         // Vérification optionnelle du rôle
-        
+        if (auth()->user()->role !== 'student') {
+            abort(403, 'Accès non autorisé.');
+        }
         return view('student.MyCourses'); // Assurez-vous que cette vue existe
     })->name('MyCourses'); // Nom utilisé dans AuthController
 
