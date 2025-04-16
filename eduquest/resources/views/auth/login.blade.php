@@ -116,8 +116,8 @@
                     <p class="text-gray-600">connecte-toi avec</p>
                 </div>
                 <div class="flex gap-4 mb-8">
-                    <button
-                        class="w-1/2 border border-gray-300 rounded-md py-3 flex justify-center hover:bg-gray-50">Google</button>
+                    <a href="/google/redirect"
+                        class="w-1/2 border border-gray-300 rounded-md py-3 flex justify-center hover:bg-gray-50">Google</a>
                     <button
                         class="w-1/2 border border-gray-300 rounded-md py-3 flex justify-center hover:bg-gray-50">GitHub</button>
                 </div>

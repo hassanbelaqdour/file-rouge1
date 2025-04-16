@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GoogleAuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController; // Assurez-vous que le chemin est correct
 use App\Http\Controllers\AdminController;
@@ -98,3 +99,5 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/admin/users/{id}/reject', [AdminController::class, 'rejectUser'])->name('admin.rejectUser');
 });
 
+Route::get('/google/redirect', [GoogleAuthController::class, 'redirect'])->name('google.redirect');
+Route::get('/google/callback', [GoogleAuthController::class, 'callback'])->name('google.callback');
