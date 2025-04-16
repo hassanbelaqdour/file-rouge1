@@ -3,6 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController; // Assurez-vous que le chemin est correct
 
+// --- Contrôleurs pour les différentes sections (À CRÉER SI NON EXISTANTS) ---
+// Vous devrez créer ces contrôleurs ou utiliser des closures comme ci-dessous
+// use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+// use App\Http\Controllers\Teacher\CourseController as TeacherCourseController;
+// use App\Http\Controllers\Student\CourseController as StudentCourseController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +22,7 @@ Route::get('/', function () {
 })->name('home'); // Donner un nom est une bonne pratique
 
 // --- Routes pour les INVITÉS (non connectés) ---
-// Le middleware 'guest' redirige les utilisateurs déjà connectés (vers /dashboard par ex.)
+// Le middleware 'guest' redirige les utilisateurs déjà connectés
 Route::middleware('guest')->group(function () {
 
     // Afficher le formulaire d'inscription
@@ -28,11 +35,8 @@ Route::middleware('guest')->group(function () {
     // Traiter la soumission du formulaire de connexion
     Route::post('/login', [AuthController::class, 'login']);
 
-    // Vous pouvez ajouter ici les routes pour la réinitialisation de mot de passe si besoin
-    // Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-    // Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-    // Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-    // Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
+    // Routes pour la réinitialisation de mot de passe (si nécessaire)
+    // ...
 
 }); // Fin du groupe 'guest'
 
@@ -40,17 +44,40 @@ Route::middleware('guest')->group(function () {
 // Le middleware 'auth' redirige les invités vers la page de connexion (route nommée 'login')
 Route::middleware('auth')->group(function () {
 
-    // Route pour la déconnexion
+    // Route pour la déconnexion (commune à tous les rôles)
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    // Exemple : Route pour un tableau de bord
-    Route::get('/MyCourses', function () {
-        return view('student.MyCourses');
-    })->name('MyCourses');
+    // --- Routes spécifiques aux RÔLES ---
+    // Ces routes sont accessibles car l'utilisateur est authentifié ('auth').
+    // La redirection initiale est gérée dans AuthController, mais un utilisateur
+    // pourrait essayer d'accéder à ces URL directement. Vous pourriez ajouter
+    // un middleware de rôle ici si vous voulez une protection supplémentaire.
 
-    // Ajoutez ici toutes les autres routes qui nécessitent que l'utilisateur soit connecté
-    // Exemple :
-    // Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
-    // Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Route pour les ADMINISTRATEURS
+    Route::get('/admin/StatistiqueAdmin', function () {
+        // Vérification optionnelle mais recommandée du rôle ici ou via middleware dédié
+        
+        return view('admin.StatistiqueAdmin'); // Assurez-vous que cette vue existe
+    })->name('admin.stats'); // Nom utilisé dans AuthController
+
+    // Route pour les ENSEIGNANTS
+    Route::get('/teacher/CreationCourse', function () {
+        // Vérification optionnelle du rôle
+        
+        return view('teacher.CreateCourse'); // Assurez-vous que cette vue existe
+    })->name('teacher.createCourse'); // Nom utilisé dans AuthController
+
+    // Route pour les ÉTUDIANTS (existante, conservée)
+    Route::get('/MyCourses', function () {
+        // Vérification optionnelle du rôle
+        
+        return view('student.MyCourses'); // Assurez-vous que cette vue existe
+    })->name('MyCourses'); // Nom utilisé dans AuthController
+
+
+    // Ajoutez ici d'autres routes nécessitant une authentification
+    // Exemple : Profil utilisateur commun à tous les rôles connectés
+    // Route::get('/profil', [UserProfileController::class, 'show'])->name('profile.show');
+    // Route::post('/profil', [UserProfileController::class, 'update'])->name('profile.update');
 
 }); // Fin du groupe 'auth'

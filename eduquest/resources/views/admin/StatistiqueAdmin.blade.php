@@ -7,9 +7,7 @@
     {{-- Dans une vraie app, le titre pourrait être dynamique : <title>{{ $pageTitle ?? 'Dashboard Admin' }} - EduQuest</title> --}}
     <title>Dashboard - EduQuest Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Sniglet&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Sniglet&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -44,7 +42,7 @@
         {{-- Utiliser route() helper pour les liens : href="{{ route('admin.dashboard') }}" --}}
         <a href="/admin/dashboard" class="navbar-link flex items-center gap-2 py-2 px-3 lg:px-4 rounded-md text-gray-700 hover:bg-gray-100 hover:text-black transition-colors duration-150
            {{-- Classe active pour le lien du header --}}
-           {{ request()->is('admin/dashboard*') ? 'active' : '' }}
+           {{ request()->is('admin/StatistiqueAdmin') ? 'active' : '' }}
            ">
             <span class="material-icons text-base">dashboard</span>
             <span class="text-sm font-medium">Tableau de bord</span>
@@ -118,19 +116,19 @@
                     <ul class="space-y-1">
                         <li>
                             {{-- Utiliser route() helper : href="{{ route('admin.dashboard') }}" --}}
-                            <a href="{{ route('admin.dashboard') }}" class="sidebar-link flex items-center px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100 hover:text-green-700 {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                            <a href="/admin.dashboard" class="sidebar-link flex items-center px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100 hover:text-green-700 {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                                 <span class="material-icons text-base mr-3 text-gray-500">bar_chart</span> Tableau de Bord
                             </a>
                         </li>
                         <li>
                             {{-- Utiliser route() helper : href="{{ route('admin.users.index') }}" (supposant une route ressource) --}}
-                            <a href="{{ route('admin.users.index') }}" class="sidebar-link flex items-center px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100 hover:text-green-700 {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+                            <a href="/admin.users.index" class="sidebar-link flex items-center px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100 hover:text-green-700 {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
                                 <span class="material-icons text-base mr-3 text-gray-500">group</span> Utilisateurs
                             </a>
                         </li>
                         <li>
                             {{-- Utiliser route() helper : href="{{ route('admin.courses.index') }}" (supposant une route ressource) --}}
-                            <a href="{{ route('admin.courses.index') }}" class="sidebar-link flex items-center px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100 hover:text-green-700 {{ request()->routeIs('admin.courses.*') ? 'active' : '' }}">
+                            <a href="/admin.courses.index" class="sidebar-link flex items-center px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100 hover:text-green-700 {{ request()->routeIs('admin.courses.*') ? 'active' : '' }}">
                                 <span class="material-icons text-base mr-3 text-gray-500">school</span> Cours
                             </a>
                         </li>
