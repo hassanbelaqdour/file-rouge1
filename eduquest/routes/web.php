@@ -87,3 +87,7 @@ Route::middleware('auth')->group(function () {
     // Route::post('/profil', [UserProfileController::class, 'update'])->name('profile.update');
 
 }); // Fin du groupe 'auth'
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/users/pending', [AdminController::class, 'showPendingUsers'])->name('admin.pendingUsers');
+});
