@@ -38,54 +38,42 @@ class AuthController extends Controller
                 ->withInput();
         }
 
-        // --- Préparation des identifiants pour Auth::attempt ---
-        $credentials = $request->only('email', 'password');
+        // --- Vérification manuelle de l'utilisateur ---
+        $user = User::where('email', $request->email)->first();
 
-        // --- AJOUT CRUCIAL : Condition pour le statut du compte ---
-        $credentials['account_status'] = 'approved';
-
-        // --- Tentative d'authentification via Laravel ---
-        if (Auth::attempt($credentials, $request->boolean('remember'))) {
-            // Authentification réussie ET compte approuvé !
-            $request->session()->regenerate(); // Sécurité : Régénère l'ID de session
-
-            // --- NOUVEAU : Redirection basée sur le rôle ---
-            $user = Auth::user(); // Récupère l'utilisateur authentifié
-
-            // Vérifie le rôle et redirige
-            if ($user->role === 'admin') {
-                // Redirige l'administrateur vers son tableau de bord
-                return redirect()->intended(route('admin.stats')); // Assurez-vous que la route 'admin.stats' existe
-            } elseif ($user->role === 'teacher') {
-                // Redirige l'enseignant vers la page de création de cours (ou son tableau de bord)
-                return redirect()->intended(route('teacher.createCourse')); // Assurez-vous que la route 'teacher.createCourse' existe
-            } elseif ($user->role === 'student') {
-                // Redirige l'étudiant vers ses cours
-                return redirect()->intended(route('MyCourses')); // Route existante
-            } else {
-                // Fallback (au cas où le rôle serait inattendu ou null)
-                // Vous pouvez déconnecter l'utilisateur, le rediriger vers une page par défaut, ou logger une erreur.
-                // Option 1: Déconnexion et redirection vers login avec erreur
-                Auth::logout();
-                $request->session()->invalidate();
-                $request->session()->regenerateToken();
-                return redirect()->route('login')
-                    ->withErrors(['email' => 'Rôle utilisateur non valide ou inconnu.'])
-                    ->onlyInput('email');
-
-                // Option 2: Redirection vers une page d'accueil générique (si elle existe)
-                // return redirect()->intended(route('home'));
-            }
-            // --- FIN NOUVEAU ---
-
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return redirect()->route('login')
+                ->withErrors(['email' => __('auth.failed')])
+                ->onlyInput('email');
         }
 
-        // --- Échec de l'authentification ---
-        // (Soit email/mdp incorrect, soit compte non approuvé)
-        return redirect()->route('login')
-            ->withErrors(['email' => __('auth.failed')]) // Message générique incluant échec mdp OU statut non approuvé
-            ->onlyInput('email', 'remember');
+        if ($user->account_status !== 'approved') {
+            return redirect()->route('login')
+                ->withErrors(['email' => 'Votre compte est en attente de validation par un administrateur.'])
+                ->onlyInput('email');
+        }
+
+        // --- Authentification manuelle ---
+        Auth::login($user, $request->boolean('remember'));
+        $request->session()->regenerate(); // Sécurité
+
+        // --- Redirection selon le rôle ---
+        if ($user->role === 'admin') {
+            return redirect()->intended(route('admin.stats'));
+        } elseif ($user->role === 'teacher') {
+            return redirect()->intended(route('teacher.createCourse'));
+        } elseif ($user->role === 'student') {
+            return redirect()->intended(route('MyCourses'));
+        } else {
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return redirect()->route('login')
+                ->withErrors(['email' => 'Rôle utilisateur non valide ou inconnu.'])
+                ->onlyInput('email');
+        }
     }
+
 
     // ... showRegistrationForm() reste identique ...
     public function showRegistrationForm()
