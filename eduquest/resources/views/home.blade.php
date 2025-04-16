@@ -79,7 +79,7 @@
 
             <!-- Ajout des boutons sous les statistiques -->
             <div class="flex justify-center space-x-4 mt-8">
-                <a href="#" class="bg-black text-white py-3 px-6 rounded-full inline-block hover:bg-gray-800 transition duration-200">Get Started</a>
+                <a href="/login" class="bg-black text-white py-3 px-6 rounded-full inline-block hover:bg-gray-800 transition duration-200">Get Started</a>
                 <a href="#" class="bg-white text-black py-3 px-6 rounded-full inline-block hover:bg-gray-200 transition duration-200 border border-black">Learn More</a>
             </div>
         </div>
