@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController; // Assurez-vous que le chemin est correct
-
+use App\Http\Controllers\AdminController;
 // --- Contrôleurs pour les différentes sections (À CRÉER SI NON EXISTANTS) ---
 // Vous devrez créer ces contrôleurs ou utiliser des closures comme ci-dessous
 // use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
