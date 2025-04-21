@@ -33,4 +33,13 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', 'Statut changé en "pending".');
     }
+
+     // Supprimer un utilisateur
+     public function deleteUser($id)
+     {
+         $user = User::findOrFail($id);
+         $user->delete();
+ 
+         return redirect()->back()->with('success', 'Utilisateur supprimé.');
+     }
 }
