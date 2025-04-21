@@ -42,16 +42,19 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin/users/pending', [AdminController::class, 'showPendingUsers'])->name('admin.pendingUsers');
-});
+    // Afficher tous les utilisateurs (pending + approved)
+    Route::get('/admin/Users', [AdminController::class, 'showUsers'])->name('admin.stats');
 
-Route::middleware(['auth', 'admin'])->group(function () {
+    // Approuver un utilisateur
     Route::post('/admin/users/{id}/approve', [AdminController::class, 'approveUser'])->name('admin.approveUser');
+
+    // Rejeter un utilisateur
+    Route::post('/admin/users/{id}/reject', [AdminController::class, 'rejectUser'])->name('admin.rejectUser');
+
+    // Supprimer un utilisateur
+    Route::delete('/admin/users/{id}', [AdminController::class, 'deleteUser'])->name('admin.deleteUser');
 });
 
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::post('/admin/users/{id}/reject', [AdminController::class, 'rejectUser'])->name('admin.rejectUser');
-});
 
 Route::get('/google/redirect', [GoogleAuthController::class, 'redirect'])->name('google.redirect');
 Route::get('/google/callback', [GoogleAuthController::class, 'callback'])->name('google.callback');
