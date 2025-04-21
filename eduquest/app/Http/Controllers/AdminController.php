@@ -23,4 +23,14 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', 'Utilisateur approuvé.');
     }
+
+    // Rejeter un utilisateur (changer en pending)
+    public function rejectUser($id)
+    {
+        $user = User::findOrFail($id);
+        $user->account_status = 'pending';
+        $user->save();
+
+        return redirect()->back()->with('success', 'Statut changé en "pending".');
+    }
 }
