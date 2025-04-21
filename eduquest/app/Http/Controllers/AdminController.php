@@ -7,11 +7,14 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    // Afficher les utilisateurs
-    public function showPendingUsers()
+
+    // Affiche tous les utilisateurs (pending + approved)
+    public function showUsers()
     {
-        $users = User::all();
-        return view('admin.Users', compact('users'));
+        $pendingUsers = User::where('account_status', 'pending')->get();
+        $approvedUsers = User::where('account_status', 'approved')->get();
+
+        return view('admin.Users', compact('pendingUsers', 'approvedUsers'));
     }
 
     // Approuver un utilisateur
