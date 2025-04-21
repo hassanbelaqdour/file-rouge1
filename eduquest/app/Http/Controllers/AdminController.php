@@ -13,4 +13,14 @@ class AdminController extends Controller
         $users = User::all();
         return view('admin.Users', compact('users'));
     }
+
+    // Approuver un utilisateur
+    public function approveUser($id)
+    {
+        $user = User::findOrFail($id);
+        $user->account_status = 'approved';
+        $user->save();
+
+        return redirect()->back()->with('success', 'Utilisateur approuvé.');
+    }
 }
