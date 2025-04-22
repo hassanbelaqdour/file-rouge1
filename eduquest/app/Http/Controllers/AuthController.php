@@ -4,29 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth; // <- Très important !
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Http\RedirectResponse;
-// Ajoutez ceci si vous utilisez Log
-// use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
-    // ... showLoginForm() reste identique ...
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
-    /**
-     * Gère la tentative de connexion.
-     * Accessible uniquement aux invités.
-     */
     public function login(Request $request): RedirectResponse
     {
-        // --- Validation ---
         $validator = Validator::make($request->all(), [
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
@@ -38,7 +30,6 @@ class AuthController extends Controller
                 ->withInput();
         }
 
-        // --- Vérification manuelle de l'utilisateur ---
         $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
@@ -53,7 +44,6 @@ class AuthController extends Controller
                 ->onlyInput('email');
         }
 
-        // --- Authentification manuelle ---
         Auth::login($user, $request->boolean('remember'));
         $request->session()->regenerate();
 
@@ -73,17 +63,13 @@ class AuthController extends Controller
         }
     }
 
-
-    // ... showRegistrationForm() reste identique ...
     public function showRegistrationForm()
     {
         return view('auth.register');
     }
 
-    // ... register() reste identique ...
     public function register(Request $request): RedirectResponse
     {
-        // --- Validation ---
         $validator = Validator::make($request->all(), [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
@@ -97,30 +83,24 @@ class AuthController extends Controller
                 ->withInput();
         }
 
-        // --- Création de l'utilisateur ---
         try {
             $user = User::create([
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                // Les valeurs par défaut pour 'role' ('student') et 'account_status' ('pending')
-                // devraient être définies dans votre migration ou modèle User.
             ]);
 
-            // --- Redirection après succès ---
             return redirect()->route('login')
                 ->with('status', 'Compte créé avec succès ! Veuillez attendre son approbation par un administrateur.');
 
         } catch (\Exception $e) {
-            // Log::error("Erreur d'enregistrement: " . $e->getMessage());
             return redirect()->route('register')
                 ->withErrors(['error' => 'Une erreur est survenue lors de la création du compte.'])
                 ->withInput();
         }
     }
 
-    // ... logout() reste identique ...
     public function logout(Request $request): RedirectResponse
     {
         Auth::logout();

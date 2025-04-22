@@ -8,17 +8,17 @@ use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
-    public function gestionCourses()
+    public function students()
     {
 
     }
 
-    public function allMyCourse()
+    public function courses()
     {
 
     }
 
-    public function statistiquesTeacher()
+    public function statistiques()
     {
 
     }
