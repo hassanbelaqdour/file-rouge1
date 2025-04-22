@@ -15,6 +15,7 @@
         <nav class="p-6 space-y-4">
             <a href="{{ route('admin.StatistiqueAdmin') }}" class="block text-gray-700 hover:text-blue-600">Statistique</a>
             <a href="" class="block text-gray-700 hover:text-blue-600 font-semibold">Utilisateurs</a>
+            <a href="{{ route('admin.GestionCourses') }}" class="block text-gray-700 hover:text-blue-600">gestion des courses</a>
             <!-- Ajoute d'autres liens ici si besoin -->
 
             <!-- Bouton de déconnexion -->

@@ -32,15 +32,15 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Statut changé en "pending".');
     }
 
-     public function deleteUser($id)
-     {
+    public function deleteUser($id)
+    {
          $user = User::findOrFail($id);
          $user->delete();
  
          return redirect()->back()->with('success', 'Utilisateur supprimé.');
-     }
+    }
 
-     public function statistiquesAdmin()
+    public function statistiquesAdmin()
     {
         $totalUsers = \App\Models\User::count();
         $pendingUsers = \App\Models\User::where('account_status', 'pending')->count();
@@ -49,4 +49,5 @@ class AdminController extends Controller
         return view('admin.StatistiqueAdmin', compact('totalUsers', 'pendingUsers', 'approvedUsers'));
     }
 
+    
 }
