@@ -47,5 +47,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/users/{id}/reject', [AdminController::class, 'rejectUser'])->name('admin.rejectUser');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/statistiques', [AdminController::class, 'statistiques'])->name('admin.StatistiqueAdmin');
+});
+
 Route::get('/google/redirect', [GoogleAuthController::class, 'redirect'])->name('google.redirect');
 Route::get('/google/callback', [GoogleAuthController::class, 'callback'])->name('google.callback');
