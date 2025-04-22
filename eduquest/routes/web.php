@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
         if (auth()->user()->role !== 'teacher') {
             abort(403, 'Accès non autorisé.');
         }
-        return view('teacher.CreateCourse');
+        return view('teacher.StatistiqueTeacher');
     })->name('teacher.statistiqueTeacher');
 
     Route::get('/MyCourses', function () {
@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/statistiques', [AdminController::class, 'statistiquesAdmin'])->name('admin.StatistiqueAdmin');
     Route::get('/admin/GestionCourses', [AdminController::class, 'gestionCourses'])->name('admin.GestionCourses');
+    Route::get('/admin/AllMyCourse', [AdminController::class, 'allMyCourse'])->name('admin.AllMyCourse');
 });
 
 Route::get('/google/redirect', [GoogleAuthController::class, 'redirect'])->name('google.redirect');
