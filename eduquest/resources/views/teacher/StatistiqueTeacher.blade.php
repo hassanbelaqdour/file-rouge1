@@ -15,7 +15,7 @@
         <nav class="p-6 space-y-4">
             <!-- Liens de navigation -->
             <a href="{{ route('teacher.AllMyCourse') }}" class="block text-gray-700 hover:text-blue-600">Tous les cours</a>
-            <a href="{{ route('teacher.students') }}" class="block text-gray-700 hover:text-blue-600">Étudiants inscrits</a>
+            <a href="{{ route('teacher.GestionStudent') }}" class="block text-gray-700 hover:text-blue-600">Étudiants inscrits</a>
 
             <!-- Bouton de déconnexion -->
             <form action="{{ route('logout') }}" method="POST" class="pt-6">

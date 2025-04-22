@@ -49,9 +49,13 @@ Route::middleware(['auth'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/statistiques', [AdminController::class, 'statistiquesAdmin'])->name('admin.StatistiqueAdmin');
-    Route::get('/admin/GestionCourses', [AdminController::class, 'gestionCourses'])->name('admin.GestionCourses');
-    Route::get('/admin/AllMyCourse', [AdminController::class, 'allMyCourse'])->name('admin.AllMyCourse');
 });
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/teacher/GestionStudent', [TeacherController::class, 'gestionStudent'])->name('teacher.GestionStudent');
+    Route::get('/teacher/AllMyCourse', [TeacherController::class, 'allMyCourse'])->name('teacher.AllMyCourse');
+});
+
 
 Route::get('/google/redirect', [GoogleAuthController::class, 'redirect'])->name('google.redirect');
 Route::get('/google/callback', [GoogleAuthController::class, 'callback'])->name('google.callback');
