@@ -55,9 +55,8 @@ class AuthController extends Controller
 
         // --- Authentification manuelle ---
         Auth::login($user, $request->boolean('remember'));
-        $request->session()->regenerate(); // Sécurité
-
-        // --- Redirection selon le rôle ---
+        $request->session()->regenerate();
+        
         if ($user->role === 'admin') {
             return redirect()->intended(route('admin.Users'));
         } elseif ($user->role === 'teacher') {
