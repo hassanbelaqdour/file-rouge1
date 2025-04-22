@@ -18,12 +18,9 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/admin/Users', function () {
-        if (auth()->user()->role !== 'admin') {
-            abort(403, 'Accès non autorisé.');
-        }
-        return view('admin.Users');
-    })->name('admin.stats');
+    
+    Route::get('/admin/Users', [AdminController::class, 'showUsers'])->middleware(['auth'])->name('admin.stats');
+
 
     Route::get('/teacher/CreationCourse', function () {
         if (auth()->user()->role !== 'teacher') {
@@ -40,13 +37,13 @@ Route::middleware('auth')->group(function () {
     })->name('MyCourses');
 });
 
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth',])->group(function () {
     Route::get('/admin/users/pending', [AdminController::class, 'showPendingUsers'])->name('admin.pendingUsers');
 });
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::post('/admin/users/{id}/approve', [AdminController::class, 'approveUser'])->name('admin.approveUser');
 });
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::post('/admin/users/{id}/reject', [AdminController::class, 'rejectUser'])->name('admin.rejectUser');
 });
 
