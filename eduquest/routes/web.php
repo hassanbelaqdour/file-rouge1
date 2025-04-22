@@ -19,7 +19,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     
-    Route::get('/admin/Users', [AdminController::class, 'showUsers'])->middleware(['auth'])->name('admin.stats');
+    Route::get('/admin/Users', [AdminController::class, 'showUsers'])->middleware(['auth'])->name('admin.Users');
 
 
     Route::get('/teacher/CreationCourse', function () {

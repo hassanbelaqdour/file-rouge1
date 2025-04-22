@@ -39,19 +39,14 @@ class AdminController extends Controller
  
          return redirect()->back()->with('success', 'Utilisateur supprimé.');
      }
+
      public function statistiquesAdmin()
-{
-    // Total des utilisateurs
-    $totalUsers = \App\Models\User::count();
+    {
+        $totalUsers = \App\Models\User::count();
+        $pendingUsers = \App\Models\User::where('account_status', 'pending')->count();
+        $approvedUsers = \App\Models\User::where('account_status', 'approved')->count();
 
-    // Nombre d'utilisateurs en attente
-    $pendingUsers = \App\Models\User::where('account_status', 'pending')->count();
-
-    // Nombre d'utilisateurs approuvés
-    $approvedUsers = \App\Models\User::where('account_status', 'approved')->count();
-
-    // Retourner la vue avec les statistiques
-    return view('admin.StatistiqueAdmin', compact('totalUsers', 'pendingUsers', 'approvedUsers'));
-}
+        return view('admin.StatistiqueAdmin', compact('totalUsers', 'pendingUsers', 'approvedUsers'));
+    }
 
 }
