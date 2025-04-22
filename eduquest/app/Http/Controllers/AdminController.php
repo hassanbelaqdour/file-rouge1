@@ -10,10 +10,8 @@ class AdminController extends Controller
 
     public function showUsers()
     {
-        $pendingUsers = User::where('account_status', 'pending')->get();
-        $approvedUsers = User::where('account_status', 'approved')->get();
-
-        return view('admin.Users', compact('pendingUsers', 'approvedUsers'));
+        $users = User::orderBy('created_at', 'desc')->get();
+        return view('admin.Users', compact('users'));
     }
 
     public function approveUser($id)
