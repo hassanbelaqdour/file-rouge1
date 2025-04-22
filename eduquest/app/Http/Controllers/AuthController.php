@@ -56,11 +56,11 @@ class AuthController extends Controller
         // --- Authentification manuelle ---
         Auth::login($user, $request->boolean('remember'));
         $request->session()->regenerate();
-        
+
         if ($user->role === 'admin') {
             return redirect()->intended(route('admin.Users'));
         } elseif ($user->role === 'teacher') {
-            return redirect()->intended(route('teacher.createCourse'));
+            return redirect()->intended(route('teacher.statistiqueTeacher'));
         } elseif ($user->role === 'student') {
             return redirect()->intended(route('MyCourses'));
         } else {

@@ -22,12 +22,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/Users', [AdminController::class, 'showUsers'])->middleware(['auth'])->name('admin.Users');
 
 
-    Route::get('/teacher/CreationCourse', function () {
+    Route::get('/teacher/StatistiqueTeacher', function () {
         if (auth()->user()->role !== 'teacher') {
             abort(403, 'Accès non autorisé.');
         }
         return view('teacher.CreateCourse');
-    })->name('teacher.createCourse');
+    })->name('teacher.statistiqueTeacher');
 
     Route::get('/MyCourses', function () {
         if (auth()->user()->role !== 'student') {
