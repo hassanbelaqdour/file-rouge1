@@ -49,5 +49,8 @@ class AdminController extends Controller
         return view('admin.StatistiqueAdmin', compact('totalUsers', 'pendingUsers', 'approvedUsers'));
     }
 
-    
+    public function gestionCourses()
+    {
+        
+    }
 }

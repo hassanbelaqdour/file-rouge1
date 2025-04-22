@@ -41,6 +41,7 @@
                                 <th class="border px-4 py-2">Prénom</th>
                                 <th class="border px-4 py-2">Email</th>
                                 <th class="border px-4 py-2">Statut</th>
+                                <th class="border px-4 py-2">Role</th>
                                 <th class="border px-4 py-2">Actions</th>
                             </tr>
                         </thead>
@@ -57,6 +58,7 @@
                                             <span class="text-yellow-600 font-semibold">En attente</span>
                                         @endif
                                     </td>
+                                    <td class="border px-4 py-2">{{ $user->role }}</td>
                                     <td class="border px-4 py-2 text-center">
                                         @if ($user->account_status === 'pending')
                                             <form action="{{ route('admin.approveUser', $user->id) }}" method="POST" class="inline-block">
