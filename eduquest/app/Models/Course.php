@@ -16,7 +16,6 @@ class Course extends Model
         'teacher_id',
     ];
 
-    // Relation : un cours appartient à un enseignant (user)
     public function teacher()
     {
         return $this->belongsTo(User::class, 'teacher_id');
