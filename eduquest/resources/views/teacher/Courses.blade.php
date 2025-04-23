@@ -7,7 +7,6 @@
 </head>
 <body class="bg-gray-100 flex">
 
-    <!-- SIDEBAR FIXE -->
     <aside class="w-64 h-screen bg-white shadow-lg fixed top-0 left-0 border-r border-gray-200 z-10">
         <div class="p-6 border-b border-gray-100">
             <h1 class="text-2xl font-bold text-black">EduQuest - Enseignant</h1>
@@ -23,11 +22,10 @@
         </nav>
     </aside>
 
-    <!-- CONTENU PRINCIPAL -->
     <main class="ml-64 w-full py-10 px-6">
         <div class="max-w-6xl mx-auto">
 
-            <!-- HEADER -->
+
             <div class="flex items-center justify-between mb-6">
                 <h1 class="text-3xl font-bold text-gray-800">Mes Cours</h1>
                 <button id="toggleFormBtn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
@@ -35,69 +33,68 @@
                 </button>
             </div>
 
-            <!-- FORMULAIRE AJOUT DE COURS (hidden par défaut) -->
             <div id="addCourseForm" class="hidden bg-white shadow-md rounded-lg p-6 mb-6">
-            <form action="{{ route('teacher.courses.store') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    <!-- Titre -->
-    <div class="mb-4">
-        <label for="title" class="block text-gray-700 font-semibold">Titre du cours</label>
-        <input type="text" name="title" id="title" class="w-full border px-4 py-2 rounded mt-1" required>
-    </div>
-
-    <!-- Description -->
-    <div class="mb-4">
-        <label for="description" class="block text-gray-700 font-semibold">Description</label>
-        <textarea name="description" id="description" rows="4" class="w-full border px-4 py-2 rounded mt-1" required></textarea>
-    </div>
-
-    <!-- Niveau -->
-    <div class="mb-4">
-        <label for="level" class="block text-gray-700 font-semibold">Niveau</label>
-        <select name="level" id="level" class="w-full border px-4 py-2 rounded mt-1" required>
-            <option value="beginner">Débutant</option>
-            <option value="intermediate">Intermédiaire</option>
-            <option value="advanced">Avancé</option>
-        </select>
-    </div>
-
-    <!-- Type -->
     <div class="mb-4">
         <label for="type" class="block text-gray-700 font-semibold">Type</label>
-        <select name="type" id="type" class="w-full border px-4 py-2 rounded mt-1" required>
-            <option value="free">Gratuit</option>
-            <option value="paid">Payant</option>
+        <select name="type" id="type" class="w-full border px-4 py-2 rounded mt-1 @error('type') border-red-500 @enderror" required>
+            <option value="free" {{ old('type', 'free') == 'free' ? 'selected' : '' }}>Gratuit</option>
+            <option value="paid" {{ old('type') == 'paid' ? 'selected' : '' }}>Payant</option>
         </select>
+        @error('type')
+            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+        @enderror
     </div>
 
-    <!-- Prix (visible si type = paid) -->
-    <div class="mb-4" id="priceField" style="display: none;">
+    <div class="mb-4" id="priceField" style="{{ old('type', 'free') == 'paid' ? '' : 'display: none;' }}">
         <label for="price" class="block text-gray-700 font-semibold">Prix (€)</label>
-        <input type="number" step="0.01" name="price" id="price" class="w-full border px-4 py-2 rounded mt-1">
+        <input type="number" step="0.01" min="0" name="price" id="price" value="{{ old('price') }}" class="w-full border px-4 py-2 rounded mt-1 @error('price') border-red-500 @enderror">
+        @error('price')
+            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+        @enderror
     </div>
 
-    <!-- Vidéo -->
     <div class="mb-4">
-        <label for="video_path" class="block text-gray-700 font-semibold">Vidéo</label>
-        <input type="file" name="video_path" id="video_path" class="w-full border px-4 py-2 rounded mt-1">
+        <label for="video_path" class="block text-gray-700 font-semibold">Vidéo (Optionnel)</label>
+        <input type="file" name="video_path" id="video_path" accept="video/mp4,video/mpeg,video/quicktime" class="w-full border px-4 py-2 rounded mt-1 @error('video_path') border-red-500 @enderror">
+        @error('video_path')
+            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+        @enderror
     </div>
 
-    <!-- PDF -->
     <div class="mb-4">
-        <label for="pdf_path" class="block text-gray-700 font-semibold">PDF</label>
-        <input type="file" name="pdf_path" id="pdf_path" class="w-full border px-4 py-2 rounded mt-1">
+        <label for="pdf_path" class="block text-gray-700 font-semibold">PDF (Optionnel)</label>
+        <input type="file" name="pdf_path" id="pdf_path" accept=".pdf,application/pdf" class="w-full border px-4 py-2 rounded mt-1 @error('pdf_path') border-red-500 @enderror">
+        @error('pdf_path')
+            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+        @enderror
     </div>
 
-    <!-- Bouton -->
     <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
         Enregistrer le cours
     </button>
 </form>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const typeSelect = document.getElementById('type');
+        const priceField = document.getElementById('priceField');
+        const priceInput = document.getElementById('price');
+
+        function togglePriceField() {
+            if (typeSelect.value === 'paid') {
+                priceField.style.display = 'block';
+                priceInput.required = true;
+            } else {
+                priceField.style.display = 'none';
+                priceInput.required = false;
+            }
+        }
+
+        typeSelect.addEventListener('change', togglePriceField);
+        togglePriceField();
+    });
+</script>
 
             </div>
-
-            <!-- TABLEAU DES COURS -->
-            <!-- AFFICHAGE DES COURS EN CARTES AVEC TOUS LES CHAMPS -->
 <div class="bg-white shadow-md rounded-lg p-6">
     @if ($courses->count() > 0)
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -154,14 +151,12 @@
         </div>
     </main>
 
-    <!-- SCRIPT POUR AFFICHER / MASQUER LE FORMULAIRE -->
     <script>
         document.getElementById("toggleFormBtn").addEventListener("click", function () {
             const form = document.getElementById("addCourseForm");
             form.classList.toggle("hidden");
         });
 
-        // Si besoin : masquer le formulaire après soumission avec JS
         @if(session('success'))
             document.getElementById("addCourseForm").classList.add("hidden");
         @endif
