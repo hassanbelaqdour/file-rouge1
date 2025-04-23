@@ -14,5 +14,22 @@ class TeacherController extends Controller
         return view('teacher.Courses', compact('courses'));
     }
 
+    public function storeCourse(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'level' => 'required|in:beginner,intermediate,advanced',
+        ]);
+
+        Course::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'level' => $request->level,
+            'teacher_id' => auth()->id(),
+        ]);
+
+        return redirect()->route('teacher.courses')->with('success', 'Cours ajouté avec succès.');
+    }
 
 }
