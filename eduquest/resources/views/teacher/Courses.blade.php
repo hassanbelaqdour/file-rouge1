@@ -97,32 +97,60 @@
             </div>
 
             <!-- TABLEAU DES COURS -->
-            <div class="bg-white shadow-md rounded-lg p-6">
-                @if ($courses->count() > 0)
-                    <table class="w-full table-auto border border-gray-200">
-                        <thead>
-                            <tr class="bg-gray-100">
-                                <th class="border px-4 py-2 text-left">Titre</th>
-                                <th class="border px-4 py-2 text-left">Description</th>
-                                <th class="border px-4 py-2 text-left">Niveau</th>
-                                <th class="border px-4 py-2 text-left">Créé le</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($courses as $course)
-                                <tr>
-                                    <td class="border px-4 py-2">{{ $course->title }}</td>
-                                    <td class="border px-4 py-2">{{ Str::limit($course->description, 60) }}</td>
-                                    <td class="border px-4 py-2 capitalize">{{ $course->level }}</td>
-                                    <td class="border px-4 py-2">{{ $course->created_at->format('d/m/Y') }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                @else
-                    <p class="text-gray-600 text-center">Aucun cours trouvé.</p>
-                @endif
-            </div>
+            <!-- AFFICHAGE DES COURS EN CARTES AVEC TOUS LES CHAMPS -->
+<div class="bg-white shadow-md rounded-lg p-6">
+    @if ($courses->count() > 0)
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            @foreach ($courses as $course)
+                <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4 hover:shadow-md transition flex flex-col justify-between h-full">
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-800 mb-2">{{ $course->title }}</h2>
+                        <p class="text-gray-600 text-sm mb-2">{{ Str::limit($course->description, 80) }}</p>
+
+                        <div class="mb-2">
+                            <span class="inline-block px-3 py-1 text-sm rounded-full bg-blue-100 text-blue-800 capitalize">
+                                {{ $course->level }}
+                            </span>
+                            <span class="inline-block px-3 py-1 text-sm rounded-full bg-green-100 text-green-800 capitalize ml-2">
+                                {{ $course->type }}
+                            </span>
+                        </div>
+
+                        <p class="text-sm text-gray-700 mb-2">
+                            💰 <strong>{{ number_format($course->price, 2) }} €</strong>
+                        </p>
+
+                        @if ($course->pdf_path)
+                            <p class="text-sm text-blue-600">
+                                📄 <a href="{{ asset('storage/' . $course->pdf_path) }}" target="_blank" class="underline">Voir le PDF</a>
+                            </p>
+                        @endif
+
+                        @if ($course->video_path)
+                            <p class="text-sm text-blue-600">
+                                🎥 <a href="{{ asset('storage/' . $course->video_path) }}" target="_blank" class="underline">Voir la vidéo</a>
+                            </p>
+                        @endif
+
+                        <p class="text-xs text-gray-500 mt-3">
+                            Créé le : {{ $course->created_at->format('d/m/Y') }}
+                        </p>
+                    </div>
+
+                    @if ($course->teacher)
+                    <div class="mt-4 text-sm text-gray-600">
+                        👨‍🏫 Enseignant : <strong>{{ $course->teacher->first_name}} {{ $course->teacher->last_name}}</strong>
+                    </div>
+
+                    @endif
+                </div>
+            @endforeach
+        </div>
+    @else
+        <p class="text-gray-600 text-center">Aucun cours trouvé.</p>
+    @endif
+</div>
+
         </div>
     </main>
 
