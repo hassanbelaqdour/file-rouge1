@@ -13,8 +13,12 @@ class Course extends Model
         'title',
         'description',
         'level',
+        'type',
+        'price',
+        'video_path',
+        'pdf_path',
         'teacher_id',
-    ];
+    ];    
 
     public function teacher()
     {
