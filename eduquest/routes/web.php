@@ -56,6 +56,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/teacher/statistiques', [TeacherController::class, 'statistiques'])->name('teacher.StatistiqueTeacher');
     Route::get('/teacher/courses', [TeacherController::class, 'courses'])->name('teacher.courses');
     Route::get('/teacher/students', [TeacherController::class, 'students'])->name('teacher.Students');
+    Route::post('/teacher/courses', [TeacherController::class, 'storeCourse'])->name('teacher.courses.store');
 });
 
 Route::get('/google/redirect', [GoogleAuthController::class, 'redirect'])->name('google.redirect');
