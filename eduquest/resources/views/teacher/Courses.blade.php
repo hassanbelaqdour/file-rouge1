@@ -37,28 +37,63 @@
 
             <!-- FORMULAIRE AJOUT DE COURS (hidden par défaut) -->
             <div id="addCourseForm" class="hidden bg-white shadow-md rounded-lg p-6 mb-6">
-                <form action="{{ route('teacher.courses.store') }}" method="POST">
-                    @csrf
-                    <div class="mb-4">
-                        <label for="title" class="block text-gray-700 font-semibold">Titre du cours</label>
-                        <input type="text" name="title" id="title" class="w-full border px-4 py-2 rounded mt-1" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="description" class="block text-gray-700 font-semibold">Description</label>
-                        <textarea name="description" id="description" rows="4" class="w-full border px-4 py-2 rounded mt-1" required></textarea>
-                    </div>
-                    <div class="mb-4">
-                        <label for="level" class="block text-gray-700 font-semibold">Niveau</label>
-                        <select name="level" id="level" class="w-full border px-4 py-2 rounded mt-1" required>
-                            <option value="beginner">Débutant</option>
-                            <option value="intermediate">Intermédiaire</option>
-                            <option value="advanced">Avancé</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
-                        Enregistrer le cours
-                    </button>
-                </form>
+            <form action="{{ route('teacher.courses.store') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <!-- Titre -->
+    <div class="mb-4">
+        <label for="title" class="block text-gray-700 font-semibold">Titre du cours</label>
+        <input type="text" name="title" id="title" class="w-full border px-4 py-2 rounded mt-1" required>
+    </div>
+
+    <!-- Description -->
+    <div class="mb-4">
+        <label for="description" class="block text-gray-700 font-semibold">Description</label>
+        <textarea name="description" id="description" rows="4" class="w-full border px-4 py-2 rounded mt-1" required></textarea>
+    </div>
+
+    <!-- Niveau -->
+    <div class="mb-4">
+        <label for="level" class="block text-gray-700 font-semibold">Niveau</label>
+        <select name="level" id="level" class="w-full border px-4 py-2 rounded mt-1" required>
+            <option value="beginner">Débutant</option>
+            <option value="intermediate">Intermédiaire</option>
+            <option value="advanced">Avancé</option>
+        </select>
+    </div>
+
+    <!-- Type -->
+    <div class="mb-4">
+        <label for="type" class="block text-gray-700 font-semibold">Type</label>
+        <select name="type" id="type" class="w-full border px-4 py-2 rounded mt-1" required>
+            <option value="free">Gratuit</option>
+            <option value="paid">Payant</option>
+        </select>
+    </div>
+
+    <!-- Prix (visible si type = paid) -->
+    <div class="mb-4" id="priceField" style="display: none;">
+        <label for="price" class="block text-gray-700 font-semibold">Prix (€)</label>
+        <input type="number" step="0.01" name="price" id="price" class="w-full border px-4 py-2 rounded mt-1">
+    </div>
+
+    <!-- Vidéo -->
+    <div class="mb-4">
+        <label for="video_path" class="block text-gray-700 font-semibold">Vidéo</label>
+        <input type="file" name="video_path" id="video_path" class="w-full border px-4 py-2 rounded mt-1">
+    </div>
+
+    <!-- PDF -->
+    <div class="mb-4">
+        <label for="pdf_path" class="block text-gray-700 font-semibold">PDF</label>
+        <input type="file" name="pdf_path" id="pdf_path" class="w-full border px-4 py-2 rounded mt-1">
+    </div>
+
+    <!-- Bouton -->
+    <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+        Enregistrer le cours
+    </button>
+</form>
+
             </div>
 
             <!-- TABLEAU DES COURS -->
