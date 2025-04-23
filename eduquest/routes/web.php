@@ -54,7 +54,7 @@ Route::middleware(['auth'])->group(function () {
 });
 Route::middleware(['auth'])->group(function () {
     Route::get('/teacher/statistiques', [TeacherController::class, 'statistiques'])->name('teacher.StatistiqueTeacher');
-    Route::get('/teacher/courses', [TeacherController::class, 'courses'])->name('teacher.Courses');
+    Route::get('/teacher/courses', [TeacherController::class, 'courses'])->name('teacher.courses');
     Route::get('/teacher/students', [TeacherController::class, 'students'])->name('teacher.Students');
 });
 
