@@ -249,13 +249,13 @@
                             </div>
 
                              {{-- Image (Required) --}}
-                            <!-- <div>
+                            <div>
                                 <label for="image_path" class="block text-sm font-medium text-gray-700 mb-1">Image du cours <span class="text-red-500">*</span></label>
                                 <input type="file" name="image_path" id="image_path" required accept="image/*"
                                        class="block w-full text-sm text-gray-500 border border-gray-300 rounded-md cursor-pointer bg-gray-50 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 @error('image_path') border-red-500 ring-1 ring-red-500 @enderror">
                                 <p class="mt-1 text-xs text-gray-500">PNG, JPG, GIF jusqu'à 2Mo.</p> {{-- Helper text --}}
                                 @error('image_path')<p class="mt-1 text-xs text-red-600">{{ $message }}</p>@enderror
-                            </div> -->
+                            </div>
 
                             {{-- PDF (Optional) --}}
                             <div>
