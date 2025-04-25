@@ -230,7 +230,7 @@
                             </div>
 
                              {{-- Catégorie --}}
-                            <!-- <div>
+                            <div>
                                 <label for="category_id" class="block text-sm font-medium text-gray-700 mb-1">Catégorie <span class="text-red-500">*</span></label>
                                 <select name="category_id" id="category_id" required
                                         class="block w-full shadow-sm sm:text-sm rounded-md border-gray-300 focus:ring-blue-500 focus:border-blue-500 @error('category_id') border-red-500 ring-1 ring-red-500 @enderror">
@@ -246,7 +246,7 @@
                                     @endisset
                                 </select>
                                 @error('category_id')<p class="mt-1 text-xs text-red-600">{{ $message }}</p>@enderror
-                            </div> -->
+                            </div>
 
                              {{-- Image (Required) --}}
                             <!-- <div>

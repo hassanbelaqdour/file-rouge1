@@ -15,8 +15,10 @@ class CreateCoursesTable extends Migration
             $table->enum('level', ['beginner', 'intermediate', 'advanced']);
             $table->enum('type', ['free', 'paid'])->default('free');
             $table->decimal('price', 8, 2)->nullable();
+            $table->string('image_path')->nullable();
             $table->string('video_path')->nullable();
             $table->string('pdf_path')->nullable();
+            $table->foreignId('category_id')->constrained('categories')->onDelete('restrict');
             $table->foreignId('teacher_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
