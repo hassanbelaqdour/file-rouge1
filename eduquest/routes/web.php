@@ -68,5 +68,10 @@ Route::get('/categories', [CategoryController::class, 'index'])
 Route::post('/categories', [CategoryController::class, 'store'])
     ->name('categories.store'); 
 
+
+
+Route::put('/categories/{category}', [CategoryController::class, 'update'])
+    ->name('categories.update'); 
+
 Route::get('/google/redirect', [GoogleAuthController::class, 'redirect'])->name('google.redirect');
 Route::get('/google/callback', [GoogleAuthController::class, 'callback'])->name('google.callback');
