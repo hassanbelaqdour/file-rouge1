@@ -60,6 +60,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/teacher/courses', [TeacherController::class, 'storeCourse'])->name('teacher.courses.store');
     Route::resource('categories', CategoryController::class)->except(['show']);
 });
-
+Route::get('/categories', [CategoryController::class, 'index'])
+    ->name('categories.index'); 
 Route::get('/google/redirect', [GoogleAuthController::class, 'redirect'])->name('google.redirect');
 Route::get('/google/callback', [GoogleAuthController::class, 'callback'])->name('google.callback');
