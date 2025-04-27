@@ -86,6 +86,23 @@ class CategoryController extends Controller
                          ->with('success', 'Catégorie mise à jour avec succès !');
     }
 
+    
+    public function destroy(Category $category)
+    {
+        
+        $categoryName = $category->name;
+
+        
+        
+        
+        
+        $category->delete();
+
+        
+        
+        return redirect()->route('categories.index')
+                         ->with('success', 'Catégorie "' . $categoryName . '" supprimée avec succès !');
+    }
 
 
 
