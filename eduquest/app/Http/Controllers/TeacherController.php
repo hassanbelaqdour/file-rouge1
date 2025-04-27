@@ -95,4 +95,32 @@ class TeacherController extends Controller
         // --- Rediriger ---
         return redirect()->route('teacher.courses')->with('success', 'Cours ajouté avec succès.');
     }
+
+    public function destroy(Course $course)
+    {
+        // Vérification : L'utilisateur connecté est-il le propriétaire de ce cours ?
+        if (Auth::id() !== $course->teacher_id) {
+            abort(403, 'Accès non autorisé.');
+        }
+
+        // 1. Supprimer les fichiers associés du stockage (important !)
+        if ($course->image_path) {
+            Storage::disk('public')->delete($course->image_path);
+        }
+        if ($course->video_path) {
+            Storage::disk('public')->delete($course->video_path);
+        }
+        if ($course->pdf_path) {
+            Storage::disk('public')->delete($course->pdf_path);
+        }
+
+        // 2. Supprimer l'enregistrement du cours de la base de données
+        // Les erreurs potentielles (rare sans contrainte externe) lèveront une exception
+        // gérée par le handler global de Laravel.
+        $course->delete();
+
+        // 3. Rediriger avec un message de succès
+        return redirect()->route('teacher.courses')->with('success', 'Cours supprimé avec succès.');
+    }
+
 }
