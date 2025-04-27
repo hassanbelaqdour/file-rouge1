@@ -96,6 +96,20 @@ class TeacherController extends Controller
         return redirect()->route('teacher.courses')->with('success', 'Cours ajouté avec succès.');
     }
 
+    public function edit(Course $course)
+    {
+        // Vérification : L'utilisateur connecté est-il le propriétaire de ce cours ?
+        if (Auth::id() !== $course->teacher_id) {
+            abort(403, 'Accès non autorisé.'); // Interdit l'accès si ce n'est pas son cours
+        }
+
+        // Récupérer les catégories pour le formulaire d'édition
+        $categories = Category::orderBy('name')->get();
+
+        // Retourner la vue d'édition en passant le cours et les catégories
+        return view('teacher.edit_course', compact('course', 'categories'));
+    }
+
     public function destroy(Course $course)
     {
         // Vérification : L'utilisateur connecté est-il le propriétaire de ce cours ?
