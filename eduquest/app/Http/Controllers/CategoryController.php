@@ -9,10 +9,8 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        // Récupère toutes les catégories, triées par nom
         $categories = Category::orderBy('name')->get();
-
-        // Retourne la vue unique qui gère tout
+        // Retourne LA SEULE vue pour les catégories
         return view('teacher.CreateCategory', compact('categories'));
     }
 
@@ -24,15 +22,15 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        
         $validatedData = $request->validate([
             'name' => 'required|string|max:255|unique:categories,name',
         ]);
 
         Category::create($validatedData);
 
-
-        return redirect()->route('categories.create')->with('success', 'Catégorie ajoutée avec succès !');
+        // Redirige vers la page de gestion (index) avec un message de succès
+        return redirect()->route('categories.index')
+                         ->with('success', 'Catégorie "' . $validatedData['name'] . '" ajoutée avec succès !');
     }
 
     public function show(Category $category)
