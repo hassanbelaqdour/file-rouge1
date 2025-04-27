@@ -9,8 +9,11 @@ class CategoryController extends Controller
 {
     public function index()
     {
+        // Récupère toutes les catégories, triées par nom
         $categories = Category::orderBy('name')->get();
-         return redirect()->route('categories.create');
+
+        // Retourne la vue unique qui gère tout
+        return view('teacher.CreateCategory', compact('categories'));
     }
 
     public function create()
