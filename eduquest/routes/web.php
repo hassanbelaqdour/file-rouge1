@@ -78,5 +78,7 @@ Route::put('/categories/{category}', [CategoryController::class, 'update'])
 Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])
     ->name('categories.destroy');
 
+Route::get('/teacher/courses/{course}/edit', [TeacherController::class, 'edit'])->name('teacher.courses.edit');
+
 Route::get('/google/redirect', [GoogleAuthController::class, 'redirect'])->name('google.redirect');
 Route::get('/google/callback', [GoogleAuthController::class, 'callback'])->name('google.callback');
