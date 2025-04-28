@@ -136,6 +136,44 @@ class TeacherController extends Controller
         
         return redirect()->route('teacher.courses')->with('success', 'Cours supprimé avec succès.');
     }
+    public function statistics() // Ou renommez en 'statistiques' si utilisé dans vos routes
+    {
+        // Récupère l'ID de l'enseignant connecté
+        $teacherId = Auth::id();
+
+        // 1. Nombre total de cours créés par cet enseignant
+        $totalCourses = Course::where('teacher_id', $teacherId)->count();
+
+        // 2. Nombre total d'étudiants inscrits aux cours de cet enseignant
+        //    Cela nécessite une relation Many-to-Many entre Course et User (étudiants)
+        //    Supposons une table pivot nommée 'course_user' avec les colonnes 'course_id' et 'user_id'.
+        //    Nous comptons les étudiants uniques inscrits à AU MOINS UN cours de cet enseignant.
+
+        // D'abord, obtenir les IDs des cours de cet enseignant
+        $teacherCourseIds = Course::where('teacher_id', $teacherId)->pluck('id');
+
+        // Ensuite, compter les étudiants distincts inscrits à ces cours via la table pivot
+        // Assurez-vous que le nom de la table pivot ('course_user') est correct.
+        // $totalEnrolledStudents = DB::table('course_user')
+        //                             ->whereIn('course_id', $teacherCourseIds)
+        //                             ->distinct('user_id') // Compter chaque étudiant une seule fois
+        //                             ->count('user_id');
+
+        // Vous pourriez aussi vouloir des statistiques plus détaillées par cours,
+        // mais pour l'instant, tenons-nous aux totaux demandés.
+
+        // Passe les données à la vue
+        return view('teacher.StatistiqueTeacher', compact(
+            'totalCourses',
+            // 'totalEnrolledStudents'
+        ));
+    }
+
+    // ... (si vous avez une méthode 'statistiques', assurez-vous qu'elle fait la même chose ou appelez celle-ci)
+     public function statistiques() // Gardé pour correspondre à votre route existante
+     {
+        return $this->statistics(); // Appelle la méthode principale
+     }
     
     
 
