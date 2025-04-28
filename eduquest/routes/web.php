@@ -80,6 +80,7 @@ Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])
 
     Route::get('/teacher/courses/{course}/edit', [TeacherController::class, 'edit'])->name('teacher.courses.edit');
     Route::put('/teacher/courses/{course}', [TeacherController::class, 'update'])->name('teacher.courses.update');
+    Route::delete('/teacher/courses/{course}', [TeacherController::class, 'destroy'])->name('teacher.courses.destroy');
 
 Route::get('/google/redirect', [GoogleAuthController::class, 'redirect'])->name('google.redirect');
 Route::get('/google/callback', [GoogleAuthController::class, 'callback'])->name('google.callback');
