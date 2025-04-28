@@ -136,6 +136,39 @@ class TeacherController extends Controller
         
         return redirect()->route('teacher.courses')->with('success', 'Cours supprimé avec succès.');
     }
+
+    public function update(Request $request, Course $course)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'level' => 'required|in:beginner,intermediate,advanced',
+            'type' => 'required|in:free,paid',
+            'price' => 'required_if:type,paid|nullable|numeric|min:0',
+            'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'category_id' => 'required|exists:categories,id',
+            'video_path' => 'nullable|file|mimetypes:video/mp4,video/mpeg,video/quicktime,video/avi,video/x-ms-wmv|max:204800',
+            'pdf_path' => 'nullable|file|mimes:pdf|max:20480',
+        ]);
+        if ($request->hasFile('image_path')) {
+            $imagePath = $request->file('image_path')->store('course_images', 'public');
+            if (!$imagePath) {
+                return back()->withErrors(['image_path' => 'Server failed to store the image file.'])->withInput();
+            }
+            $validatedData['image_path'] = $imagePath;
+        }
+
+        if ($request->hasFile('video_path')) {
+            $validatedData['video_path'] = $request->file('video_path')->store('videos', 'public');
+            if (!$validatedData['video_path']) {
+                if(isset($validatedData['image_path'])) Storage::disk('public')->delete($validatedData['image_path']);
+                return back()->withErrors(['video_path' => 'Server failed to store the video file.'])->withInput();
+            }
+        }
+        $course->update($validatedData);
+        return redirect()->route('teacher.courses')->with('success', 'Cours mis à jour avec succès.');
+    }
+
     public function statistics() // Ou renommez en 'statistiques' si utilisé dans vos routes
     {
         // Récupère l'ID de l'enseignant connecté
@@ -175,6 +208,6 @@ class TeacherController extends Controller
         return $this->statistics(); // Appelle la méthode principale
      }
     
-    
+
 
 }
