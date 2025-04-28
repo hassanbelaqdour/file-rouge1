@@ -107,7 +107,7 @@ class TeacherController extends Controller
         $categories = Category::orderBy('name')->get();
 
         
-        return view('teacher.edit_course', compact('course', 'categories'));
+        return view('teacher.EditCourse', compact('course', 'categories'));
     }
 
     public function destroy(Course $course)
@@ -136,5 +136,7 @@ class TeacherController extends Controller
         
         return redirect()->route('teacher.courses')->with('success', 'Cours supprimé avec succès.');
     }
+    
+    
 
 }
