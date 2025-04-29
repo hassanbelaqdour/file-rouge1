@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SupportController;
 
 Route::get('/', function () {
     return view('home');
@@ -63,6 +64,8 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/categories', [CategoryController::class, 'index'])
     ->name('categories.index'); 
 
+    Route::get('/support/ask', [SupportController::class, 'create'])->name('support.create');
+    Route::post('/support', [SupportController::class, 'store'])->name('support.store');
 
 
 Route::post('/categories', [CategoryController::class, 'store'])
