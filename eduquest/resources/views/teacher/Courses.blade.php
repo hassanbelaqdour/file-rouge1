@@ -24,9 +24,6 @@
 </head>
 <body class="bg-gray-100 flex antialiased">
 
-    <!-- ================================================== -->
-    <!--                      SIDEBAR                       -->
-    <!-- ================================================== -->
     <aside class="w-64 h-screen bg-white shadow-md fixed top-0 left-0 border-r border-gray-200 z-20 flex flex-col">
         {{-- Header Sidebar --}}
         <div class="p-5 border-b border-gray-200 flex items-center space-x-2">
@@ -167,10 +164,7 @@
                 @else
                      {{-- État vide --}}
                      <div class="text-center py-12 px-6 bg-white rounded-lg shadow border">
-                        <svg class="mx-auto h-12 w-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" /></svg>
-                        <h3 class="mt-2 text-sm font-medium text-gray-900">Aucun cours trouvé</h3>
-                        <p class="mt-1 text-sm text-gray-500">Commencez par ajouter votre premier cours.</p>
-                        <div class="mt-6"><button type="button" id="emptyStateAddBtn" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"><svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" /></svg>Ajouter un cours</button></div>
+                        aucune cours etait ajouter pour le moment
                      </div>
                 @endif
             </div>
@@ -178,30 +172,28 @@
         </div>
     </main>
 
-    {{-- =============================================== --}}
-    {{-- |            SCRIPTS JAVASCRIPT             | --}}
-    {{-- =============================================== --}}
+
     <script>
-        // Script pour afficher/masquer le formulaire d'ajout de cours
+        
         document.addEventListener('DOMContentLoaded', function () {
             const toggleBtn = document.getElementById("toggleFormBtn");
             const emptyStateBtn = document.getElementById("emptyStateAddBtn");
             const addCourseForm = document.getElementById("addCourseForm");
-            const cancelBtn = document.getElementById('cancelFormBtn'); // Bouton Annuler du formulaire
+            const cancelBtn = document.getElementById('cancelFormBtn'); 
 
             function showForm() {
                  if (addCourseForm) {
-                     addCourseForm.style.display = 'block'; // Utiliser display au lieu de classList
-                     // Optionnel : Scroll vers le formulaire
+                     addCourseForm.style.display = 'block'; 
+                     
                      addCourseForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
                  }
             }
             function hideForm() {
                  if (addCourseForm) {
-                    addCourseForm.style.display = 'none'; // Utiliser display
-                    // Optionnel : réinitialiser le formulaire en cachant
-                    // addCourseForm.querySelector('form').reset();
-                    // document.getElementById('priceField').style.display = 'none'; // Reset prix aussi
+                    addCourseForm.style.display = 'none'; 
+                    
+                    
+                    
                  }
             }
 
@@ -215,26 +207,26 @@
             if(emptyStateBtn) emptyStateBtn.addEventListener("click", showForm);
             if(cancelBtn) cancelBtn.addEventListener("click", hideForm);
 
-            // Garder le formulaire ouvert s'il y a des erreurs de validation après rechargement
-             @if ($errors->any() && old('_token')) // Vérifie erreurs ET soumission POST/PUT
+            
+             @if ($errors->any() && old('_token')) 
                  showForm();
              @endif
         });
 
-        // Script pour l'alerte (si Alpine n'est pas utilisé pour ça)
+        
         function closeAlert(alertId) {
             const alertBox = document.getElementById(alertId);
             if (alertBox) {
                 alertBox.style.opacity = '0';
                 setTimeout(() => {
                     if (alertBox.parentNode) { alertBox.parentNode.removeChild(alertBox); }
-                }, 500); // Durée de la transition CSS
+                }, 500); 
             }
         }
         document.addEventListener('DOMContentLoaded', function() {
             const successAlert = document.getElementById('success-alert');
             if (successAlert) {
-                setTimeout(() => { closeAlert('success-alert'); }, 4000); // Ferme après 4s
+                setTimeout(() => { closeAlert('success-alert'); }, 4000); 
             }
         });
     </script>
