@@ -143,6 +143,9 @@
 
                                     {{-- Boutons Modifier / Supprimer --}}
                                     <div class="flex items-center space-x-2">
+                                        <a href="{{ route('teacher.courses.show', $course->id) }}" title="Voir le contenu" class="p-1.5 text-green-600 bg-green-100 hover:bg-green-200 rounded-md transition focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-1">
+                                            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639l4.436-7.15A1.012 1.012 0 017.002 4h9.996a1.012 1.012 0 01.729.433l4.436 7.15a1.012 1.012 0 010 .639l-4.436 7.15A1.012 1.012 0 0116.998 20H7.002a1.012 1.012 0 01-.73-.433L2.036 12.322z" /> <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /> </svg>
+                                        </a>
                                         {{-- Bouton Modifier --}}
                                         <a href="{{ route('teacher.courses.edit', $course->id) }}" title="Modifier le cours" class="p-1.5 text-blue-600 bg-blue-100 hover:bg-blue-200 rounded-md transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-1">
                                             <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /> </svg>
