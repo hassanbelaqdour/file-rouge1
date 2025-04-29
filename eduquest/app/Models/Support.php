@@ -14,20 +14,20 @@ class Support extends Model
      * Les attributs qui peuvent être assignés en masse.
      */
     protected $fillable = [
-        'user_id',      // L'ID de l'étudiant qui pose la question
-        'teacher_id',   // L'ID de l'enseignant destinataire (ou null si pour admin)
-        'subject',      // Le sujet de la question
-        'question',     // Le contenu de la question
-        // Les champs 'answer', 'answered_at', 'answered_by' et 'status'
-        // seront généralement remplis lors de la réponse, pas à la création initiale.
-        // 'status' aura une valeur par défaut définie dans la migration.
+        'user_id',      
+        'teacher_id',   
+        'subject',      
+        'question',     
+        
+        
+        
     ];
 
     /**
      * Les attributs qui doivent être convertis en types natifs.
      */
     protected $casts = [
-        'answered_at' => 'datetime', // Convertit la date de réponse en objet Carbon
+        'answered_at' => 'datetime', 
     ];
 
     /**
