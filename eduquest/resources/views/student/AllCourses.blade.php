@@ -317,136 +317,75 @@
             </div>
         </section>
         <!-- FIN NOUVELLE SECTION: Filtres -->
+<!-- Section Grille de Cours (partie ajoutee - THEME VERT) -->
+<div class="bg-gray-50 flex-1 p-8 pt-0 md:pt-8"> <!-- Ajustement padding top pour coller a la section filtre -->
+    {{-- Le container peut définir la grille principale --}}
+    <div class="container mx-auto">
 
-        <!-- Section Grille de Cours (partie ajoutee - THEME VERT) -->
-        <div class="bg-gray-50 flex-1 p-8 pt-0 md:pt-8"> <!-- Ajustement padding top pour coller a la section filtre -->
-            <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <!-- Premiere carte -->
-                <div class="rounded-md overflow-hidden shadow-md bg-white">
-                    <div class="h-40"> <img
-                            src="https://www.simplilearn.com/ice9/free_resources_article_thumb/is_web_development_good_career.jpg"
-                            alt="Image Developpement" class="w-full h-full object-cover"> </div>
-                    <div class="p-4">
-                        <h3 class="font-semibold text-lg text-green-800">Developpement Web Moderne</h3>
-                        <p class="text-gray-600 text-sm mt-1">Apprenez les bases du html, css, javascript et explorez
-                            les frameworks modernes comme react et vue.</p>
-                        <div class="mt-4 flex items-center justify-between">
-                            <div>
-                                <p class="text-gray-700 font-medium">Prix : <span
-                                        class="text-green-600 font-bold">99€</span></p>
-                                <p class="text-gray-500 text-sm">35 personnes inscrites</p>
+        {{-- Vérifie s'il y a des cours --}}
+        @if ($courses->count() > 0)
+            {{-- Grille pour les cartes de cours --}}
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"> {{-- Utilisation de LG pour 3 colonnes --}}
+                @foreach ($courses as $course)
+                    {{-- Carte individuelle (style vert) --}}
+                    <div class="rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 bg-white flex flex-col h-full">
+                        {{-- Image --}}
+                        <div class="h-40 flex-shrink-0">
+                            @if($course->image_path)
+                                <img src="{{ Storage::url($course->image_path) }}" alt="Image {{ $course->title }}" class="w-full h-full object-cover">
+                            @else
+                                <div class="w-full h-full bg-gray-200 flex items-center justify-center"> <span class="text-gray-400 text-sm">Image Cours</span> </div>
+                            @endif
+                        </div>
+                        {{-- Contenu Texte --}}
+                        <div class="p-4 flex flex-col flex-grow">
+                            {{-- Catégorie --}}
+                             @if($course->category)
+                            <p class="text-xs font-medium text-blue-600 uppercase tracking-wide mb-1">
+                                {{ $course->category->name }}
+                            </p>
+                            @endif
+                            {{-- Titre --}}
+                            <h3 class="font-semibold text-lg text-green-800 sniglet mb-1">
+                                <a href="#" class="hover:text-green-600">{{ $course->title }}</a> {{-- Lien vers détail à ajouter --}}
+                            </h3>
+                            {{-- Description --}}
+                            <p class="text-gray-600 text-sm mt-1 mb-4 flex-grow">{{ Str::limit($course->description, 100) }}</p>
+                            {{-- Pied de carte : Prix et Bouton --}}
+                            <div class="mt-auto flex items-end justify-between pt-3 border-t border-gray-100">
+                                <div>
+                                    <p class="text-gray-700 font-medium text-sm">Prix :</p>
+                                    <p class="text-green-600 font-bold text-lg leading-tight">
+                                        {{ $course->type == 'paid' && $course->price > 0 ? number_format($course->price, 2) . '€' : 'Gratuit' }}
+                                    </p>
+                                    {{-- Ligne nombre inscrits supprimée comme demandé --}}
+                                </div>
+                                {{-- Bouton générique (remplacer par votre logique d'inscription si besoin) --}}
+                                <div>
+                                    <a href="#" class="px-4 py-2 rounded-md bg-green-600 text-white text-sm hover:bg-green-700 focus:outline-none transition duration-150 ease-in-out">
+                                        Voir Cours
+                                    </a>
+                                </div>
                             </div>
-                            <button
-                                class="px-6 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 focus:outline-none transition duration-150 ease-in-out">
-                                En savoir plus </button>
                         </div>
                     </div>
-                </div>
-                <!-- Deuxieme carte -->
-                <div class="rounded-md overflow-hidden shadow-md bg-white">
-                    <div class="h-40"> <img
-                            src="https://m.media-amazon.com/images/I/51iWIWLhfVL._AC_UF1000,1000_QL80_.jpg"
-                            alt="Image Python" class="w-full h-full object-cover"> </div>
-                    <div class="p-4">
-                        <h3 class="font-semibold text-lg text-green-800">Python pour Debutants</h3>
-                        <p class="text-gray-600 text-sm mt-1">Decouvrez les bases de la programmation avec python, le
-                            langage de programmation polyvalent et populaire.</p>
-                        <div class="mt-4 flex items-center justify-between">
-                            <div>
-                                <p class="text-gray-700 font-medium">Prix : <span
-                                        class="text-green-600 font-bold">79€</span></p>
-                                <p class="text-gray-500 text-sm">50 personnes inscrites</p>
-                            </div>
-                            <button
-                                class="px-6 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 focus:outline-none transition duration-150 ease-in-out">
-                                En savoir plus </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Troisieme carte -->
-                <div class="rounded-md overflow-hidden shadow-md bg-white">
-                    <div class="h-40"> <img
-                            src="http://assets.isu.pub/document-structure/230610095304-44b2e9bc1109c9c48bbc6ae77f3c995a/v1/5953debf9c67fe69c432e12630fdad4f.jpeg"
-                            alt="Image Data Science" class="w-full h-full object-cover"> </div>
-                    <div class="p-4">
-                        <h3 class="font-semibold text-lg text-green-800">Introduction a la Data Science</h3>
-                        <p class="text-gray-600 text-sm mt-1">Explorez les concepts de base de la data science et
-                            apprenez a analyser des donnees avec des outils comme python et r.</p>
-                        <div class="mt-4 flex items-center justify-between">
-                            <div>
-                                <p class="text-gray-700 font-medium">Prix : <span
-                                        class="text-green-600 font-bold">119€</span></p>
-                                <p class="text-gray-500 text-sm">60 personnes inscrites</p>
-                            </div>
-                            <button
-                                class="px-6 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 focus:outline-none transition duration-150 ease-in-out">
-                                En savoir plus </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Quatrieme carte -->
-                <div class="rounded-md overflow-hidden shadow-md bg-white">
-                    <div class="h-40"> <img
-                            src="https://moncoachdata.com/wp-content/uploads/2018/04/data-science-methode.jpg"
-                            alt="Image Data Science" class="w-full h-full object-cover"> </div>
-                    <div class="p-4">
-                        <h3 class="font-semibold text-lg text-green-800">Data Science pour Debutants</h3>
-                        <p class="text-gray-600 text-sm mt-1">Apprenez les bases de l'analyse de donnees, de
-                            l'apprentissage automatique et des outils comme python et r.</p>
-                        <div class="mt-4 flex items-center justify-between">
-                            <div>
-                                <p class="text-gray-700 font-medium">Prix : <span
-                                        class="text-green-600 font-bold">150€</span></p>
-                                <p class="text-gray-500 text-sm">120 personnes inscrites</p>
-                            </div>
-                            <button
-                                class="px-6 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 focus:outline-none transition duration-150 ease-in-out">
-                                En savoir plus </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Cinquieme carte -->
-                <div class="rounded-md overflow-hidden shadow-md bg-white">
-                    <div class="h-40"> <img
-                            src="https://cdn.prod.website-files.com/66153b9f3cb891501ecbf45d/667c02946b3ae9b49f406d3a_UX-UI-Design-web.jpg"
-                            alt="Image UI/UX" class="w-full h-full object-cover"> </div>
-                    <div class="p-4">
-                        <h3 class="font-semibold text-lg text-green-800">Design UI/UX</h3>
-                        <p class="text-gray-600 text-sm mt-1">Maitrisez les concepts de l'experience utilisateur et du
-                            design d'interface avec des outils comme sketch et figma.</p>
-                        <div class="mt-4 flex items-center justify-between">
-                            <div>
-                                <p class="text-gray-700 font-medium">Prix : <span
-                                        class="text-green-600 font-bold">80€</span></p>
-                                <p class="text-gray-500 text-sm">200 personnes inscrites</p>
-                            </div>
-                            <button
-                                class="px-6 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 focus:outline-none transition duration-150 ease-in-out">
-                                En savoir plus </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Sixieme carte (Placeholder) -->
-                <div class="rounded-md overflow-hidden shadow-md bg-white">
-                    <div class="h-40 bg-gray-200 flex items-center justify-center"> <span class="text-gray-400">Image
-                            Cours</span> </div>
-                    <div class="p-4">
-                        <h3 class="font-semibold text-lg text-green-800">Autre Cours</h3>
-                        <p class="text-gray-600 text-sm mt-1">Description de cet autre cours passionnant.</p>
-                        <div class="mt-4 flex items-center justify-between">
-                            <div>
-                                <p class="text-gray-700 font-medium">Prix : <span
-                                        class="text-green-600 font-bold">XX€</span></p>
-                                <p class="text-gray-500 text-sm">XX personnes inscrites</p>
-                            </div>
-                            <button
-                                class="px-6 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 focus:outline-none transition duration-150 ease-in-out">
-                                En savoir plus </button>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+            </div> {{-- Fin de la div grid (interne) --}}
+
+        {{-- ** AJOUT DE L'ELSE ET ENDIF ** --}}
+        @else
+            {{-- Message si aucun cours n'est trouvé --}}
+            <div class="col-span-full text-center py-16 px-6 bg-white rounded-lg shadow border">
+                {{-- Vous pouvez garder l'icône ou la supprimer --}}
+                <svg class="mx-auto h-12 w-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 12.75h4.5m-4.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /> </svg>
+                <h3 class="mt-2 text-sm font-medium text-gray-900">Aucun cours disponible pour le moment.</h3>
+                <p class="mt-1 text-sm text-gray-500">Revenez bientôt !</p>
             </div>
-        </div>
+        @endif
+         {{-- ** FIN AJOUT ** --}}
+
+    </div> {{-- Fin de la div container --}}
+</div> {{-- Fin de la div bg-gray-50 --}}
 <footer class="bg-gray-800 text-white py-8 mt-20">
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">

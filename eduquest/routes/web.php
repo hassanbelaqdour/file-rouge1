@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SupportController;
+use App\Http\Controllers\StudentController;
 
 Route::get('/', function () {
     return view('home');
@@ -32,12 +33,12 @@ Route::middleware('auth')->group(function () {
         return view('teacher.StatistiqueTeacher');
     })->name('teacher.statistiqueTeacher');
 
-    Route::get('/MyCourses', function () {
+    Route::get('/AllCourses', function () {
         if (auth()->user()->role !== 'student') {
             abort(403, 'Accès non autorisé.');
         }
-        return view('student.MyCourses');
-    })->name('MyCourses');
+        return view('student.AllCourses');
+    })->name('AllCourses');
 });
 
 Route::middleware(['auth',])->group(function () {

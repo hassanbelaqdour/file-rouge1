@@ -52,7 +52,7 @@ class AuthController extends Controller
         } elseif ($user->role === 'teacher') {
             return redirect()->intended(route('teacher.StatistiqueTeacher'));
         } elseif ($user->role === 'student') {
-            return redirect()->intended(route('MyCourses'));
+            return redirect()->intended(route('courses.index'));
         } else {
             Auth::logout();
             $request->session()->invalidate();
