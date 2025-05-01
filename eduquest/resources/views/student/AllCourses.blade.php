@@ -284,36 +284,28 @@
                 </div>
 
                 <!-- Dropdown Filtre Catégorie -->
-                <div class="relative group">
-                    <button
-                        class="flex items-center justify-between w-48 px-4 py-2 bg-white border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                        <span>Catégorie</span>
-                        <svg class="w-5 h-5 ml-2 -mr-1 text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd"
-                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                    <div
-                        class="absolute left-0 -mt-1 w-48 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 max-h-60 overflow-y-auto">
-                        <!-- Liens dropdown filtre en vert -->
-                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Toutes les
-                            catégories</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Developpement
-                            Web</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Data Science</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Marketing
-                            Digital</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Design
-                            Graphique</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Langues</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Photographie</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Business</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Developpement
-                            Personnel</a>
-                    </div>
-                </div>
+                <form method="GET" action="{{ route('courses.index') }}" class="flex flex-grow sm:flex-grow-0 items-center space-x-3">
+                        <label for="category_filter" class="text-gray-700 font-medium text-sm flex-shrink-0 ubuntu">Filtrer :</label>
+                        <select name="category" id="category_filter"
+                                class="flex-grow sm:w-60 md:w-72 px-4 py-2 bg-white border border-gray-300 rounded-md text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-green-500 ubuntu"
+                                onchange="this.form.submit()"> {{-- Soumet au changement --}}
+                            <option value="">Toutes les catégories</option>
+                            {{-- Boucle sur les catégories passées par le contrôleur --}}
+                            @isset($categories)
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}"
+                                            {{-- Pré-sélectionne si un filtre est actif (utilise la variable du contrôleur) --}}
+                                            {{ $selectedCategoryId == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            @endisset
+                        </select>
+                        {{-- Lien pour réinitialiser le filtre catégorie --}}
+                        @if(request()->has('category') && request()->query('category') != '')
+                           <a href="{{ route('courses.index', request()->except('category')) }}" class="text-sm text-blue-600 hover:underline whitespace-nowrap ubuntu">Réinitialiser</a>
+                        @endif
+                    </form>
             </div>
         </section>
         <!-- FIN NOUVELLE SECTION: Filtres -->
