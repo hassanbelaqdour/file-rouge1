@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
-use App\Models\Category; 
-use Illuminate\Http\Request; 
+use App\Models\Category;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -12,22 +12,21 @@ class StudentController extends Controller
 {
     /**
      * Affiche la liste de TOUS les cours disponibles (catalogue),
-     * potentiellement filtrée par catégorie.
+     * potentiellement filtrée par catégorie et/ou prix.
      *
      * @param  \Illuminate\Http\Request  $request L'objet requête entrant
      * @return \Illuminate\View\View
      */
-    public function index(Request $request) 
+    public function index(Request $request)
     {
         
         $categories = Category::orderBy('name')->get();
+        $selectedCategoryId = $request->query('category');
+        $selectedPriceFilter = $request->query('price_filter'); 
 
         
-        $selectedCategoryId = $request->query('category'); 
-
-        
-        $query = Course::with(['category', 'teacher']) 
-                       ->latest();                     
+        $query = Course::with(['category', 'teacher'])
+                       ->latest();
 
         
         if ($selectedCategoryId && is_numeric($selectedCategoryId) && $selectedCategoryId > 0) {
@@ -35,16 +34,35 @@ class StudentController extends Controller
         }
 
         
+        if ($selectedPriceFilter === 'free') {
+             
+             
+            $query->where(function ($q) {
+                $q->where('type', 'free')
+                  ->orWhere(function ($subQ) {
+                      $subQ->where('type', 'paid')
+                           ->where('price', '<=', 0);
+                  });
+            });
+             
+             
+        } elseif ($selectedPriceFilter === 'paid') {
+            
+            $query->where('type', 'paid')->where('price', '>', 0);
+        }
+        
+
+
         
         $courses = $query->paginate(9)->appends($request->query());
 
         
         return view('student.AllCourses', compact(
             'courses',
-            'categories',           
-            'selectedCategoryId'    
+            'categories',
+            'selectedCategoryId',
+            'selectedPriceFilter' 
         ));
     }
 
-    
 }
