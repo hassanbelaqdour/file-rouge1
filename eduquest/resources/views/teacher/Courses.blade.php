@@ -107,67 +107,117 @@
             <!--            GRILLE DES COURS EXISTANTS          -->
             <!-- =============================================== -->
             <div class="bg-transparent">
-                @if ($courses->count() > 0)
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        @foreach ($courses as $course)
-                            <div class="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition duration-300 ease-in-out flex flex-col overflow-hidden h-full">
-                                {{-- Image --}}
-                                <div class="aspect-w-16 aspect-h-9">
-                                    @if($course->image_path)
-                                        <img src="{{ Storage::url($course->image_path) }}" alt="Image pour {{ $course->title }}" class="w-full h-full object-cover">
-                                    @else
-                                        <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center"> <svg class="w-12 h-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg> </div>
-                                    @endif
-                                </div>
-                                {{-- Corps de la carte --}}
-                                <div class="p-5 flex flex-col flex-grow">
-                                    @if($course->category) <span class="inline-block px-2.5 py-0.5 text-xs font-semibold rounded-full bg-indigo-100 text-indigo-800 mb-2 self-start">{{ $course->category->name }}</span> @endif
-                                    <h2 class="text-lg font-semibold text-gray-800 mb-2"> <a href="#" class="hover:underline focus:outline-none focus:ring-2 focus:ring-blue-300 rounded"> {{ $course->title }} </a> </h2>
-                                    <p class="text-gray-600 text-sm mb-3 flex-grow">{{ Str::limit($course->description, 90) }}</p>
-                                    {{-- Badges Niveau/Type --}}
-                                    <div class="flex items-center space-x-2 mb-4"> <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 capitalize"> <svg class="-ml-0.5 mr-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"> <path d="M10.362 3.09c.566-.781 1.708-.781 2.275 0l4.916 6.794a1.125 1.125 0 01-.971 1.742H3.42a1.125 1.125 0 01-.971-1.742l4.914-6.794zM10 6.38L8.06 9.117h3.88L10 6.38zM5.603 15.125a.75.75 0 01-.737-.873l.755-4.15H3.75a.75.75 0 010-1.5h12.5a.75.75 0 010 1.5h-1.875l.755 4.15a.75.75 0 01-.737.873H5.603z" /> </svg> {{ $course->level }} </span> <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {{ $course->type == 'free' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }} capitalize"> @if($course->type == 'paid') <svg class="-ml-0.5 mr-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1.46-5.173a.75.75 0 01-1.06 0l-2.5-2.5a.75.75 0 010-1.06l5-5a.75.75 0 111.06 1.06L11.56 9.94l1.72 1.72a.75.75 0 11-1.06 1.06l-1.72-1.72-1.22 1.22zm-5.693-5.697a.75.75 0 011.06 0l2.5 2.5a.75.75 0 11-1.06 1.06L6.25 7.69V12.5a.75.75 0 01-1.5 0V6.75a.75.75 0 01.73-.746z" clip-rule="evenodd" /></svg> {{ number_format($course->price, 2) }} € @else <svg class="-ml-0.5 mr-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"> <path d="M10 1a7.5 7.5 0 00-7.5 7.5c0 2.682 1.25 4.95 3.126 6.374A10.009 10.009 0 0010 18.5a10.009 10.009 0 004.374-3.626C16.25 13.45 17.5 11.182 17.5 8.5A7.5 7.5 0 0010 1zm-2.873 9.75a.75.75 0 001.06 1.06l1.313-1.314 1.313 1.314a.75.75 0 101.06-1.06L11.06 10l1.814-1.814a.75.75 0 10-1.06-1.06L10 8.94l-1.814-1.814a.75.75 0 00-1.06 1.06L8.94 10l-1.814 1.814a.75.75 0 000 1.06z" /> </svg> Gratuit @endif </span> </div>
-                                    {{-- Liens Fichiers --}}
-                                    <div class="space-y-1 mb-4 text-sm"> @if ($course->video_path) <a href="{{ Storage::url($course->video_path) }}" target="_blank" class="flex items-center text-blue-600 hover:text-blue-800 hover:underline"> <svg class="w-4 h-4 mr-1.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A.75.75 0 008 7.698v4.604a.75.75 0 001.555.53l3.68-2.302a.75.75 0 000-1.06l-3.68-2.302z" clip-rule="evenodd" /></svg> Voir la vidéo </a> @endif @if ($course->pdf_path) <a href="{{ Storage::url($course->pdf_path) }}" target="_blank" class="flex items-center text-blue-600 hover:text-blue-800 hover:underline"> <svg class="w-4 h-4 mr-1.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM5.75 7.75a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM5.75 10.75a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM5.75 13.75a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5z" clip-rule="evenodd" /></svg> Voir le PDF </a> @endif </div>
-                                </div>
-                                {{-- ====================================== --}}
-                                {{-- |       PIED DE CARTE MODIFIÉ        | --}}
-                                {{-- ====================================== --}}
-                                <div class="p-3 border-t border-gray-200 bg-gray-50 rounded-b-xl mt-auto flex items-center justify-between">
-                                    {{-- Infos date (enseignant pas utile ici) --}}
-                                    <div class="text-xs text-gray-500">
-                                        <span>Créé le {{ $course->created_at->format('d/m/Y') }}</span>
-                                    </div>
+    @if ($courses->count() > 0)
+        {{-- Grille (ajustez les colonnes selon vos besoins, ex: lg:grid-cols-3) --}}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach ($courses as $course)
+                {{-- Carte de cours --}}
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full group transform hover:-translate-y-1 transition-all duration-300 ease-out">
 
-                                    {{-- Boutons Modifier / Supprimer --}}
-                                    <div class="flex items-center space-x-2">
-                                        <a href="{{ route('teacher.courses.show', $course->id) }}" title="Voir le contenu" class="p-1.5 text-green-600 bg-green-100 hover:bg-green-200 rounded-md transition focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-1">
-                                            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639l4.436-7.15A1.012 1.012 0 017.002 4h9.996a1.012 1.012 0 01.729.433l4.436 7.15a1.012 1.012 0 010 .639l-4.436 7.15A1.012 1.012 0 0116.998 20H7.002a1.012 1.012 0 01-.73-.433L2.036 12.322z" /> <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /> </svg>
-                                        </a>
-                                        {{-- Bouton Modifier --}}
-                                        <a href="{{ route('teacher.courses.edit', $course->id) }}" title="Modifier le cours" class="p-1.5 text-blue-600 bg-blue-100 hover:bg-blue-200 rounded-md transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-1">
-                                            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /> </svg>
-                                        </a>
-                                        {{-- Bouton Supprimer --}}
-                                        <form method="POST" action="{{ route('teacher.courses.destroy', $course->id) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer le cours \'{{ addslashes($course->title) }}\' ?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" title="Supprimer le cours" class="p-1.5 text-red-600 bg-red-100 hover:bg-red-200 rounded-md transition focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-1">
-                                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /> </svg>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                                {{-- ====================================== --}}
-                            </div>
-                        @endforeach
+                    {{-- Section Image/Placeholder --}}
+                    <div class="h-48 relative bg-gradient-to-br from-blue-400 to-teal-400 rounded-t-xl flex items-center justify-center overflow-hidden">
+                        {{-- Placeholder avec icône (si pas d'image de cours) --}}
+                        @if(!$course->image_path)
+                            {{-- Effet vague subtil (optionnel, nécessite potentiellement plus de CSS ou SVG) --}}
+                            {{-- <div class="absolute inset-0 opacity-20 bg-[url('wave_pattern.svg')] bg-cover"></div> --}}
+                            <svg class="w-16 h-16 text-white z-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25z" />
+                            </svg>
+                        @else
+                            {{-- Image réelle du cours --}}
+                            <img src="{{ Storage::url($course->image_path) }}" alt="Image pour {{ $course->title }}" class="w-full h-full object-cover">
+                        @endif
                     </div>
-                @else
-                     {{-- État vide --}}
-                     <div class="text-center py-12 px-6 bg-white rounded-lg shadow border">
-                        aucune cours etait ajouter pour le moment
-                     </div>
-                @endif
-            </div>
+
+                    {{-- Section Contenu --}}
+                    <div class="p-6 flex flex-col flex-grow">
+
+                        {{-- Badges Catégorie / Niveau --}}
+                        <div class="flex items-center space-x-2 mb-3">
+                             @if($course->category)
+                                {{-- Catégorie (style inspiré de l'image) --}}
+                                <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-700">
+                                    {{ $course->category->name }}
+                                </span>
+                             @endif
+                             {{-- Niveau (style inspiré de l'image) --}}
+                             <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-700 capitalize">
+                                 {{ $course->level }} {{-- Assurez-vous que $course->level contient 'Débutant', 'Intermédiaire', etc. --}}
+                             </span>
+                        </div>
+
+                        {{-- Titre du cours --}}
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-teal-600 transition-colors duration-200">
+                           <a href="{{ route('teacher.courses.show', $course->id) }}" class="focus:outline-none focus:ring-2 focus:ring-teal-300 focus:ring-offset-2 rounded">
+                               {{ $course->title }}
+                           </a>
+                        </h3>
+
+                        {{-- Description du cours --}}
+                        <p class="text-sm text-gray-600 mb-4 flex-grow">
+                             {{ Str::limit($course->description, 140) }} {{-- Ajustez la limite de caractères si besoin --}}
+                        </p>
+
+                        {{-- Prix du cours --}}
+                        <div class="mb-6">
+                             <p class="text-lg font-bold text-gray-900">
+                                @if($course->type == 'paid' && $course->price > 0)
+                                    {{ number_format($course->price, 2) }} €
+                                @else
+                                    <span class="text-teal-600">Free</span> {{-- Ou Gratuit --}}
+                                @endif
+                            </p>
+                        </div>
+
+                        {{-- Section Actions (Pied de carte) --}}
+                        <div class="mt-auto flex items-center justify-between"> {{-- mt-auto pousse ce div vers le bas --}}
+
+                            {{-- Icônes Modifier / Supprimer (style inspiré de l'image) --}}
+                            <div class="flex items-center space-x-2">
+                                {{-- Bouton Modifier (Icône) --}}
+                                <a href="{{ route('teacher.courses.edit', $course->id) }}" title="Modifier le cours" class="p-2 rounded-full bg-purple-50 text-orange-500 hover:bg-purple-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-300 focus:ring-offset-1">
+                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                      <path d="M2.695 14.763l-1.262 3.154a.5.5 0 00.65.65l3.155-1.262a4 4 0 001.343-.885L17.5 5.5a2.121 2.121 0 00-3-3L3.58 13.42a4 4 0 00-.885 1.343z" />
+                                    </svg>
+                                </a>
+
+                                {{-- Bouton Supprimer (Icône) --}}
+                                <form method="POST" action="{{ route('teacher.courses.destroy', $course->id) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer le cours \'{{ addslashes($course->title) }}\' ?')" class="inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" title="Supprimer le cours" class="p-2 rounded-full bg-red-50 text-gray-500 hover:bg-red-100 hover:text-red-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-1">
+                                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                        </svg>
+                                    </button>
+                                </form>
+                            </div>
+
+                            {{-- Bouton "En savoir plus" (style inspiré de l'image) --}}
+                            <a href="{{ route('teacher.courses.show', $course->id) }}"
+                               class="inline-flex items-center px-5 py-2 rounded-full bg-teal-500 text-white text-sm font-semibold hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 transition-colors duration-200">
+                                En savoir plus
+                                <svg class="ml-1.5 w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                  <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+
+                        </div>
+                    </div> {{-- Fin p-6 --}}
+                </div> {{-- Fin Carte --}}
+            @endforeach
+        </div> {{-- Fin Grille --}}
+    @else
+         {{-- État vide --}}
+         <div class="text-center py-16 px-6 bg-white rounded-lg shadow-md border border-gray-200 col-span-full"> {{-- col-span-full pour prendre toute la largeur si la grille est définie --}}
+            <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+            </svg>
+            <h3 class="mt-2 text-sm font-medium text-gray-900">Aucun cours trouvé</h3>
+            <p class="mt-1 text-sm text-gray-500">Commencez par ajouter un nouveau cours.</p>
+         </div>
+    @endif
+</div>
 
         </div>
     </main>
