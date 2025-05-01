@@ -371,6 +371,10 @@
                     </div>
                 @endforeach
             </div> {{-- Fin de la div grid (interne) --}}
+            {{-- **** AJOUT DE LA PAGINATION **** --}}
+            <div class="mt-10">
+                {{ $courses->links() }} {{-- Affiche les liens Précédent/Suivant et les numéros de page --}}
+            </div>
 
         {{-- ** AJOUT DE L'ELSE ET ENDIF ** --}}
         @else
