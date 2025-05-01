@@ -258,56 +258,66 @@
         </section>
 
         <!-- NOUVELLE SECTION: Filtres -->
-        <section class="bg-gray-50 py-8">
-            <div class="container mx-auto px-6 flex flex-wrap items-center gap-4 md:gap-6">
-                <span class="text-gray-700 font-medium">Filtrer par :</span>
+        <!-- ** SECTION FILTRES INTÉGRÉE ICI ** -->
+                <!-- ** SECTION FILTRES MISE À JOUR ** -->
+                <section class="bg-gray-50 py-4 md:py-5 border-b border-gray-200 sticky top-[73px] md:top-[81px] z-10">
+            <div class="container mx-auto px-6">
+                 {{-- MODIFIÉ: Suppression de sm:justify-between pour que les filtres restent groupés --}}
+                 <div class="flex flex-col sm:flex-row sm:items-center gap-4">
 
-                <!-- Dropdown Filtre Prix -->
-                <div class="relative group">
-                    <button
-                        class="flex items-center justify-between w-40 px-4 py-2 bg-white border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                        <span>Prix</span>
-                        <svg class="w-5 h-5 ml-2 -mr-1 text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd"
-                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                    <div
-                        class="absolute left-0 -mt-1 w-40 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10">
-                        <!-- Liens dropdown filtre en vert -->
-                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Tous</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Gratuit</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Payant</a>
-                    </div>
-                </div>
-
-                <!-- Dropdown Filtre Catégorie -->
-                <form method="GET" action="{{ route('courses.index') }}" class="flex flex-grow sm:flex-grow-0 items-center space-x-3">
-                        <label for="category_filter" class="text-gray-700 font-medium text-sm flex-shrink-0 ubuntu">Filtrer :</label>
+                     {{-- Filtre Catégorie (Select) --}}
+                    {{-- Suppression de flex-grow/sm:flex-grow-0 car plus nécessaire ici --}}
+                    <form method="GET" action="{{ route('courses.index') }}" class="flex items-center space-x-3 w-full sm:w-auto">
+                        <label for="category_filter" class="text-gray-700 font-medium text-sm flex-shrink-0 ubuntu">Catégorie :</label>
                         <select name="category" id="category_filter"
-                                class="flex-grow sm:w-60 md:w-72 px-4 py-2 bg-white border border-gray-300 rounded-md text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-green-500 ubuntu"
-                                onchange="this.form.submit()"> {{-- Soumet au changement --}}
-                            <option value="">Toutes les catégories</option>
-                            {{-- Boucle sur les catégories passées par le contrôleur --}}
+                                class="sm:w-52 md:w-64 px-3 py-2 bg-white border border-gray-300 rounded-md text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-green-500 ubuntu"
+                                onchange="this.form.submit()">
+                            <option value="">Toutes</option>
                             @isset($categories)
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}"
-                                            {{-- Pré-sélectionne si un filtre est actif (utilise la variable du contrôleur) --}}
-                                            {{ $selectedCategoryId == $category->id ? 'selected' : '' }}>
+                                    <option value="{{ $category->id }}" {{ $selectedCategoryId == $category->id ? 'selected' : '' }}>
                                         {{ $category->name }}
                                     </option>
                                 @endforeach
                             @endisset
                         </select>
-                        {{-- Lien pour réinitialiser le filtre catégorie --}}
-                        @if(request()->has('category') && request()->query('category') != '')
-                           <a href="{{ route('courses.index', request()->except('category')) }}" class="text-sm text-blue-600 hover:underline whitespace-nowrap ubuntu">Réinitialiser</a>
-                        @endif
                     </form>
+
+                     {{-- Filtre Prix (Dropdown) --}}
+                     <div class="relative group ubuntu w-full sm:w-auto">
+                        <button class="flex items-center justify-between w-full sm:w-36 px-3 py-2 bg-white border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-green-500">
+                             {{-- Affiche le filtre prix actif ou "Prix" par défaut --}}
+                            <span class="mr-1">
+                                @if($selectedPriceFilter === 'free') Gratuit
+                                @elseif($selectedPriceFilter === 'paid') Payant
+                                @else Prix @endif
+                            </span>
+                            <svg class="w-4 h-4 ml-1 text-gray-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                        </button>
+                        <div class="absolute left-0 -mt-1 w-full sm:w-36 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-20"> {{-- Décalage du dropdown vers la gauche sur mobile --}}
+                            {{-- Lien "Tous" --}}
+                            <a href="{{ route('courses.index', request()->except(['price_filter', 'page'])) }}"
+                               class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 {{ !$selectedPriceFilter ? 'font-semibold text-green-700' : '' }}">
+                               Tous
+                            </a>
+                             {{-- Lien "Gratuit" --}}
+                            <a href="{{ route('courses.index', array_merge(request()->except('page'), ['price_filter' => 'free'])) }}"
+                               class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 {{ $selectedPriceFilter === 'free' ? 'font-semibold text-green-700' : '' }}">
+                               Gratuit
+                            </a>
+                             {{-- Lien "Payant" --}}
+                            <a href="{{ route('courses.index', array_merge(request()->except('page'), ['price_filter' => 'paid'])) }}"
+                               class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 {{ $selectedPriceFilter === 'paid' ? 'font-semibold text-green-700' : '' }}">
+                               Payant
+                            </a>
+                        </div>
+                     </div>
+                     {{-- Fin Filtre Prix --}}
+
+                 </div>
             </div>
         </section>
+        <!-- ** FIN SECTION FILTRES MISE À JOUR ** -->
         <!-- FIN NOUVELLE SECTION: Filtres -->
 <!-- Section Grille de Cours (partie ajoutee - THEME VERT) -->
 <div class="bg-gray-50 flex-1 p-8 pt-0 md:pt-8"> <!-- Ajustement padding top pour coller a la section filtre -->
