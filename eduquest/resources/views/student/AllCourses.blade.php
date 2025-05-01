@@ -364,7 +364,7 @@
                                 </div>
                                 {{-- Bouton générique (remplacer par votre logique d'inscription si besoin) --}}
                                 <div>
-                                    <a href="#" class="px-4 py-2 rounded-md bg-green-600 text-white text-sm hover:bg-green-700 focus:outline-none transition duration-150 ease-in-out">
+                                    <a href="{{ route('student.courses.show', $course->id) }}" class="px-4 py-2 rounded-md bg-green-600 text-white text-sm hover:bg-green-700 focus:outline-none transition duration-150 ease-in-out">
                                         Voir Cours
                                     </a>
                                 </div>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contenu du Cours : {{ $course->title }} - EduQuest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/typography@0.5.x/dist/typography.min.css"/>
+    <style>
+        /* Styles scrollbar (optionnel) */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        video { max-width: 100%; height: auto; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+        .aspect-w-16 { position: relative; padding-bottom: 56.25%; }
+        .aspect-h-9 { /* Combinable */ }
+        .aspect-w-16 > *, .aspect-h-9 > * { position: absolute; height: 100%; width: 100%; top: 0; right: 0; bottom: 0; left: 0; }
+        [x-cloak] { display: none !important; }
+    </style>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-gray-100 flex antialiased">
+
+    <aside class="w-64 h-screen bg-white shadow-md fixed top-0 left-0 border-r border-gray-200 z-20 flex flex-col">
+        {{-- Sidebar Header --}}
+        <div class="p-5 border-b border-gray-200 flex items-center space-x-2"> <svg class="w-8 h-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /> </svg> <h1 class="text-xl font-bold text-gray-800">EduQuest</h1> </div>
+        {{-- Navigation --}}
+        <nav class="flex-grow p-4 space-y-2 overflow-y-auto">
+             {{-- Liens Sidebar (vérifiez les routes) --}}
+            <a href="{{ route('teacher.StatistiqueTeacher') }}" class="flex items-center px-3 py-2.5 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out {{ request()->routeIs('teacher.StatistiqueTeacher') ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}"> <svg class="w-5 h-5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75c0 .621-.504 1.125-1.125 1.125h-2.25A1.125 1.125 0 013 21v-7.875zM12.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v12.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM21 4.125c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v17.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg> Statistiques </a>
+            {{-- Lien "Mes Cours" (pour Teacher) --}}
+            <a href="{{ route('teacher.courses') }}" class="flex items-center px-3 py-2.5 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out {{ request()->routeIs('teacher.courses*') ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}"> <svg class="w-5 h-5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" /></svg> Mes Cours </a>
+            {{-- Lien vers le catalogue général --}}
+             <a href="{{ route('courses.index') }}" class="flex items-center px-3 py-2.5 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out {{ request()->routeIs('courses.index') ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}"> <svg class="w-5 h-5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m.75 12.75h4.5m-4.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg> Catalogue Cours </a>
+            <a href="{{ route('categories.index') }}" class="flex items-center px-3 py-2.5 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out {{ request()->routeIs('categories.index') ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}"> <svg class="w-5 h-5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" > <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" /> <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" /> </svg> Catégories </a>
+        </nav>
+        {{-- Logout --}}
+        <div class="p-4 mt-auto border-t border-gray-200"> <form action="{{ route('logout') }}" method="POST"> @csrf <button type="submit" class="w-full flex items-center justify-center text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 px-3 py-2.5 rounded-md group"> <svg class="w-5 h-5 mr-2 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" /> </svg> Déconnexion </button> </form> </div>
+    </aside>
+
+    <main class="ml-64 w-full p-6 md:p-8 lg:p-10">
+        <div class="max-w-5xl mx-auto">
+
+            {{-- Header de la Page Détail --}}
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 pb-4 border-b border-gray-200">
+                {{-- Colonne Gauche: Titre et Infos --}}
+                <div>
+                    {{-- MODIFIÉ : Lien retour vers courses.index --}}
+                    <a href="{{ route('courses.index') }}" class="text-sm text-blue-600 hover:underline mb-2 inline-block flex items-center">
+                        <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /> </svg>
+                        Retour au Catalogue
+                    </a>
+
+                    <h1 class="text-3xl font-bold text-gray-900 leading-tight">{{ $course->title }}</h1>
+                    <p class="mt-2 text-sm text-gray-500 space-x-2">
+                        @if($course->category)
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-indigo-100 text-indigo-800"> {{ $course->category->name }} </span>
+                            <span class="text-gray-300">|</span>
+                        @endif
+                        <span class="capitalize">{{ $course->level }}</span>
+                        <span class="text-gray-300">|</span>
+                        <span class="capitalize font-medium {{ $course->type == 'free' ? 'text-green-600' : 'text-yellow-700' }}"> {{ $course->type == 'paid' && $course->price ? number_format($course->price, 2) . ' €' : 'Gratuit' }} </span>
+                    </p>
+                </div>
+
+                {{-- SUPPRIMÉ : Div contenant les boutons Modifier et Supprimer --}}
+                {{--
+                <div class="flex items-center space-x-2 mt-4 sm:mt-0 flex-shrink-0">
+                    <a><!-- Modifier --></a>
+                    <form><!-- Supprimer --></form>
+                </div>
+                --}}
+            </div>
+
+            {{-- Contenu du Cours (Image, Vidéo, Description, PDF, Infos) --}}
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200">
+
+                 {{-- Image du cours --}}
+                 @if($course->image_path)
+                    <div class="w-full max-h-[450px] overflow-hidden bg-gray-200">
+                         <img src="{{ Storage::url($course->image_path) }}" alt="Image du cours {{ $course->title }}" class="w-full h-full object-cover">
+                    </div>
+                 @endif
+
+                 {{-- Contenu principal (padding et sections) --}}
+                 <div class="p-6 md:p-8 lg:p-10 space-y-8">
+
+                    {{-- Section Vidéo --}}
+                    @if($course->video_path)
+                        <section aria-labelledby="video-heading">
+                            <h2 id="video-heading" class="text-2xl font-semibold text-gray-800 mb-4 border-l-4 border-blue-500 pl-3">Vidéo Principale</h2>
+                            <div class="bg-black rounded-lg overflow-hidden shadow-md">
+                                <video controls controlslist="nodownload" class="w-full" poster="{{ $course->video_path ? Storage::url($course->video_path) : '' }}"> {{-- Poster optionnel --}}
+                                    <source src="{{ Storage::url($course->video_path) }}" type="{{ Storage::mimeType($course->video_path) ?? 'video/mp4' }}">
+                                    Votre navigateur ne supporte pas la balise vidéo.
+                                    <a href="{{ Storage::url($course->video_path) }}" download class="text-blue-300 hover:text-blue-100 underline p-4 block">Télécharger la vidéo</a>
+                                </video>
+                            </div>
+                        </section>
+                    @endif
+
+                    {{-- Section Description --}}
+                    <section aria-labelledby="description-heading">
+                        <h2 id="description-heading" class="text-2xl font-semibold text-gray-800 mb-4 border-l-4 border-blue-500 pl-3">Description du Cours</h2>
+                        {{-- Utilisation de la classe prose pour le formatage Markdown ou HTML simple --}}
+                        <article class="prose prose-indigo lg:prose-lg max-w-none text-gray-700">
+                            {!! nl2br(e($course->description)) !!} {{-- nl2br pour les sauts de ligne, e() pour échapper HTML --}}
+                        </article>
+                    </section>
+
+                     {{-- Section PDF --}}
+                     @if($course->pdf_path)
+                        <section aria-labelledby="pdf-heading" class="pt-8 border-t border-gray-200">
+                            <h2 id="pdf-heading" class="text-2xl font-semibold text-gray-800 mb-4 border-l-4 border-blue-500 pl-3">Documents Associés</h2>
+                            <div class="flex items-center p-4 border border-gray-200 rounded-lg bg-gray-50 hover:bg-gray-100 transition duration-150 ease-in-out">
+                                <svg class="w-10 h-10 text-red-500 mr-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m.75 12.75h4.5m-4.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /> </svg>
+                                <div class="flex-grow">
+                                    <p class="text-sm font-medium text-gray-900">Document PDF</p>
+                                    <p class="text-xs text-gray-500">{{ basename($course->pdf_path) }}</p>
+                                </div>
+                                <a href="{{ Storage::url($course->pdf_path) }}" target="_blank" download="{{ Str::slug($course->title) }}_document.pdf"
+                                   class="ml-4 inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                    <svg class="-ml-0.5 mr-1.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /> </svg>
+                                    Voir / Télécharger
+                                </a>
+                            </div>
+                        </section>
+                     @endif
+
+                     {{-- Section Infos Clés --}}
+                     <section aria-labelledby="info-heading" class="pt-8 border-t border-gray-200">
+                        <h3 id="info-heading" class="text-lg font-semibold text-gray-700 mb-3">Informations Clés</h3>
+                        <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-sm">
+                            <div class="sm:col-span-1"> <dt class="font-medium text-gray-500">Enseignant</dt> <dd class="mt-1 text-gray-900">{{ $course->teacher->name ?? ($course->teacher->first_name ?? 'N/A') }}</dd> </div>
+                            <div class="sm:col-span-1"> <dt class="font-medium text-gray-500">Catégorie</dt> <dd class="mt-1 text-gray-900">{{ $course->category->name ?? 'N/A' }}</dd> </div>
+                            <div class="sm:col-span-1"> <dt class="font-medium text-gray-500">Niveau</dt> <dd class="mt-1 text-gray-900 capitalize">{{ $course->level }}</dd> </div>
+                            <div class="sm:col-span-1"> <dt class="font-medium text-gray-500">Type</dt> <dd class="mt-1 text-gray-900 capitalize font-medium {{ $course->type == 'free' ? 'text-green-600' : 'text-yellow-700' }}">{{ $course->type == 'paid' && $course->price ? number_format($course->price, 2) . ' €' : 'Gratuit' }}</dd> </div>
+                            <div class="sm:col-span-1"> <dt class="font-medium text-gray-500">Créé le</dt> <dd class="mt-1 text-gray-900">{{ $course->created_at->isoFormat('D MMMM YYYY') }}</dd> </div>
+                            <div class="sm:col-span-1"> <dt class="font-medium text-gray-500">Dernière mise à jour</dt> <dd class="mt-1 text-gray-900" title="{{ $course->updated_at->isoFormat('LLLL') }}">{{ $course->updated_at->diffForHumans() }}</dd> </div>
+                        </dl>
+                     </section>
+                 </div> {{-- Fin p-6/8/10 --}}
+            </div> {{-- Fin bg-white --}}
+
+        </div> {{-- Fin max-w-5xl --}}
+    </main>
+
+    <script>
+        // Scripts JS (si besoin pour alerte ou autre)
+    </script>
+
+</body>
+</html>

@@ -64,5 +64,11 @@ class StudentController extends Controller
             'selectedPriceFilter' 
         ));
     }
+    public function showCourse(Course $course)
+    {
+      
+        $course->load(['category', 'teacher']); 
+        return view('student.Course', compact('course'));
+    }
 
 }
