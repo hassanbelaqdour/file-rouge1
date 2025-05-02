@@ -8,6 +8,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SupportController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\PaymentController;
 
 Route::get('/', function () {
     return view('home');
@@ -60,6 +61,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/statistiques', [AdminController::class, 'statistiquesAdmin'])->name('admin.StatistiqueAdmin');
     Route::get('/admin/GestionCourses', [AdminController::class, 'gestionCourses'])->name('admin.GestionCourses');
 });
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/courses/{course}/checkout', [PaymentController::class, 'checkout'])->name('payment.checkout');
+    Route::get('/payment/success/{course}', [PaymentController::class, 'success'])->name('payment.success');
+    Route::get('/payment/cancel/{course}', [PaymentController::class, 'cancel'])->name('payment.cancel');
+});
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/teacher/statistiques', [TeacherController::class, 'statistiques'])->name('teacher.StatistiqueTeacher');
     Route::get('/teacher/courses', [TeacherController::class, 'courses'])->name('teacher.courses');
