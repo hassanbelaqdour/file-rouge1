@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained();
             $table->foreignId('course_id')->constrained();
             $table->string('payment_id')->nullable();
-            $table->enum('status', ['pending', 'completed'])->default('pending');
+            $table->enum('status', ['pending', 'completed'])->default('completed');
             $table->timestamps();
 
             // Empêcher les doublons
