@@ -11,7 +11,9 @@ class AdminController extends Controller
 
     public function showUsers()
     {
-        $users = User::orderBy('created_at', 'desc')->get();
+        // **ESSENTIEL : Utiliser paginate()**
+        $users = User::orderBy('created_at', 'desc')->paginate(10); // Choisis le nombre d'éléments par page
+
         return view('admin.Users', compact('users'));
     }
 
