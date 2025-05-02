@@ -84,13 +84,31 @@ class AdminController extends Controller
 
     public function statistiquesAdmin()
     {
+        // Statistiques Utilisateurs
         $totalUsers = User::count();
         $pendingUsers = User::where('account_status', 'pending')->count();
         $approvedUsers = User::where('account_status', 'approved')->count();
-        // Peut-être compter les suspendus aussi ?
+        // Optionnel: Si tu as un statut 'suspended' ou autre
         // $suspendedUsers = User::where('account_status', 'suspended')->count();
 
-        return view('admin.StatistiqueAdmin', compact('totalUsers', 'pendingUsers', 'approvedUsers'));
+        // Statistiques Cours
+        $totalCourses = Course::count();
+        $acceptedCourses = Course::where('status', 'accepted')->count();
+        $rejectedCourses = Course::where('status', 'rejected')->count();
+        $pendingCourses = Course::where('status', 'pending')->count(); // Assure-toi que 'pending' est le bon statut
+
+        // Passe toutes les données nécessaires à la vue
+        return view('admin.StatistiqueAdmin', compact(
+            'totalUsers',
+            'pendingUsers',
+            'approvedUsers',
+            // 'suspendedUsers', // Décommente si tu l'utilises
+
+            'totalCourses',
+            'acceptedCourses',
+            'rejectedCourses',
+            'pendingCourses'
+        ));
     }
 
     // **** CORRECTION ICI ****
