@@ -50,6 +50,11 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::post('/admin/users/{id}/reject', [AdminController::class, 'rejectUser'])->name('admin.rejectUser');
 });
+Route::middleware(['auth'])->group(function () {
+    Route::get('admin/courses', [AdminController::class, 'gestionCourses'])->name('admin.GestionCourses');
+    Route::post('admin/courses/{id}/accept', [AdminController::class, 'acceptCourse'])->name('admin.acceptCourse');
+    Route::post('admin/courses/{id}/reject', [AdminController::class, 'rejectCourse'])->name('admin.rejectCourse');
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/statistiques', [AdminController::class, 'statistiquesAdmin'])->name('admin.StatistiqueAdmin');

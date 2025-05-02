@@ -18,52 +18,45 @@ class StudentController extends Controller
      * @return \Illuminate\View\View
      */
     public function index(Request $request)
-    {
-        
-        $categories = Category::orderBy('name')->get();
-        $selectedCategoryId = $request->query('category');
-        $selectedPriceFilter = $request->query('price_filter'); 
+{
+    $categories = Category::orderBy('name')->get();
+    $selectedCategoryId = $request->query('category');
+    $selectedPriceFilter = $request->query('price_filter'); 
 
-        
-        $query = Course::with(['category', 'teacher'])
-                       ->latest();
+    $query = Course::with(['category', 'teacher'])
+                   ->latest();
 
-        
-        if ($selectedCategoryId && is_numeric($selectedCategoryId) && $selectedCategoryId > 0) {
-            $query->where('category_id', $selectedCategoryId);
-        }
-
-        
-        if ($selectedPriceFilter === 'free') {
-             
-             
-            $query->where(function ($q) {
-                $q->where('type', 'free')
-                  ->orWhere(function ($subQ) {
-                      $subQ->where('type', 'paid')
-                           ->where('price', '<=', 0);
-                  });
-            });
-             
-             
-        } elseif ($selectedPriceFilter === 'paid') {
-            
-            $query->where('type', 'paid')->where('price', '>', 0);
-        }
-        
-
-
-        
-        $courses = $query->paginate(9)->appends($request->query());
-
-        
-        return view('student.AllCourses', compact(
-            'courses',
-            'categories',
-            'selectedCategoryId',
-            'selectedPriceFilter' 
-        ));
+    
+    if ($selectedCategoryId && is_numeric($selectedCategoryId) && $selectedCategoryId > 0) {
+        $query->where('category_id', $selectedCategoryId);
     }
+
+    
+    if ($selectedPriceFilter === 'free') {
+        $query->where(function ($q) {
+            $q->where('type', 'free')
+              ->orWhere(function ($subQ) {
+                  $subQ->where('type', 'paid')
+                       ->where('price', '<=', 0);
+              });
+        });
+    } elseif ($selectedPriceFilter === 'paid') {
+        $query->where('type', 'paid')->where('price', '>', 0);
+    }
+
+    
+    $query->where('status', 'accepted');
+
+    $courses = $query->paginate(9)->appends($request->query());
+
+    return view('student.AllCourses', compact(
+        'courses',
+        'categories',
+        'selectedCategoryId',
+        'selectedPriceFilter' 
+    ));
+}
+
     public function showCourse(Course $course)
     {
       

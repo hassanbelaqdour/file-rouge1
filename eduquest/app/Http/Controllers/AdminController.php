@@ -52,7 +52,26 @@ class AdminController extends Controller
 
     public function gestionCourses()
 {
-    $courses = Course::with('teacher', 'category')->orderBy('created_at', 'desc')->get();
-    return view('admin.ApprovedCourse', compact('courses'));
+    $courses = Course::orderBy('created_at', 'desc')->get();
+    return view('admin.GestionCourses', compact('courses'));
 }
+
+public function acceptCourse($id)
+{
+    $course = Course::findOrFail($id);
+    $course->status = 'accepted';
+    $course->save();
+
+    return redirect()->back()->with('success', 'Cours accepté.');
+}
+
+public function rejectCourse($id)
+{
+    $course = Course::findOrFail($id);
+    $course->status = 'rejected';
+    $course->save();
+
+    return redirect()->back()->with('success', 'Cours rejeté.');
+}
+
 }
