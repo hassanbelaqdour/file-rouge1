@@ -364,9 +364,19 @@
                                 </div>
                                 {{-- Bouton générique (remplacer par votre logique d'inscription si besoin) --}}
                                 <div>
-                                    <a href="{{ route('student.courses.show', $course->id) }}" class="px-4 py-2 rounded-md bg-green-600 text-white text-sm hover:bg-green-700 focus:outline-none transition duration-150 ease-in-out">
-                                        Voir Cours
-                                    </a>
+                                <div>
+    @if($course->type == 'free' || $course->price <= 0)
+        <a href="{{ route('student.courses.show', $course->id) }}" 
+           class="px-4 py-2 rounded-md bg-green-600 text-white text-sm hover:bg-green-700">
+            Accéder au Cours
+        </a>
+    @else
+        <a href="{{ route('payment.checkout', $course->id) }}" 
+           class="px-4 py-2 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700">
+            S'inscrire ({{ number_format($course->price, 2) }}€)
+        </a>
+    @endif
+</div>
                                 </div>
                             </div>
                         </div>
