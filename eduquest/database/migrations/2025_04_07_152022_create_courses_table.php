@@ -14,6 +14,7 @@ class CreateCoursesTable extends Migration
             $table->text('description');
             $table->enum('level', ['beginner', 'intermediate', 'advanced']);
             $table->enum('type', ['free', 'paid'])->default('free');
+            $table->enum('status', ['accepted', 'rejected'])->default('accepted');
             $table->decimal('price', 8, 2)->nullable();
             $table->string('image_path')->nullable();
             $table->string('video_path')->nullable();

@@ -260,7 +260,7 @@
         <!-- NOUVELLE SECTION: Filtres -->
         <!-- ** SECTION FILTRES INTÉGRÉE ICI ** -->
                 <!-- ** SECTION FILTRES MISE À JOUR ** -->
-                <section class="bg-gray-50 py-4 md:py-5 border-b border-gray-200 sticky top-[73px] md:top-[81px] z-10">
+                <section class="bg-gray-50 py-4 md:py-5 border-b border-gray-200 top-[73px] md:top-[81px] z-10">
             <div class="container mx-auto px-6">
                  {{-- MODIFIÉ: Suppression de sm:justify-between pour que les filtres restent groupés --}}
                  <div class="flex flex-col sm:flex-row sm:items-center gap-4">
