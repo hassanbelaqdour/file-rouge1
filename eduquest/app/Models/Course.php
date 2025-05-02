@@ -18,6 +18,7 @@ class Course extends Model
         'description',
         'level',
         'type',
+        'status',
         'price',
         'image_path',
         'video_path',
