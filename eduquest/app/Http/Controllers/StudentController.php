@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Category;
+use App\Models\Enrollment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -57,11 +58,27 @@ class StudentController extends Controller
     ));
 }
 
-    public function showCourse(Course $course)
-    {
-      
-        $course->load(['category', 'teacher']); 
-        return view('student.Course', compact('course'));
+public function showCourse(Course $course)
+{
+    $course->load(['category', 'teacher']);
+
+    // Vérifier si l'utilisateur a accès au cours
+    $hasAccess = false;
+
+    if (Auth::check()) {
+        // Cours gratuit = accès direct
+        if ($course->type == 'free' || $course->price <= 0) {
+            $hasAccess = true;
+        } else {
+            // Vérifier si l'utilisateur a payé
+            $hasAccess = Enrollment::where('user_id', Auth::id())
+                ->where('course_id', $course->id)
+                ->where('status', 'completed')
+                ->exists();
+        }
     }
+
+    return view('student.Course', compact('course', 'hasAccess'));
+}
 
 }
