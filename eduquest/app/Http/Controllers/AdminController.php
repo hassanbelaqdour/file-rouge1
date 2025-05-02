@@ -30,7 +30,7 @@ class AdminController extends Controller
 
         // 5. Paginer les résultats (filtrés ou non)
         //    Utiliser appends($request->query()) pour conserver TOUS les paramètres d'URL (y compris les filtres) dans les liens de pagination
-        $users = $query->paginate(10)->appends($request->query()); // Garde 10 par page
+        $users = $query->paginate(12)->appends($request->query()); // Garde 10 par page
 
         // 6. Passer les utilisateurs ET les filtres sélectionnés à la vue
         return view('admin.Users', compact('users', 'selectedRole', 'selectedStatus'));
