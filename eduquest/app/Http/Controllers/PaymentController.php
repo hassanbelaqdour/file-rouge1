@@ -36,7 +36,6 @@ class PaymentController extends Controller
                 ->with('message', 'Vous êtes maintenant inscrit à ce cours gratuit');
         }
         
-        
         Stripe::setApiKey(env('STRIPE_SECRET'));
         
         
@@ -57,7 +56,6 @@ class PaymentController extends Controller
             'cancel_url' => route('payment.cancel', ['course' => $course->id]),
         ]);
         
-        
         Enrollment::create([
             'user_id' => Auth::id(),
             'course_id' => $course->id,
@@ -65,9 +63,10 @@ class PaymentController extends Controller
             'status' => 'pending'
         ]);
         
-        
         return redirect($session->url);
     }
+
+
     public function success(Request $request, Course $course)
     {
         $sessionId = $request->session_id;
@@ -82,7 +81,7 @@ class PaymentController extends Controller
         return redirect()->route('student.courses.show', $course->id)
             ->with('message', 'Paiement réussi! Vous avez maintenant accès au cours.');
     }
-    
+
     public function cancel(Course $course)
     {
         return redirect()->route('student.courses.index')
