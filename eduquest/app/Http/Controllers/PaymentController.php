@@ -68,6 +68,25 @@ class PaymentController extends Controller
         
         return redirect($session->url);
     }
+    public function success(Request $request, Course $course)
+    {
+        $sessionId = $request->session_id;
+        
+        
+        $enrollment = Enrollment::where('payment_id', $sessionId)->first();
+        
+        if ($enrollment) {
+            $enrollment->update(['status' => 'completed']);
+        }
+        
+        return redirect()->route('student.courses.show', $course->id)
+            ->with('message', 'Paiement réussi! Vous avez maintenant accès au cours.');
+    }
     
+    public function cancel(Course $course)
+    {
+        return redirect()->route('student.courses.index')
+            ->with('message', 'Le paiement a été annulé.');
+    }
     
 }
