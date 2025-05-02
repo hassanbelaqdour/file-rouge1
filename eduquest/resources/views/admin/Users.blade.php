@@ -80,27 +80,44 @@
             <h1 class="text-3xl font-bold text-gray-900 mb-6">Gestion des utilisateurs</h1>
 
             <!-- Filtres et Recherche (Structure conservée, fonctionnalité à implémenter) -->
-            <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-6 bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-                <div class="relative w-full md:w-auto md:flex-grow">
-                    <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /> </svg>
-                    </span>
-                    <input type="search" placeholder="Rechercher un utilisateur..." class="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+                        <!-- Filtres et Recherche -->
+            {{-- **MODIFIÉ : Formulaire GET pour envoyer les filtres dans l'URL** --}}
+            <form method="GET" action="{{-- route('admin.users.index') --}}"> {{-- **IMPORTANT : Mettre la route de ta page ici** --}}
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-6 bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+
+                    {{-- Barre de Recherche --}}
+                    <div class="relative w-full md:w-auto md:flex-grow">
+                        <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /> </svg>
+                        </span>
+                        {{-- **MODIFIÉ : Ajout name="search" et value pour la recherche --}}
+                        <input type="search" name="search" value="{{ request('search') }}" placeholder="Rechercher un utilisateur..." class="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+                    </div>
+
+                    {{-- Filtres Dropdown --}}
+                    <div class="flex items-center space-x-4 w-full md:w-auto">
+                        {{-- **MODIFIÉ : Select pour le Rôle** --}}
+                        <select name="role" onchange="this.form.submit()" class="px-4 py-2 border border-gray-300 rounded-md bg-white text-sm focus:ring-indigo-500 focus:border-indigo-500 w-full md:w-auto">
+                            <option value="" {{ !$selectedRole ? 'selected' : '' }}>Tous les rôles</option>
+                            <option value="student" {{ $selectedRole == 'student' ? 'selected' : '' }}>Étudiant</option>
+                            <option value="teacher" {{ $selectedRole == 'teacher' ? 'selected' : '' }}>Professeur</option>
+                            <option value="admin" {{ $selectedRole == 'admin' ? 'selected' : '' }}>Admin</option>
+                        </select>
+
+                        {{-- **MODIFIÉ : Select pour le Statut** --}}
+                        <select name="status" onchange="this.form.submit()" class="px-4 py-2 border border-gray-300 rounded-md bg-white text-sm focus:ring-indigo-500 focus:border-indigo-500 w-full md:w-auto">
+                            <option value="" {{ !$selectedStatus ? 'selected' : '' }}>Tous les statuts</option>
+                            <option value="approved" {{ $selectedStatus == 'approved' ? 'selected' : '' }}>Approuvé</option>
+                            <option value="pending" {{ $selectedStatus == 'pending' ? 'selected' : '' }}>En attente</option>
+                        </select>
+
+                    </div>
+                     {{-- <button type="submit">Filtrer</button> --}} {{-- Optionnel si on n'utilise pas onchange --}}
                 </div>
-                <div class="flex items-center space-x-4 w-full md:w-auto">
-                    <select class="px-4 py-2 border border-gray-300 rounded-md bg-white text-sm focus:ring-indigo-500 focus:border-indigo-500 w-full md:w-auto">
-                        <option value="">Tous les rôles</option>
-                        <option value="student">Étudiant</option>
-                        <option value="teacher">Professeur</option>
-                        <option value="admin">Admin</option>
-                    </select>
-                    <select class="px-4 py-2 border border-gray-300 rounded-md bg-white text-sm focus:ring-indigo-500 focus:border-indigo-500 w-full md:w-auto">
-                        <option value="">Tous les statuts</option>
-                        <option value="approved">Approuvé</option>
-                        <option value="pending">En attente</option>
-                    </select>
-                </div>
-            </div>
+            </form>
+            {{-- FIN MODIFIÉ --}}
+
+            {{-- ... Le reste de ta page (tableau, etc.) ... --}}
 
             <!-- Tableau des utilisateurs -->
             <div class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200">

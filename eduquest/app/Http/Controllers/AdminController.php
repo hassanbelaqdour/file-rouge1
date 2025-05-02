@@ -9,12 +9,31 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
 
-    public function showUsers()
+    public function showUsers(Request $request)
     {
-        // **ESSENTIEL : Utiliser paginate()**
-        $users = User::orderBy('created_at', 'desc')->paginate(10); // Choisis le nombre d'éléments par page
+        // 1. Récupérer les valeurs des filtres depuis l'URL (?role=...&status=...)
+        $selectedRole = $request->query('role');
+        $selectedStatus = $request->query('status');
 
-        return view('admin.Users', compact('users'));
+        // 2. Commencer la requête de base
+        $query = User::orderBy('created_at', 'desc');
+
+        // 3. Appliquer le filtre par rôle si un rôle est sélectionné
+        if ($selectedRole && in_array($selectedRole, ['student', 'teacher', 'admin'])) { // Vérifie si la valeur est valide
+            $query->where('role', $selectedRole);
+        }
+
+        // 4. Appliquer le filtre par statut si un statut est sélectionné
+        if ($selectedStatus && in_array($selectedStatus, ['pending', 'approved'])) { // Vérifie si la valeur est valide
+            $query->where('account_status', $selectedStatus);
+        }
+
+        // 5. Paginer les résultats (filtrés ou non)
+        //    Utiliser appends($request->query()) pour conserver TOUS les paramètres d'URL (y compris les filtres) dans les liens de pagination
+        $users = $query->paginate(10)->appends($request->query()); // Garde 10 par page
+
+        // 6. Passer les utilisateurs ET les filtres sélectionnés à la vue
+        return view('admin.Users', compact('users', 'selectedRole', 'selectedStatus'));
     }
 
     public function approveUser($id)
