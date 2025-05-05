@@ -60,7 +60,7 @@ class PaymentController extends Controller
             'user_id' => Auth::id(),
             'course_id' => $course->id,
             'payment_id' => $session->id,
-            'status' => 'pending'
+            'status' => 'completed'
         ]);
         
         return redirect($session->url);
