@@ -24,7 +24,7 @@ class StudentController extends Controller
     $selectedCategoryId = $request->query('category');
     $selectedPriceFilter = $request->query('price_filter'); 
 
-    $query = Course::with(['category', 'teacher'])
+    $query = Course::with(['category', 'teacher', 'enrollments'])
                    ->latest();
 
     

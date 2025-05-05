@@ -370,6 +370,11 @@
            class="px-4 py-2 rounded-md bg-green-600 text-white text-sm hover:bg-green-700">
             Accéder au Cours
         </a>
+        @elseif(optional($course->enrollments->first())->status === 'completed')
+    <a href="{{ route('student.courses.show', $course->id) }}" 
+       class="px-4 py-2 rounded-md bg-green-600 text-white text-sm hover:bg-green-700">
+        Accéder au Cours
+    </a>
     @else
         <a href="{{ route('payment.checkout', $course->id) }}" 
            class="px-4 py-2 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700">
