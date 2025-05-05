@@ -45,4 +45,8 @@ class Course extends Model
         // Vérifiez que le modèle Category existe bien dans App\Models\Category.
         return $this->belongsTo(Category::class);
     }
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class);
+    }
 }
