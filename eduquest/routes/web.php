@@ -78,9 +78,6 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/categories', [CategoryController::class, 'index'])
     ->name('categories.index'); 
 
-    Route::get('/support/ask', [SupportController::class, 'create'])->name('support.create');
-    Route::post('/support', [SupportController::class, 'store'])->name('support.store');
-
 
 Route::post('/categories', [CategoryController::class, 'store'])
     ->name('categories.store'); 
