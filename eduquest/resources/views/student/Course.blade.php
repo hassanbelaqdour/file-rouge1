@@ -119,8 +119,9 @@
                                 <div class="absolute right-0 -mt-1 w-48 bg-white shadow-lg rounded-lg border border-gray-200 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200 z-10">
                                 
                                     {{-- Lien vers le profil (Adaptez le href si vous avez une route nommee) --}}
-                                    <a href="{{-- route('profile.show') --}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                                        <span class="material-icons mr-2 align-middle">account_circle</span> Voir Profil
+                                    <a href="" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-sm">
+                                        <span class="material-icons mr-2 align-middle">account_circle</span>
+                                        {{ Auth::user()->email ?? 'admin@example.com' }}
                                     </a>
                                 
                                     {{-- Formulaire de deconnexion Laravel --}}
