@@ -4,33 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gérer les Catégories - EduQuest</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- AlpineJS CDN -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         [x-cloak] { display: none !important; }
+        /* Styles pour scrollbar (ajusté pour le thème sombre) */
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        ::-webkit-scrollbar-track { background: #333; border-radius: 10px; } /* Ajusté pour thème sombre */
+        ::-webkit-scrollbar-thumb { background: #555; border-radius: 10px; } /* Ajusté pour thème sombre */
+        ::-webkit-scrollbar-thumb:hover { background: #777; } /* Ajusté pour thème sombre */
     </style>
 </head>
 <body class="bg-gray-100 flex antialiased" x-data="{ isModalOpen: {{ $errors->has('name') && !old('_method') ? 'true' : 'false' }} }">
 
-    {{-- Sidebar (Identique) --}}
-    <aside class="w-64 h-screen bg-white shadow-md fixed top-0 left-0 border-r border-gray-200 z-20 flex flex-col">
-        <div class="p-5 border-b border-gray-200 flex items-center space-x-2">
-            <svg class="w-8 h-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /> </svg>
-            <h1 class="text-xl font-bold text-gray-800">EduQuest</h1>
+    <!-- Nouveau Panneau Latéral (Sidebar) - Inspiré de Jobsly -->
+    <aside class="w-64 h-screen bg-gray-900 text-gray-100 shadow-lg fixed top-0 left-0 z-20 flex flex-col overflow-y-auto">
+
+        <!-- Header Sidebar -->
+        <div class="flex justify-between items-center px-5 py-4 border-b border-gray-700">
+            <!-- Remplacé le logo SVG par un titre simple -->
+            <h1 class="text-2xl font-bold text-white">EduQuest</h1>
+            <!-- Icône Menu Hamburger -->
+             <i class="fas fa-bars text-xl text-gray-400 cursor-pointer hover:text-white"></i>
         </div>
-        <nav class="flex-grow p-4 space-y-2 overflow-y-auto">
-             <a href="{{ route('teacher.StatistiqueTeacher') }}" class="flex items-center px-3 py-2.5 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out {{ request()->routeIs('teacher.StatistiqueTeacher') ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}"> <svg class="w-5 h-5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75c0 .621-.504 1.125-1.125 1.125h-2.25A1.125 1.125 0 013 21v-7.875zM12.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v12.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM21 4.125c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v17.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg> Statistiques </a>
-             <a href="{{ route('teacher.courses') }}" class="flex items-center px-3 py-2.5 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out {{ request()->routeIs('teacher.courses') ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}"> <svg class="w-5 h-5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" /></svg> Tous les cours </a>
-             <a href="{{ route('categories.index') }}" class="flex items-center px-3 py-2.5 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out {{ request()->routeIs('categories.index') ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}"> <svg class="w-5 h-5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" > <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" /> <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" /> </svg> Catégories </a>
+
+        <!-- Barre de recherche -->
+        <div class="relative px-4 mt-6">
+            <input type="text" placeholder="Search..." class="w-full px-4 py-2 pl-10 bg-gray-800 border border-gray-700 rounded-lg text-sm text-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-600 focus:ring-blue-600">
+            <!-- Icône Loupe -->
+            <i class="fas fa-magnifying-glass absolute left-7 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm"></i>
+        </div>
+
+        <!-- Navigation Principale -->
+        <nav class="mt-6 space-y-3 flex-grow px-4">
+            {{-- Item Statistiques --}}
+            <a href="{{ route('teacher.StatistiqueTeacher') }}" class="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out
+               {{ request()->routeIs('teacher.StatistiqueTeacher') ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
+                <!-- Icône Statistiques (Font Awesome) -->
+                <i class="fas fa-chart-simple text-lg"></i>
+                <span>Statistiques</span>
+            </a>
+
+            {{-- Item Tous les cours --}}
+            <a href="{{ route('teacher.courses') }}" class="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out
+               {{ request()->routeIs('teacher.courses') ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
+                <!-- Icône Tous les cours (Font Awesome) -->
+                 <i class="fas fa-book text-lg"></i>
+                 <span>Tous les cours</span>
+            </a>
+
+            {{-- Item Catégories --}}
+             <a href="{{ route('categories.index') }}" class="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out
+               {{ request()->routeIs('categories.index') ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
+                <!-- Icône Catégories (Font Awesome) -->
+                 <i class="fas fa-tags text-lg"></i>
+                 <span>Catégories</span>
+            </a>
+            {{-- Autres liens (Etudiants, etc.) pourraient être ajoutés ici --}}
+
         </nav>
-        <div class="p-4 mt-auto border-t border-gray-200">
-             <form action="{{ route('logout') }}" method="POST"> @csrf <button type="submit" class="w-full flex items-center justify-center text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 px-3 py-2.5 rounded-md group"> <svg class="w-5 h-5 mr-2 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" /> </svg> Déconnexion </button> </form>
+
+        <!-- Séparateur visuel avant le profil -->
+        <div class="border-t border-gray-700 mt-auto pt-4 mx-4"></div>
+
+        <!-- Section Profil Utilisateur -->
+        <div class="px-4 pb-4 pt-2">
+             <div class="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg">
+                <!-- Avatar Utilisateur (Utilise un placeholder) -->
+                <img src="https://via.placeholder.com/32/ffffff/000000?text=U" alt="User Avatar" class="w-8 h-8 rounded-full object-cover border border-gray-600">
+                <div class="flex-grow">
+                    <!-- Remplacez par le nom et l'email de l'utilisateur connecté si disponible -->
+                    <p class="text-sm font-semibold text-white">Nom Utilisateur</p>
+                    <p class="text-xs text-gray-400">email@exemple.com</p>
+                </div>
+                <!-- Icône Plus d'options -->
+                <i class="fas fa-ellipsis text-gray-400 text-lg cursor-pointer hover:text-white"></i>
+             </div>
+             {{-- Logout --}}
+             <div class="mt-4">
+                 <form action="{{ route('logout') }}" method="POST">
+                     @csrf
+                     <button type="submit" class="w-full flex items-center justify-center text-sm font-medium text-red-400 bg-gray-800 hover:bg-gray-700 px-3 py-2 rounded-md group transition-colors duration-200">
+                         <i class="fas fa-sign-out-alt w-5 h-5 mr-2 text-red-500"></i>
+                         Déconnexion
+                     </button>
+                 </form>
+             </div>
         </div>
+
     </aside>
+    <!-- ================================================== -->
+
 
     {{-- Contenu Principal --}}
     <main class="ml-64 w-full p-6 md:p-8 lg:p-10">
