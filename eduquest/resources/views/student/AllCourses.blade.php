@@ -38,9 +38,16 @@
     <header
         class="bg-white py-4 px-6 flex justify-between items-center fixed top-0 left-0 w-full z-20 shadow-md border-b border-gray-200">
         <div class="text-2xl font-semibold text-black">EduQuest</div>
-        <a href="{{ route('mesfavorites') }}">Mes cours favoris</a>
         <nav class="hidden md:flex items-center gap-6">
             <!-- All Courses Dropdown -->
+            <div class="relative group">       
+            <a href="{{ route('mesfavorites') }}"
+                class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
+                {{-- Icône pour les favoris (par exemple, 'favorite' ou 'heart_plus') --}}
+                <span class="material-symbols-outlined">favorite</span> 
+                Mes cours favoris
+            </a>
+            </div> 
             <div class="relative group">
                 <button
                     class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">

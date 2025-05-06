@@ -4,19 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mes Cours - EduQuest</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Styles pour l'alerte et scrollbar (optionnel) */
+        /* Styles pour l'alerte (inchangés) */
         .alert-fade-leave-active { transition: opacity 0.5s ease; }
         .alert-fade-leave-to { opacity: 0; }
+        /* Styles pour scrollbar (peut-être ajuster pour le thème sombre) */
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-        /* Assurer que le conteneur d'image respecte l'aspect ratio */
+        ::-webkit-scrollbar-track { background: #333; border-radius: 10px; } /* Ajusté pour thème sombre */
+        ::-webkit-scrollbar-thumb { background: #555; border-radius: 10px; } /* Ajusté pour thème sombre */
+        ::-webkit-scrollbar-thumb:hover { background: #777; } /* Ajusté pour thème sombre */
+        /* Assurer que le conteneur d'image respecte l'aspect ratio (inchangé) */
         .aspect-w-16 { position: relative; padding-bottom: 56.25%; /* 16:9 */ }
         .aspect-w-16 > * { position: absolute; height: 100%; width: 100%; top: 0; right: 0; bottom: 0; left: 0; }
-        /* Style pour formulaire caché */
+        /* Style pour formulaire caché (inchangé) */
          #addCourseForm.hidden { display: none; } /* Simple display none pour JS toggle */
     </style>
     {{-- AlpineJS n'est pas strictement nécessaire pour cette page si on utilise JS standard --}}
@@ -24,25 +28,86 @@
 </head>
 <body class="bg-gray-100 flex antialiased">
 
-    <aside class="w-64 h-screen bg-white shadow-md fixed top-0 left-0 border-r border-gray-200 z-20 flex flex-col">
-        {{-- Header Sidebar --}}
-        <div class="p-5 border-b border-gray-200 flex items-center space-x-2">
-            <svg class="w-8 h-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /> </svg>
-            <h1 class="text-xl font-bold text-gray-800">EduQuest</h1>
+    <!-- Nouveau Panneau Latéral (Sidebar) - Inspiré de Jobsly -->
+    <aside class="w-64 h-screen bg-gray-900 text-gray-100 shadow-lg fixed top-0 left-0 z-20 flex flex-col overflow-y-auto">
+        
+        <!-- Header Sidebar -->
+        <div class="flex justify-between items-center px-5 py-4 border-b border-gray-700">
+            <!-- Remplacé le logo SVG par un titre simple -->
+            <h1 class="text-2xl font-bold text-white">EduQuest</h1>
+            <!-- Icône Menu Hamburger -->
+             <i class="fas fa-bars text-xl text-gray-400 cursor-pointer hover:text-white"></i>
         </div>
-        {{-- Navigation --}}
-        <nav class="flex-grow p-4 space-y-2 overflow-y-auto">
-            <a href="{{ route('teacher.StatistiqueTeacher') }}" class="flex items-center px-3 py-2.5 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out {{ request()->routeIs('teacher.StatistiqueTeacher') ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}"> <svg class="w-5 h-5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75c0 .621-.504 1.125-1.125 1.125h-2.25A1.125 1.125 0 013 21v-7.875zM12.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v12.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM21 4.125c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v17.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg> Statistiques </a>
-            <a href="{{ route('teacher.courses') }}" class="flex items-center px-3 py-2.5 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out {{ request()->routeIs('teacher.courses') ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}"> <svg class="w-5 h-5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" /></svg> Tous les cours </a>
-            <a href="{{ route('categories.index') }}" class="flex items-center px-3 py-2.5 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out {{ request()->routeIs('categories.index') ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}"> <svg class="w-5 h-5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" > <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" /> <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" /> </svg> Catégories </a>
-            {{-- Lien Etudiants ... --}}
+
+        <!-- Barre de recherche -->
+        <div class="relative px-4 mt-6">
+            <input type="text" placeholder="Search..." class="w-full px-4 py-2 pl-10 bg-gray-800 border border-gray-700 rounded-lg text-sm text-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-600 focus:ring-blue-600">
+            <!-- Icône Loupe -->
+            <i class="fas fa-magnifying-glass absolute left-7 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm"></i>
+        </div>
+
+        <!-- Navigation Principale -->
+        <nav class="mt-6 space-y-3 flex-grow px-4">
+            {{-- Item Statistiques --}}
+            <a href="{{ route('teacher.StatistiqueTeacher') }}" class="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out
+               {{ request()->routeIs('teacher.StatistiqueTeacher') ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
+                <!-- Icône Statistiques (Font Awesome) -->
+                <i class="fas fa-chart-simple text-lg"></i>
+                <span>Statistiques</span>
+            </a>
+
+            {{-- Item Tous les cours --}}
+            <a href="{{ route('teacher.courses') }}" class="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out
+               {{ request()->routeIs('teacher.courses') ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
+                <!-- Icône Tous les cours (Font Awesome) -->
+                 <i class="fas fa-book text-lg"></i>
+                 <span>Tous les cours</span>
+            </a>
+
+            {{-- Item Catégories --}}
+             <a href="{{ route('categories.index') }}" class="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out
+               {{ request()->routeIs('categories.index') ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
+                <!-- Icône Catégories (Font Awesome) -->
+                 <i class="fas fa-tags text-lg"></i>
+                 <span>Catégories</span>
+            </a>
+            {{-- Autres liens (Etudiants, etc.) pourraient être ajoutés ici --}}
+
         </nav>
-        {{-- Logout --}}
-        <div class="p-4 mt-auto border-t border-gray-200"> <form action="{{ route('logout') }}" method="POST"> @csrf <button type="submit" class="w-full flex items-center justify-center text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 px-3 py-2.5 rounded-md group"> <svg class="w-5 h-5 mr-2 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" /> </svg> Déconnexion </button> </form> </div>
+
+        <!-- Séparateur visuel avant le profil -->
+        <div class="border-t border-gray-700 mt-auto pt-4 mx-4"></div>
+
+        <!-- Section Profil Utilisateur -->
+        <div class="px-4 pb-4 pt-2">
+             <div class="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg">
+                <!-- Avatar Utilisateur (Utilise un placeholder) -->
+                <img src="https://via.placeholder.com/32/ffffff/000000?text=U" alt="User Avatar" class="w-8 h-8 rounded-full object-cover border border-gray-600">
+                <div class="flex-grow">
+                    <!-- Remplacez par le nom et l'email de l'utilisateur connecté si disponible -->
+                    <p class="text-sm font-semibold text-white">Nom Utilisateur</p>
+                    <p class="text-xs text-gray-400">email@exemple.com</p>
+                </div>
+                <!-- Icône Plus d'options -->
+                <i class="fas fa-ellipsis text-gray-400 text-lg cursor-pointer hover:text-white"></i>
+             </div>
+             {{-- Logout --}}
+             <div class="mt-4">
+                 <form action="{{ route('logout') }}" method="POST">
+                     @csrf
+                     <button type="submit" class="w-full flex items-center justify-center text-sm font-medium text-red-400 bg-gray-800 hover:bg-gray-700 px-3 py-2 rounded-md group transition-colors duration-200">
+                         <i class="fas fa-sign-out-alt w-5 h-5 mr-2 text-red-500"></i>
+                         Déconnexion
+                     </button>
+                 </form>
+             </div>
+        </div>
+
     </aside>
     <!-- ================================================== -->
 
     <!-- CONTENU PRINCIPAL -->
+    <!-- Assurez-vous que la marge à gauche (ml-64) correspond à la largeur de la sidebar -->
     <main class="ml-64 w-full p-6 md:p-8 lg:p-10">
         <div class="max-w-7xl mx-auto">
 
@@ -52,7 +117,7 @@
                 <div class="flex items-start">
                     <div class="flex-shrink-0"><svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
                     <div class="ml-3 w-0 flex-1 pt-0.5"><p class="text-sm font-medium text-green-800">Réussi!</p><p class="mt-1 text-sm text-green-700">{{ session('success') }}</p></div>
-                    <div class="ml-4 flex flex-shrink-0"><button type="button" @click="show = false" class="inline-flex rounded-md bg-green-50 p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 focus:ring-offset-green-50"><span class="sr-only">Fermer</span><svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" /></svg></button></div>
+                    <div class="ml-4 flex flex-shrink-0"><button type="button" @click="show = false" onclick="closeAlert('success-alert')" class="inline-flex rounded-md bg-green-50 p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 focus:ring-offset-green-50"><span class="sr-only">Fermer</span><svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" /></svg></button></div>
                 </div>
             </div>
             @endif
@@ -70,7 +135,7 @@
             <div id="addCourseForm" class="hidden bg-white shadow-lg rounded-lg p-6 md:p-8 mb-8 border border-gray-200">
                  <h2 class="text-xl font-semibold text-gray-800 mb-6 border-b pb-3">Nouveau Cours</h2>
                  {{-- Boîte Erreurs Validation --}}
-                 @if ($errors->any())
+                 @if ($errors->any() && old('_token')) {{-- Ajouté condition pour ne montrer les erreurs qu'après soumission du formulaire --}}
                     <div class="mb-6 p-4 border border-red-300 bg-red-50 text-red-700 rounded-md">
                         <div class="flex items-center"><svg class="h-5 w-5 mr-3 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" /></svg><h3 class="text-sm font-semibold">Erreurs:</h3></div>
                         <ul class="mt-2 ml-8 list-disc text-sm space-y-1"> @foreach ($errors->all() as $error) <li>{{ $error }}</li> @endforeach </ul>
@@ -197,6 +262,7 @@
                             <a href="{{ route('teacher.courses.show', $course->id) }}"
                                class="inline-flex items-center px-5 py-2 rounded-full bg-teal-500 text-white text-sm font-semibold hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 transition-colors duration-200">
                                 En savoir plus
+                                {{-- Icône Plus pour "En savoir plus" (pourrait être une flèche aussi) --}}
                                 <svg class="ml-1.5 w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                   <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
                                 </svg>
@@ -224,62 +290,64 @@
 
 
     <script>
-        
+        // Script pour la gestion du formulaire (inchangé)
         document.addEventListener('DOMContentLoaded', function () {
             const toggleBtn = document.getElementById("toggleFormBtn");
-            const emptyStateBtn = document.getElementById("emptyStateAddBtn");
+            // emptyStateAddBtn n'est pas dans la version actuelle du code fourni, commenté si besoin
+            // const emptyStateBtn = document.getElementById("emptyStateAddBtn"); 
             const addCourseForm = document.getElementById("addCourseForm");
-            const cancelBtn = document.getElementById('cancelFormBtn'); 
+            const cancelBtn = document.getElementById('cancelFormBtn');
 
             function showForm() {
                  if (addCourseForm) {
-                     addCourseForm.style.display = 'block'; 
-                     
+                     addCourseForm.style.display = 'block';
+                     // Fait défiler vers le formulaire pour une meilleure UX
                      addCourseForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
                  }
             }
             function hideForm() {
                  if (addCourseForm) {
-                    addCourseForm.style.display = 'none'; 
-                    
-                    
-                    
+                    addCourseForm.style.display = 'none';
                  }
             }
 
             if(toggleBtn) toggleBtn.addEventListener("click", () => {
-                if (addCourseForm.style.display === 'none' || !addCourseForm.style.display) {
+                if (addCourseForm.style.display === 'none' || !addCourseForm.style.display || addCourseForm.style.display === '') { // Ajout de '' pour gérer l'état initial
                     showForm();
                 } else {
                     hideForm();
                 }
             });
-            if(emptyStateBtn) emptyStateBtn.addEventListener("click", showForm);
+            // if(emptyStateBtn) emptyStateBtn.addEventListener("click", showForm); // Commenté car emptyStateAddBtn non trouvé
             if(cancelBtn) cancelBtn.addEventListener("click", hideForm);
 
-            
-             @if ($errors->any() && old('_token')) 
+            // Montre le formulaire si validation échoue après soumission
+             @if ($errors->any() && old('_token'))
                  showForm();
              @endif
         });
 
-        
+        // Script pour les alertes (inchangé)
         function closeAlert(alertId) {
             const alertBox = document.getElementById(alertId);
             if (alertBox) {
                 alertBox.style.opacity = '0';
                 setTimeout(() => {
                     if (alertBox.parentNode) { alertBox.parentNode.removeChild(alertBox); }
-                }, 500); 
+                }, 500);
             }
         }
         document.addEventListener('DOMContentLoaded', function() {
             const successAlert = document.getElementById('success-alert');
             if (successAlert) {
-                setTimeout(() => { closeAlert('success-alert'); }, 4000); 
+                // Utilise la fonction closeAlert pour déclencher la transition et la suppression
+                setTimeout(() => { closeAlert('success-alert'); }, 4000);
             }
         });
     </script>
+    {{-- Script conditionnel pour le prix (inchangé) --}}
+    <script> document.addEventListener('DOMContentLoaded', function () { const typeSelect=document.getElementById('type'), priceField=document.getElementById('priceField'), priceInput=document.getElementById('price'); function t(){priceField.style.display=typeSelect.value==='paid'?'block':'none'; priceInput.required=typeSelect.value==='paid'; if(typeSelect.value!=='paid')priceInput.value=''} typeSelect.addEventListener('change',t); t(); }); </script>
+
 
 </body>
 </html>
