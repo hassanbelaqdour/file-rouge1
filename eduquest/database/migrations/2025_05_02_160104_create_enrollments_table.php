@@ -1,5 +1,5 @@
 <?php
-// database/migrations/create_enrollments_table.php
+
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->enum('status', ['pending', 'completed'])->default('completed');
             $table->timestamps();
 
-            // Empêcher les doublons
+            
             $table->unique(['user_id', 'course_id']);
         });
     }

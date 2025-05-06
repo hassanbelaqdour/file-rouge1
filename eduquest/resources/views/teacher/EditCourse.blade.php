@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Modifier le Cours : {{ $course->title }} - EduQuest</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome CDN for icons (required by the sidebar and file inputs) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
@@ -28,9 +26,7 @@
          .material-symbols-outlined, .material-icons {
             vertical-align: middle;
          }
-         /* Style pour le conteneur de l'input file stylisé */
          .custom-file-input-area {
-            /* Imitation du style du formulaire de leçon sombre */
             background-color: #374151; /* gray-700 */
             border: 1px solid #4b5563; /* gray-600 */
             border-radius: 0.375rem; /* rounded-md */
@@ -51,35 +47,33 @@
 
 
     </style>
-    {{-- AlpineJS is not strictly needed for this page based on the code provided, but keeping it as it might be used elsewhere --}}
-    {{-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
-</head>
+    </head>
 <body class="bg-gray-100 flex antialiased">
 
-    <!-- Panneau Latéral (Sidebar) - Style Jobsly (inchangé) -->
+    
     <aside class="w-64 h-screen bg-gray-900 text-gray-100 shadow-lg fixed top-0 left-0 z-20 flex flex-col overflow-y-auto">
 
-        <!-- Header Sidebar -->
+        
         <div class="flex justify-between items-center px-5 py-4 border-b border-gray-700">
-            <!-- Remplacé le logo SVG par un titre simple -->
+            
             <h1 class="text-2xl font-bold text-white">EduQuest</h1>
-            <!-- Icône Menu Hamburger -->
+            
              <i class="fas fa-bars text-xl text-gray-400 cursor-pointer hover:text-white"></i>
         </div>
 
-        <!-- Barre de recherche -->
+        
         <div class="relative px-4 mt-6">
             <input type="text" placeholder="Search..." class="w-full px-4 py-2 pl-10 bg-gray-800 border border-gray-700 rounded-lg text-sm text-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-600 focus:ring-blue-600">
-            <!-- Icône Loupe -->
+            
             <i class="fas fa-magnifying-glass absolute left-7 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm"></i>
         </div>
 
-        <!-- Navigation Principale -->
+        
         <nav class="mt-6 space-y-3 flex-grow px-4">
             {{-- Item Statistiques --}}
             <a href="{{ route('teacher.StatistiqueTeacher') }}" class="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out
                {{ request()->routeIs('teacher.StatistiqueTeacher') ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
-                <!-- Icône Statistiques (Font Awesome) -->
+                
                 <i class="fas fa-chart-simple text-lg"></i>
                 <span>Statistiques</span>
             </a>
@@ -87,7 +81,7 @@
             {{-- Item Tous les cours (Actif si route teacher.courses*) --}}
             <a href="{{ route('teacher.courses') }}" class="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out
                {{ request()->routeIs('teacher.courses*') ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
-                <!-- Icône Tous les cours (Font Awesome) -->
+                
                  <i class="fas fa-book text-lg"></i>
                  <span>Tous les cours</span>
             </a>
@@ -95,7 +89,7 @@
             {{-- Item Catégories --}}
              <a href="{{ route('categories.index') }}" class="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out
                {{ request()->routeIs('categories.index') ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
-                <!-- Icône Catégories (Font Awesome) -->
+                
                  <i class="fas fa-tags text-lg"></i>
                  <span>Catégories</span>
             </a>
@@ -103,15 +97,15 @@
 
         </nav>
 
-        <!-- Séparateur visuel avant le profil -->
+        
         <div class="border-t border-gray-700 mt-auto pt-4 mx-4"></div>
 
-        <!-- Section Profil Utilisateur -->
+        
         <div class="px-4 pb-4 pt-2">
              {{-- Utilisation des données d'authentification pour le profil si l'utilisateur est connecté --}}
              @auth
              <div class="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg">
-                <!-- Avatar Utilisateur (Utilise les initiales ou un placeholder) -->
+                
                  <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0 border border-gray-600">
                       {{ strtoupper(substr(Auth::user()->first_name ?? 'U', 0, 1)) }}{{ strtoupper(substr(Auth::user()->last_name ?? 's', 0, 1)) }}
                  </div>
@@ -119,7 +113,7 @@
                     <p class="text-sm font-semibold text-white">{{ Auth::user()->first_name ?? 'Utilisateur' }} {{ Auth::user()->last_name ?? '' }}</p>
                     <p class="text-xs text-gray-400">{{ Auth::user()->email ?? 'email@exemple.com' }}</p>
                 </div>
-                <!-- Icône Plus d'options -->
+                
                 <i class="fas fa-ellipsis text-gray-400 text-lg cursor-pointer hover:text-white"></i>
              </div>
              @endauth
@@ -136,14 +130,14 @@
         </div>
 
     </aside>
-    <!-- ================================================== -->
+    
 
 
-    <!-- CONTENU PRINCIPAL -->
+    
     <main class="ml-64 w-full p-6 md:p-8 lg:p-10">
         <div class="max-w-4xl mx-auto">
 
-            <!-- Header Page (inchangé) -->
+            
             <div class="flex items-center justify-between mb-8">
                 <div>
                     <h1 class="text-2xl font-bold text-gray-900">Modifier le Cours</h1>
@@ -155,7 +149,7 @@
                 </a>
             </div>
 
-            <!-- Formulaire de Modification (Style sombre, 2 colonnes, champs d'upload stylisés) -->
+            
             <div class="bg-gray-800 shadow-lg rounded-lg p-6 md:p-8 border border-gray-700">
 
                  {{-- Boîte Erreurs Validation --}}
@@ -382,92 +376,92 @@
                          const priceInput = document.getElementById('price');
 
                          function togglePriceField() {
-                             // Assurez-vous que typeSelect existe pour éviter les erreurs
+                             
                              if (!typeSelect) return;
 
                              const isPaid = typeSelect.value === 'paid';
-                             if (priceField) { // Assurez-vous que priceField existe
+                             if (priceField) { 
                                  priceField.style.display = isPaid ? 'block' : 'none';
                              }
-                             if (priceInput) { // Assurez-vous que priceInput existe
+                             if (priceInput) { 
                                  priceInput.required = isPaid;
-                                 // Dans un formulaire de modification, on ne vide pas la valeur si on switch
-                                 // à gratuit puis à payant à nouveau. Mais le script d'origine le faisait.
-                                 // Je vais le laisser tel quel pour l'instant, mais c'est à noter.
-                                 // if (!isPaid) {
-                                 //     priceInput.value = '';
-                                 // }
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
                              }
 
 
-                             // Gérer l'affichage de l'étoile rouge pour le champ prix
-                             const priceLabel = priceField?.querySelector('label'); // Utilisation de l'opérateur optionnel chaining
+                             
+                             const priceLabel = priceField?.querySelector('label'); 
                              if (priceLabel) {
                                  let requiredSpan = priceLabel.querySelector('span.text-red-500');
                                  if (isPaid) {
-                                     if (!requiredSpan) { // Ajouter l'étoile si elle n'existe pas
+                                     if (!requiredSpan) { 
                                          requiredSpan = document.createElement('span');
                                          requiredSpan.className = 'text-red-500';
                                          requiredSpan.textContent = ' *';
                                          priceLabel.appendChild(requiredSpan);
                                      }
                                  } else {
-                                     if (requiredSpan) { // Supprimer l'étoile si elle existe
+                                     if (requiredSpan) { 
                                          requiredSpan.remove();
                                      }
                                  }
                              }
                          }
-                         // S'assure que typeSelect existe avant d'ajouter l'écouteur
+                         
                          if (typeSelect) {
                              typeSelect.addEventListener('change', togglePriceField);
                          }
-                         // Exécute au chargement seulement si les éléments nécessaires existent
+                         
                          if (typeSelect && priceField && priceInput) {
                             togglePriceField();
                          }
 
 
-                         // Gestion des inputs file (afficher le nom du fichier sélectionné) - OPTIONNEL
-                         // Cible nos inputs file *cachés* par le style, mais contenus dans le div cliquable
-                         const fileInputs = document.querySelectorAll('input[type="file"].hidden'); // Cible les inputs cachés
+                         
+                         
+                         const fileInputs = document.querySelectorAll('input[type="file"].hidden'); 
                          fileInputs.forEach(input => {
                              input.addEventListener('change', function() {
-                                 const fileName = this.files[0] ? this.files[0].name : ''; // Vide si aucun fichier
-                                 // Trouver le label parent cliquable
-                                 const clickableDiv = this.closest('.custom-file-input-area'); // Div conteneur stylisé
-                                 if (!clickableDiv) return; // S'assurer d'avoir trouvé le div parent
+                                 const fileName = this.files[0] ? this.files[0].name : ''; 
+                                 
+                                 const clickableDiv = this.closest('.custom-file-input-area'); 
+                                 if (!clickableDiv) return; 
 
-                                 const label = clickableDiv.querySelector('label'); // Le label est à l'intérieur
+                                 const label = clickableDiv.querySelector('label'); 
                                  if (label) {
-                                     const textSpan = label.querySelector('span.text-sm'); // Cible le span spécifique du texte
-                                     const icon = label.querySelector('i'); // Cible l'icône Font Awesome
+                                     const textSpan = label.querySelector('span.text-sm'); 
+                                     const icon = label.querySelector('i'); 
                                      if (textSpan) {
                                          if (fileName) {
                                              textSpan.textContent = fileName;
-                                             // Optionnel : changer la couleur du texte si un fichier est là
+                                             
                                              textSpan.classList.remove('text-gray-400');
-                                             textSpan.classList.add('text-white'); // Ou une autre couleur
+                                             textSpan.classList.add('text-white'); 
                                          } else {
-                                             // Rétablir le texte par défaut si aucun fichier n'est sélectionné
-                                             let defaultText = 'Cliquez pour uploader un fichier'; // Fallback
+                                             
+                                             let defaultText = 'Cliquez pour uploader un fichier'; 
                                              if (this.id === 'image_path') defaultText = 'Cliquez pour uploader une image';
                                              else if (this.id === 'video_path') defaultText = 'Cliquez pour uploader une vidéo';
                                              else if (this.id === 'pdf_path') defaultText = 'Cliquez pour uploader un PDF';
                                              textSpan.textContent = defaultText;
-                                              // Rétablir la couleur du texte par défaut
-                                             textSpan.classList.remove('text-white'); // Retirer la couleur de fichier
-                                             textSpan.classList.add('text-gray-400'); // Remettre la couleur par défaut
+                                              
+                                             textSpan.classList.remove('text-white'); 
+                                             textSpan.classList.add('text-gray-400'); 
                                          }
                                      }
-                                     // Gérer la couleur de l'icône
+                                     
                                       if (icon) {
                                          if (fileName) {
-                                            icon.classList.remove('text-gray-400'); // Retirer la couleur par default
-                                            icon.classList.add('text-green-400'); // Mettre une couleur de succès (ajustez la classe)
+                                            icon.classList.remove('text-gray-400'); 
+                                            icon.classList.add('text-green-400'); 
                                          } else {
-                                            icon.classList.remove('text-green-400'); // Retirer la couleur de succès
-                                            icon.classList.add('text-gray-400'); // Remettre la couleur par default
+                                            icon.classList.remove('text-green-400'); 
+                                            icon.classList.add('text-gray-400'); 
                                          }
                                       }
                                  }

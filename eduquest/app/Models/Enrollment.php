@@ -1,5 +1,4 @@
 <?php
-// app/Models/Enrollment.php
 
 namespace App\Models;
 

@@ -36,8 +36,8 @@
             vertical-align: middle;
          }
     </style>
-    {{-- AlpineJS n'est pas strictement nécessaire pour cette page si on utilise JS standard --}}
-    {{-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
+    
+    
 </head>
 <body class="bg-gray-100 flex antialiased">
 
@@ -61,7 +61,7 @@
 
         <!-- Navigation Principale -->
         <nav class="mt-6 space-y-3 flex-grow px-4">
-            {{-- Item Statistiques --}}
+            
             <a href="{{ route('teacher.StatistiqueTeacher') }}" class="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out
                {{ request()->routeIs('teacher.StatistiqueTeacher') ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
                 <!-- Icône Statistiques (Font Awesome) -->
@@ -69,7 +69,7 @@
                 <span>Statistiques</span>
             </a>
 
-            {{-- Item Tous les cours (Actif pour cette page) --}}
+            
             <a href="{{ route('teacher.courses') }}" class="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out
                {{ request()->routeIs('teacher.courses*') ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
                 <!-- Icône Tous les cours (Font Awesome) -->
@@ -77,14 +77,14 @@
                  <span>Tous les cours</span>
             </a>
 
-            {{-- Item Catégories --}}
+            
              <a href="{{ route('categories.index') }}" class="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out
                {{ request()->routeIs('categories.index') ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
                 <!-- Icône Catégories (Font Awesome) -->
                  <i class="fas fa-tags text-lg"></i>
                  <span>Catégories</span>
             </a>
-            {{-- Autres liens (Etudiants, etc.) pourraient être ajoutés ici --}}
+            
 
         </nav>
 
@@ -93,7 +93,7 @@
 
         <!-- Section Profil Utilisateur -->
         <div class="px-4 pb-4 pt-2">
-             {{-- Utilisation des données d'authentification pour le profil si l'utilisateur est connecté --}}
+             
              @auth
              <div class="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg">
                 <!-- Avatar Utilisateur (Utilise les initiales ou un placeholder) -->
@@ -108,7 +108,7 @@
                 <i class="fas fa-ellipsis text-gray-400 text-lg cursor-pointer hover:text-white"></i>
              </div>
              @endauth
-             {{-- Logout --}}
+             
              <div class="mt-4">
                  <form action="{{ route('logout') }}" method="POST">
                      @csrf
@@ -127,7 +127,7 @@
     <main class="ml-64 w-full p-6 md:p-8 lg:p-10">
         <div class="max-w-7xl mx-auto">
 
-            {{-- Alerte Succès (inchangée) --}}
+            
             @if (session('success'))
             <div id="success-alert" x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show" x-transition.opacity.duration.500ms class="fixed top-5 right-5 z-50 rounded-md bg-green-50 p-4 shadow-lg border border-green-200" role="alert">
                 <div class="flex items-start">
@@ -148,34 +148,34 @@
             </div>
 
             <!-- Formulaire Ajout Cours (Style sombre, champs d'origine, inputs file stylisés, 2 colonnes) -->
-            {{-- Le div #addCourseForm est conservé pour le toggle JS existant --}}
+            
             <div id="addCourseForm" class="hidden w-full p-6 bg-gray-800 rounded-lg shadow-xl mb-8">
 
-                 {{-- Boîte Erreurs Validation --}}
+                 
                  @if ($errors->any() && old('_token'))
-                    {{-- Utilise les styles sombres pour le bloc d'erreurs --}}
+                    
                     <div class="mb-6 p-4 border border-red-600 bg-red-900 text-red-200 rounded-md">
                         <div class="flex items-center"><svg class="h-5 w-5 mr-3 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" /></svg><h3 class="text-sm font-semibold">Erreurs de Validation:</h3></div>
                         <ul class="mt-2 ml-8 list-disc text-sm space-y-1"> @foreach ($errors->all() as $error) <li>{{ $error }}</li> @endforeach </ul>
                     </div>
                  @endif
 
-                {{-- Titre du formulaire (style "Create New Lesson") --}}
+                
                 <div class="text-center mb-6">
-                    <h1 class="text-2xl font-bold text-white mb-2">Nouveau Cours</h1> {{-- Texte adapté "Nouveau Cours" --}}
-                    <p class="text-gray-400 text-sm">Ajoutez un nouveau cours à votre liste</p> {{-- Texte adapté --}}
+                    <h1 class="text-2xl font-bold text-white mb-2">Nouveau Cours</h1> 
+                    <p class="text-gray-400 text-sm">Ajoutez un nouveau cours à votre liste</p> 
                 </div>
 
-                {{-- Contenu du formulaire --}}
-                <form action="{{ route('teacher.courses.store') }}" method="POST" enctype="multipart/form-data"> {{-- Route et méthode du formulaire d'origine --}}
+                
+                <form action="{{ route('teacher.courses.store') }}" method="POST" enctype="multipart/form-data"> 
                      @csrf
 
-                    {{-- Mise en page en grille à 2 colonnes pour les champs --}}
+                    
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                        {{-- Colonne Gauche: Champs standards --}}
+                        
                         <div class="space-y-6">
-                             <div class="mb-4 md:mb-0"> {{-- mb-4 conservé pour mobile, md:mb-0 pour enlever marge sur desktop --}}
+                             <div class="mb-4 md:mb-0"> 
                                  <label for="title" class="block text-gray-400 text-sm font-medium text-center mb-2">
                                     Titre <span class="text-red-500">*</span>
                                 </label>
@@ -204,7 +204,7 @@
                                      <option value="intermediate" {{ old('level') == 'intermediate' ? 'selected' : '' }}>Intermédiaire</option>
                                      <option value="advanced" {{ old('level') == 'advanced' ? 'selected' : '' }}>Avancé</option>
                                  </select>
-                                  {{-- Icône pour le select --}}
+                                  
                                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400 mt-3">
                                      <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                                  </div>
@@ -220,14 +220,14 @@
                                      <option value="free" {{ old('type', 'free') == 'free' ? 'selected' : '' }}>Gratuit</option>
                                      <option value="paid" {{ old('type') == 'paid' ? 'selected' : '' }}>Payant</option>
                                  </select>
-                                  {{-- Icône pour le select --}}
+                                  
                                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400 mt-3">
                                      <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                                  </div>
                                  @error('type')<p class="mt-1 text-xs text-red-400">{{ $message }}</p>@enderror
                              </div>
 
-                             {{-- Champ Prix conditionnel --}}
+                             
                              <div id="priceField" style="{{ old('type', 'free') == 'paid' ? '' : 'display: none;' }}">
                                  <label for="price" class="block text-gray-400 text-sm font-medium text-center mb-2">
                                     Prix (€) <span class="text-red-500">*</span>
@@ -237,13 +237,13 @@
                                  @error('price')<p class="mt-1 text-xs text-red-400">{{ $message }}</p>@enderror
                              </div>
 
-                             {{-- Le champ Catégorie a été déplacé vers la colonne de droite --}}
+                             
 
                         </div>
 
-                        {{-- Colonne Droite: Catégorie et Champs d'upload de fichier --}}
+                        
                         <div class="space-y-6">
-                             {{-- Champ Catégorie (déplacé ici) --}}
+                             
                              <div class="mb-4 md:mb-0 relative">
                                  <label for="category_id" class="block text-gray-400 text-sm font-medium text-center mb-2">
                                      Catégorie <span class="text-red-500">*</span>
@@ -261,25 +261,25 @@
                                          <option value="" disabled>Chargement...</option>
                                      @endisset
                                  </select>
-                                  {{-- Icône pour le select --}}
+                                  
                                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400 mt-3">
                                      <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                                  </div>
                                  @error('category_id')<p class="mt-1 text-xs text-red-400">{{ $message }}</p>@enderror
                              </div>
 
-                             {{-- Champ Image du cours --}}
+                             
                              <div class="mb-4 md:mb-0">
                                  <label for="image_path" class="block text-gray-400 text-sm font-medium text-center mb-2">
                                      Image du cours <span class="text-red-500">*</span>
                                  </label>
-                                 {{-- Applique le style du conteneur d'upload file --}}
+                                 
                                  <div class="w-full px-4 py-6 bg-gray-700 border border-gray-600 rounded-md text-gray-400 text-center cursor-pointer hover:bg-gray-600 transition-colors duration-200 @error('image_path') border-red-500 ring-1 ring-red-500 @enderror">
-                                     {{-- Input file caché --}}
+                                     
                                      <input type="file" id="image_path" name="image_path" accept="image/*" required class="hidden">
-                                     {{-- Label cliquable avec icône et texte --}}
+                                     
                                     <label for="image_path" class="flex flex-col items-center justify-center">
-                                        {{-- Icône Image (Font Awesome) --}}
+                                        
                                         <i class="fas fa-image w-8 h-8 mb-2 text-gray-400"></i>
                                         <span class="text-sm text-gray-400">Cliquez pour uploader une image</span>
                                     </label>
@@ -287,18 +287,18 @@
                                 @error('image_path')<p class="mt-1 text-xs text-red-400">{{ $message }}</p>@enderror
                             </div>
 
-                             {{-- Champ Vidéo du cours --}}
+                             
                              <div class="mb-4 md:mb-0">
                                 <label for="video_path" class="block text-gray-400 text-sm font-medium text-center mb-2">
                                     Vidéo du cours (Optionnel)
                                 </label>
-                                 {{-- Applique le style du conteneur d'upload file --}}
+                                 
                                 <div class="w-full px-4 py-6 bg-gray-700 border border-gray-600 rounded-md text-gray-400 text-center cursor-pointer hover:bg-gray-600 transition-colors duration-200 @error('video_path') border-red-500 ring-1 ring-red-500 @enderror">
-                                    {{-- Input file caché --}}
+                                    
                                     <input type="file" id="video_path" name="video_path" accept="video/*" class="hidden">
-                                    {{-- Label cliquable avec icône et texte --}}
+                                    
                                     <label for="video_path" class="flex flex-col items-center justify-center">
-                                        {{-- Icône Vidéo (Font Awesome) --}}
+                                        
                                         <i class="fas fa-video w-8 h-8 mb-2 text-gray-400"></i>
                                         <span class="text-sm text-gray-400">Cliquez pour uploader une vidéo</span>
                                     </label>
@@ -306,18 +306,18 @@
                                  @error('video_path')<p class="mt-1 text-xs text-red-400">{{ $message }}</p>@enderror
                             </div>
 
-                            {{-- Champ PDF --}}
-                            <div> {{-- Retire mb-6 ici car l'espacement vient du space-y-6 du parent --}}
+                            
+                            <div> 
                                 <label for="pdf_path" class="block text-gray-400 text-sm font-medium text-center mb-2">
                                     PDF (Optionnel)
                                 </label>
-                                 {{-- Applique le style du conteneur d'upload file --}}
+                                 
                                 <div class="w-full px-4 py-6 bg-gray-700 border border-gray-600 rounded-md text-gray-400 text-center cursor-pointer hover:bg-gray-600 transition-colors duration-200 @error('pdf_path') border-red-500 ring-1 ring-red-500 @enderror">
-                                    {{-- Input file caché --}}
+                                    
                                     <input type="file" id="pdf_path" name="pdf_path" accept=".pdf,application/pdf" class="hidden">
-                                    {{-- Label cliquable avec icône et texte --}}
+                                    
                                     <label for="pdf_path" class="flex flex-col items-center justify-center">
-                                        {{-- Icône PDF (Font Awesome) --}}
+                                        
                                         <i class="fas fa-file-pdf w-8 h-8 mb-2 text-gray-400"></i>
                                         <span class="text-sm text-gray-400">Cliquez pour uploader un PDF</span>
                                     </label>
@@ -327,24 +327,24 @@
 
                         </div>
 
-                    </div> {{-- Fin de la grille --}}
+                    </div> 
 
 
-                    {{-- Actions Formulaire (placé en dehors de la grille) --}}
+                    
                     <div class="pt-5 border-t border-gray-700 mt-6 flex justify-end space-x-3">
-                         {{-- Bouton Annuler (stylisé sombre) --}}
+                         
                          <button type="button" id="cancelFormBtn"
                                  class="bg-gray-700 py-2 px-4 border border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-300 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                              Annuler
                          </button>
-                        {{-- Bouton Soumettre (stylisé gradient) --}}
+                        
                         <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white btn-gradient focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Créer le Cours {{-- Texte adapté --}}
+                            Créer le Cours 
                         </button>
                     </div>
                 </form>
 
-                {{-- Script prix conditionnel (du formulaire d'origine, adapté) --}}
+                
                 <script>
                      document.addEventListener('DOMContentLoaded', function () {
                          const typeSelect = document.getElementById('type');
@@ -352,90 +352,90 @@
                          const priceInput = document.getElementById('price');
 
                          function togglePriceField() {
-                             // Assurez-vous que typeSelect existe pour éviter les erreurs
+                             
                              if (!typeSelect) return;
 
                              const isPaid = typeSelect.value === 'paid';
-                             if (priceField) { // Assurez-vous que priceField existe
+                             if (priceField) { 
                                  priceField.style.display = isPaid ? 'block' : 'none';
                              }
-                             if (priceInput) { // Assurez-vous que priceInput existe
+                             if (priceInput) { 
                                  priceInput.required = isPaid;
-                                 // Réinitialiser la valeur du prix si le type n'est pas payant
+                                 
                                  if (!isPaid) {
                                      priceInput.value = '';
                                  }
                              }
 
 
-                             // Gérer l'affichage de l'étoile rouge pour le champ prix
-                             const priceLabel = priceField?.querySelector('label'); // Utilisation de l'opérateur optionnel chaining
+                             
+                             const priceLabel = priceField?.querySelector('label'); 
                              if (priceLabel) {
                                  let requiredSpan = priceLabel.querySelector('span.text-red-500');
                                  if (isPaid) {
-                                     if (!requiredSpan) { // Ajouter l'étoile si elle n'existe pas
+                                     if (!requiredSpan) { 
                                          requiredSpan = document.createElement('span');
                                          requiredSpan.className = 'text-red-500';
                                          requiredSpan.textContent = ' *';
                                          priceLabel.appendChild(requiredSpan);
                                      }
                                  } else {
-                                     if (requiredSpan) { // Supprimer l'étoile si elle existe
+                                     if (requiredSpan) { 
                                          requiredSpan.remove();
                                      }
                                  }
                              }
                          }
-                         // S'assure que typeSelect existe avant d'ajouter l'écouteur
+                         
                          if (typeSelect) {
                              typeSelect.addEventListener('change', togglePriceField);
                          }
-                         // Exécute au chargement seulement si les éléments nécessaires existent
+                         
                          if (typeSelect && priceField && priceInput) {
                             togglePriceField();
                          }
 
 
-                         // Gestion des inputs file (afficher le nom du fichier sélectionné) - OPTIONNEL
-                         // Cible nos inputs file *cachés* par le style, mais contenus dans le div cliquable
+                         
+                         
                          const fileInputs = document.querySelectorAll('#addCourseForm input[type="file"].hidden');
                          fileInputs.forEach(input => {
                              input.addEventListener('change', function() {
-                                 const fileName = this.files[0] ? this.files[0].name : ''; // Vide si aucun fichier
-                                 // Trouver le label parent cliquable
+                                 const fileName = this.files[0] ? this.files[0].name : ''; 
+                                 
                                  const clickableDiv = this.closest('.w-full.bg-gray-700');
-                                 if (!clickableDiv) return; // S'assurer d'avoir trouvé le div parent
+                                 if (!clickableDiv) return; 
 
-                                 const label = clickableDiv.querySelector('label'); // Le label est à l'intérieur
+                                 const label = clickableDiv.querySelector('label'); 
                                  if (label) {
-                                     const textSpan = label.querySelector('span.text-sm'); // Cible le span spécifique du texte
-                                     const icon = label.querySelector('i'); // Cible l'icône Font Awesome
+                                     const textSpan = label.querySelector('span.text-sm'); 
+                                     const icon = label.querySelector('i'); 
                                      if (textSpan) {
                                          if (fileName) {
                                              textSpan.textContent = fileName;
-                                             // Optionnel : changer la couleur du texte si un fichier est là
+                                             
                                              textSpan.classList.remove('text-gray-400');
-                                             textSpan.classList.add('text-white'); // Ou une autre couleur
+                                             textSpan.classList.add('text-white'); 
                                          } else {
-                                             // Rétablir le texte par défaut si aucun fichier n'est sélectionné
-                                             let defaultText = 'Cliquez pour uploader un fichier'; // Fallback
+                                             
+                                             let defaultText = 'Cliquez pour uploader un fichier'; 
                                              if (this.id === 'image_path') defaultText = 'Cliquez pour uploader une image';
                                              else if (this.id === 'video_path') defaultText = 'Cliquez pour uploader une vidéo';
                                              else if (this.id === 'pdf_path') defaultText = 'Cliquez pour uploader un PDF';
                                              textSpan.textContent = defaultText;
-                                              // Rétablir la couleur du texte par défaut
-                                             textSpan.classList.remove('text-white'); // Retirer la couleur de fichier
-                                             textSpan.classList.add('text-gray-400'); // Remettre la couleur par défaut
+                                              
+                                             textSpan.classList.remove('text-white'); 
+                                             textSpan.classList.add('text-gray-400'); 
                                          }
                                      }
-                                     // Gérer la couleur de l'icône
+                                     
                                       if (icon) {
                                          if (fileName) {
-                                            icon.classList.remove('text-gray-400'); // Retirer la couleur par défaut
-                                            icon.classList.add('text-green-400'); // Mettre une couleur de succès (ajustez la classe)
+                                            icon.classList.remove('text-gray-400'); 
+                                            icon.classList.add('text-green-400'); 
                                           } else {
-                                            icon.classList.remove('text-green-400'); // Retirer la couleur de succès
-                                            icon.classList.add('text-gray-400'); // Remettre la couleur par défaut
+                                            icon.classList.remove('text-green-400'); 
+                                            icon.classList.add('text-gray-400'); 
                                          }
                                       }
                                  }
@@ -452,15 +452,15 @@
 
             <!-- Grille des Cours Existants (inchangée) -->
             <div class="bg-transparent">
-                 {{-- Le reste de votre code pour afficher la grille des cours existants --}}
+                 
     @if ($courses->count() > 0)
-        {{-- Grille (ajustez les colonnes selon vos besoins, ex: lg:grid-cols-3) --}}
+        
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($courses as $course)
-                {{-- Carte de cours --}}
+                
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full group transform hover:-translate-y-1 transition-all duration-300 ease-out">
 
-                    {{-- Section Image/Placeholder --}}
+                    
                     <div class="h-48 relative bg-gradient-to-br from-blue-400 to-teal-400 rounded-t-xl flex items-center justify-center overflow-hidden">
                         @if(!$course->image_path)
                             <svg class="w-16 h-16 text-white z-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -471,10 +471,10 @@
                         @endif
                     </div>
 
-                    {{-- Section Contenu --}}
+                    
                     <div class="p-6 flex flex-col flex-grow">
 
-                        {{-- Badges Catégorie / Niveau --}}
+                        
                         <div class="flex items-center space-x-2 mb-3">
                              @if($course->category)
                                 <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-700">
@@ -486,19 +486,19 @@
                              </span>
                         </div>
 
-                        {{-- Titre du cours --}}
+                        
                         <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-teal-600 transition-colors duration-200">
                            <a href="{{ route('teacher.courses.show', $course->id) }}" class="focus:outline-none focus:ring-2 focus:ring-teal-300 focus:ring-offset-2 rounded">
                                {{ $course->title }}
                            </a>
                         </h3>
 
-                        {{-- Description du cours --}}
+                        
                         <p class="text-sm text-gray-600 mb-4 flex-grow">
                              {{ Str::limit($course->description, 140) }}
                         </p>
 
-                        {{-- Prix du cours --}}
+                        
                         <div class="mb-6">
                              <p class="text-lg font-bold text-gray-900">
                                 @if($course->type == 'paid' && $course->price > 0)
@@ -509,19 +509,19 @@
                             </p>
                         </div>
 
-                        {{-- Section Actions (Pied de carte) --}}
+                        
                         <div class="mt-auto flex items-center justify-between">
 
-                            {{-- Icônes Modifier / Supprimer --}}
+                            
                             <div class="flex items-center space-x-2">
-                                {{-- Bouton Modifier (Icône) --}}
+                                
                                 <a href="{{ route('teacher.courses.edit', $course->id) }}" title="Modifier le cours" class="p-2 rounded-full bg-purple-50 text-orange-500 hover:bg-purple-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-300 focus:ring-offset-1">
                                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                       <path d="M2.695 14.763l-1.262 3.154a.5.5 0 00.65.65l3.155-1.262a4 4 0 001.343-.885L17.5 5.5a2.121 2.121 0 00-3-3L3.58 13.42a4 4 0 00-.885 1.343z" />
                                     </svg>
                                 </a>
 
-                                {{-- Bouton Supprimer (Icône) --}}
+                                
                                 <form method="POST" action="{{ route('teacher.courses.destroy', $course->id) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer le cours \'{{ addslashes($course->title) }}\' ?')" class="inline">
                                     @csrf
                                     @method('DELETE')
@@ -533,7 +533,7 @@
                                             </form>
                                         </div>
 
-                                        {{-- Bouton "En savoir plus" --}}
+                                        
                                         <a href="{{ route('teacher.courses.show', $course->id) }}"
                                            class="inline-flex items-center px-5 py-2 rounded-full bg-teal-500 text-white text-sm font-semibold hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 transition-colors duration-200">
                                             En savoir plus
@@ -561,13 +561,13 @@
         </div>
     </main>
 
-    {{-- Scripts JS --}}
+    
     <script>
-        // Script pour la gestion du formulaire (inchangé)
+        
         document.addEventListener('DOMContentLoaded', function () {
             const toggleBtn = document.getElementById("toggleFormBtn");
-            const addCourseForm = document.getElementById("addCourseForm"); // Cible le div conteneur
-            const cancelBtn = document.getElementById('cancelFormBtn'); // Cible le bouton annuler
+            const addCourseForm = document.getElementById("addCourseForm"); 
+            const cancelBtn = document.getElementById('cancelFormBtn'); 
 
             function showForm() {
                  if (addCourseForm) {
@@ -591,13 +591,13 @@
 
             if(cancelBtn) cancelBtn.addEventListener("click", hideForm);
 
-            // Montre le formulaire si validation échoue après soumission
+            
              @if ($errors->any() && old('_token'))
                  showForm();
              @endif
         });
 
-        // Script pour les alertes (inchangé)
+        
         function closeAlert(alertId) {
             const alertBox = document.getElementById(alertId);
             if (alertBox) {
@@ -614,7 +614,7 @@
             }
         });
     </script>
-    {{-- Script conditionnel pour le prix (du formulaire d'origine, adapté) --}}
+    
     <script>
          document.addEventListener('DOMContentLoaded', function () {
              const typeSelect = document.getElementById('type');
@@ -622,90 +622,90 @@
              const priceInput = document.getElementById('price');
 
              function togglePriceField() {
-                 // Assurez-vous que typeSelect existe pour éviter les erreurs
+                 
                  if (!typeSelect) return;
 
                  const isPaid = typeSelect.value === 'paid';
-                 if (priceField) { // Assurez-vous que priceField existe
+                 if (priceField) { 
                      priceField.style.display = isPaid ? 'block' : 'none';
                  }
-                 if (priceInput) { // Assurez-vous que priceInput existe
+                 if (priceInput) { 
                      priceInput.required = isPaid;
-                     // Réinitialiser la valeur du prix si le type n'est pas payant
+                     
                      if (!isPaid) {
                          priceInput.value = '';
                      }
                  }
 
 
-                 // Gérer l'affichage de l'étoile rouge pour le champ prix
-                 const priceLabel = priceField?.querySelector('label'); // Utilisation de l'opérateur optionnel chaining
+                 
+                 const priceLabel = priceField?.querySelector('label'); 
                  if (priceLabel) {
                      let requiredSpan = priceLabel.querySelector('span.text-red-500');
                      if (isPaid) {
-                         if (!requiredSpan) { // Ajouter l'étoile si elle n'existe pas
+                         if (!requiredSpan) { 
                              requiredSpan = document.createElement('span');
                              requiredSpan.className = 'text-red-500';
                              requiredSpan.textContent = ' *';
                              priceLabel.appendChild(requiredSpan);
                          }
                      } else {
-                         if (requiredSpan) { // Supprimer l'étoile si elle existe
+                         if (requiredSpan) { 
                              requiredSpan.remove();
                          }
                      }
                  }
              }
-             // S'assure que typeSelect existe avant d'ajouter l'écouteur
+             
              if (typeSelect) {
                  typeSelect.addEventListener('change', togglePriceField);
              }
-             // Exécute au chargement seulement si les éléments nécessaires existent
+             
              if (typeSelect && priceField && priceInput) {
                 togglePriceField();
              }
 
 
-             // Gestion des inputs file (afficher le nom du fichier sélectionné) - OPTIONNEL
-             // Cible nos inputs file *cachés* par le style, mais contenus dans le div cliquable
+             
+             
              const fileInputs = document.querySelectorAll('#addCourseForm input[type="file"].hidden');
              fileInputs.forEach(input => {
                  input.addEventListener('change', function() {
-                     const fileName = this.files[0] ? this.files[0].name : ''; // Vide si aucun fichier
-                     // Trouver le label parent cliquable
+                     const fileName = this.files[0] ? this.files[0].name : ''; 
+                     
                      const clickableDiv = this.closest('.w-full.bg-gray-700');
-                     if (!clickableDiv) return; // S'assurer d'avoir trouvé le div parent
+                     if (!clickableDiv) return; 
 
-                     const label = clickableDiv.querySelector('label'); // Le label est à l'intérieur
+                     const label = clickableDiv.querySelector('label'); 
                      if (label) {
-                         const textSpan = label.querySelector('span.text-sm'); // Cible le span spécifique du texte
-                         const icon = label.querySelector('i'); // Cible l'icône Font Awesome
+                         const textSpan = label.querySelector('span.text-sm'); 
+                         const icon = label.querySelector('i'); 
                          if (textSpan) {
                              if (fileName) {
                                  textSpan.textContent = fileName;
-                                 // Optionnel : changer la couleur du texte si un fichier est là
+                                 
                                  textSpan.classList.remove('text-gray-400');
-                                 textSpan.classList.add('text-white'); // Ou une autre couleur
+                                 textSpan.classList.add('text-white'); 
                              } else {
-                                 // Rétablir le texte par défaut si aucun fichier n'est sélectionné
-                                 let defaultText = 'Cliquez pour uploader un fichier'; // Fallback
+                                 
+                                 let defaultText = 'Cliquez pour uploader un fichier'; 
                                  if (this.id === 'image_path') defaultText = 'Cliquez pour uploader une image';
                                  else if (this.id === 'video_path') defaultText = 'Cliquez pour uploader une vidéo';
                                  else if (this.id === 'pdf_path') defaultText = 'Cliquez pour uploader un PDF';
                                  textSpan.textContent = defaultText;
-                                  // Rétablir la couleur du texte par défaut
-                                 textSpan.classList.remove('text-white'); // Retirer la couleur de fichier
-                                 textSpan.classList.add('text-gray-400'); // Remettre la couleur par défaut
+                                  
+                                 textSpan.classList.remove('text-white'); 
+                                 textSpan.classList.add('text-gray-400'); 
                              }
                          }
-                         // Gérer la couleur de l'icône
+                         
                           if (icon) {
                              if (fileName) {
-                                icon.classList.remove('text-gray-400'); // Retirer la couleur par défaut
-                                icon.classList.add('text-green-400'); // Mettre une couleur de succès (ajustez la classe)
+                                icon.classList.remove('text-gray-400'); 
+                                icon.classList.add('text-green-400'); 
                            } else {
-                                icon.classList.remove('text-green-400'); // Retirer la couleur de succès
-                                icon.classList.add('text-gray-400'); // Remettre la couleur par default
+                                icon.classList.remove('text-green-400'); 
+                                icon.classList.add('text-gray-400'); 
                             }
                           }
 

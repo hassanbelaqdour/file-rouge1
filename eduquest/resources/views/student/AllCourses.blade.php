@@ -7,7 +7,7 @@
     <title>votre plateforme d'education en ligne</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Liens Head -->
+    
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Sniglet&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
@@ -34,16 +34,16 @@
 
 <body class="bg-gray-100" style="font-family: 'Sniglet', cursive;">
 
-    <!-- Header Global -->
+    
     <header
         class="bg-white py-4 px-6 flex justify-between items-center fixed top-0 left-0 w-full z-20 shadow-md border-b border-gray-200">
         <div class="text-2xl font-semibold text-black">EduQuest</div>
         <nav class="hidden md:flex items-center gap-6">
-            <!-- All Courses Dropdown -->
+            
             <div class="relative group">       
             <a href="{{ route('mesfavorites') }}"
                 class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
-                {{-- Icône pour les favoris (par exemple, 'favorite' ou 'heart_plus') --}}
+                
                 <span class="material-symbols-outlined">favorite</span> 
                 Mes cours favoris
             </a>
@@ -55,7 +55,7 @@
                 </a>
             </div>
             
-            <!-- Course Categories Dropdown -->
+            
             <div class="relative group">
                 <button
                     class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
@@ -63,14 +63,14 @@
                 </button>
                 <div
                     class="absolute left-0 -mt-1 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48">
-                    <!-- Liens dropdown header en vert -->
+                    
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Developpement</a>
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Design</a>
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Marketing</a>
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Management</a>
                 </div>
             </div>
-            <!-- Course Types Dropdown -->
+            
             <div class="relative group">
                 <button
                     class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
@@ -78,14 +78,14 @@
                 </button>
                 <div
                     class="absolute left-0 -mt-1 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48">
-                    <!-- Liens dropdown header en vert -->
+                    
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Gratuit</a>
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Payant</a>
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Certifie</a>
                 </div>
             </div>
         </nav>
-        <!-- Notifications & Profile -->
+        
         <div class="flex items-center space-x-4 relative">
             <button
                 class="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 hover:text-black hover:bg-gray-100">
@@ -94,21 +94,22 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                 </svg> </button>
-            <div class="relative group"> <button
+            <div class="relative group"> 
+                <button
                     class="w-10 h-10 rounded-full bg-gray-200 focus:outline-none flex items-center justify-center text-gray-500">
                     <span class="material-symbols-outlined">person</span> </button>
                                 <div class="absolute right-0 -mt-1 w-48 bg-white shadow-lg rounded-lg border border-gray-200 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200 z-10">
                                 
-                                    {{-- Lien vers le profil (Adaptez le href si vous avez une route nommee) --}}
+                                    
                                     <a href="" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-sm">
                                         <span class="material-icons mr-2 align-middle">account_circle</span>
                                         {{ Auth::user()->email ?? 'admin@example.com' }}
                                     </a>
 
                                 
-                                    {{-- Formulaire de deconnexion Laravel --}}
+                                    
                                     <form method="POST" action="{{ route('logout') }}">
-                                        @csrf {{-- Directive Blade pour la protection CSRF --}}
+                                        @csrf 
                                 
                                         <button type="submit" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
                                             <span class="material-icons mr-2 align-middle">logout</span>
@@ -120,10 +121,10 @@
         </div>
     </header>
 
-    <!-- Contenu Principal -->
+    
     <div class="flex flex-col min-h-screen pt-16 md:pt-20">
 
-        <!-- Section Heros (CODE ORIGINAL - Theme Vert) -->
+        
         <section class="bg-green-900 text-white py-20 md:py-32">
             <div class="container mx-auto px-6 text-center">
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight"> developpez votre <span
@@ -158,7 +159,7 @@
             </div>
         </section>
 
-        <!-- Section Categories de Cours (CODE ORIGINAL - Theme Vert/Blanc) -->
+        
         <section class="bg-white py-16">
             <div class="container mx-auto px-6">
                 <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-8 text-center"> <a href="#"
@@ -233,16 +234,14 @@
             </div>
         </section>
 
-        <!-- NOUVELLE SECTION: Filtres -->
-        <!-- ** SECTION FILTRES INTÉGRÉE ICI ** -->
-                <!-- ** SECTION FILTRES MISE À JOUR ** -->
+                
                 <section class="bg-gray-50 py-4 md:py-5 border-b border-gray-200 top-[73px] md:top-[81px] z-10">
             <div class="container mx-auto px-6">
-                 {{-- MODIFIÉ: Suppression de sm:justify-between pour que les filtres restent groupés --}}
+                 
                  <div class="flex flex-col sm:flex-row sm:items-center gap-4">
 
-                     {{-- Filtre Catégorie (Select) --}}
-                    {{-- Suppression de flex-grow/sm:flex-grow-0 car plus nécessaire ici --}}
+                     
+                    
                     <form method="GET" action="{{ route('courses.index') }}" class="flex items-center space-x-3 w-full sm:w-auto">
                         <label for="category_filter" class="text-gray-700 font-medium text-sm flex-shrink-0 ubuntu">Catégorie :</label>
                         <select name="category" id="category_filter"
@@ -259,10 +258,10 @@
                         </select>
                     </form>
 
-                     {{-- Filtre Prix (Dropdown) --}}
+                     
                      <div class="relative group ubuntu w-full sm:w-auto">
                         <button class="flex items-center justify-between w-full sm:w-36 px-3 py-2 bg-white border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-green-500">
-                             {{-- Affiche le filtre prix actif ou "Prix" par défaut --}}
+                             
                             <span class="mr-1">
                                 @if($selectedPriceFilter === 'free') Gratuit
                                 @elseif($selectedPriceFilter === 'paid') Payant
@@ -270,44 +269,44 @@
                             </span>
                             <svg class="w-4 h-4 ml-1 text-gray-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
                         </button>
-                        <div class="absolute left-0 -mt-1 w-full sm:w-36 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-20"> {{-- Décalage du dropdown vers la gauche sur mobile --}}
-                            {{-- Lien "Tous" --}}
+                        <div class="absolute left-0 -mt-1 w-full sm:w-36 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-20"> 
+                            
                             <a href="{{ route('courses.index', request()->except(['price_filter', 'page'])) }}"
                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 {{ !$selectedPriceFilter ? 'font-semibold text-green-700' : '' }}">
                                Tous
                             </a>
-                             {{-- Lien "Gratuit" --}}
+                             
                             <a href="{{ route('courses.index', array_merge(request()->except('page'), ['price_filter' => 'free'])) }}"
                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 {{ $selectedPriceFilter === 'free' ? 'font-semibold text-green-700' : '' }}">
                                Gratuit
                             </a>
-                             {{-- Lien "Payant" --}}
+                             
                             <a href="{{ route('courses.index', array_merge(request()->except('page'), ['price_filter' => 'paid'])) }}"
                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 {{ $selectedPriceFilter === 'paid' ? 'font-semibold text-green-700' : '' }}">
                                Payant
                             </a>
                         </div>
                      </div>
-                     {{-- Fin Filtre Prix --}}
+                     
 
                  </div>
             </div>
         </section>
-        <!-- ** FIN SECTION FILTRES MISE À JOUR ** -->
-        <!-- FIN NOUVELLE SECTION: Filtres -->
-<!-- Section Grille de Cours (partie ajoutee - THEME VERT) -->
-<div class="bg-gray-50 flex-1 p-8 pt-0 md:pt-8"> <!-- Ajustement padding top pour coller a la section filtre -->
-    {{-- Le container peut définir la grille principale --}}
+        
+        
+
+<div class="bg-gray-50 flex-1 p-8 pt-0 md:pt-8"> 
+    
     <div class="container mx-auto">
 
-        {{-- Vérifie s'il y a des cours --}}
+        
         @if ($courses->count() > 0)
-            {{-- Grille pour les cartes de cours --}}
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"> {{-- Utilisation de LG pour 3 colonnes --}}
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"> 
                 @foreach ($courses as $course)
-                    {{-- Carte individuelle (style vert) --}}
+                    
                     <div class="rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 bg-white flex flex-col h-full">
-                        {{-- Image --}}
+                        
                         <div class="h-40 flex-shrink-0">
                             @if($course->image_path)
                                 <img src="{{ Storage::url($course->image_path) }}" alt="Image {{ $course->title }}" class="w-full h-full object-cover">
@@ -315,37 +314,37 @@
                                 <div class="w-full h-full bg-gray-200 flex items-center justify-center"> <span class="text-gray-400 text-sm">Image Cours</span> </div>
                             @endif
                         </div>
-                        {{-- Contenu Texte --}}
+                        
                         <div class="p-4 flex flex-col flex-grow">
-                            {{-- Catégorie --}}
+                            
                              @if($course->category)
                             <p class="text-xs font-medium text-blue-600 uppercase tracking-wide mb-1">
                                 {{ $course->category->name }}
                             </p>
                             @endif
-                            {{-- Titre --}}
+                            
                             <h3 class="font-semibold text-lg text-green-800 sniglet mb-1">
-                                <a href="#" class="hover:text-green-600">{{ $course->title }}</a> {{-- Lien vers détail à ajouter --}}
+                                <a href="#" class="hover:text-green-600">{{ $course->title }}</a> 
                             </h3>
-                            {{-- Description --}}
+                            
                             <p class="text-gray-600 text-sm mt-1 mb-4 flex-grow">{{ Str::limit($course->description, 100) }}</p>
-                            {{-- Pied de carte : Prix et Bouton --}}
+                            
                             <div class="mt-auto flex items-end justify-between pt-3 border-t border-gray-100">
                                 <div>
                                     <p class="text-gray-700 font-medium text-sm">Prix :</p>
                                     <p class="text-green-600 font-bold text-lg leading-tight">
                                         {{ $course->type == 'paid' && $course->price > 0 ? number_format($course->price, 2) . '€' : 'Gratuit' }}
                                     </p>
-                                    {{-- Ligne nombre inscrits supprimée comme demandé --}}
+                                    
                                 </div>
-                                {{-- Bouton générique (remplacer par votre logique d'inscription si besoin) --}}
+                                
                                 <div class="flex space-x-2 items-center">
                                 <form action="{{ route('student.courses.like', $course->id) }}" method="POST" class="inline-block align-middle">
                                         @csrf
                                         <button type="submit"
                                                 title="{{ $course->isLikedByCurrentUser() ? 'Ne plus aimer ce cours' : 'Aimer ce cours' }}"
                                                 class="p-2 rounded-full transition-colors duration-200 ease-in-out {{ $course->isLikedByCurrentUser() ? 'text-red-500 bg-red-100 hover:bg-red-200' : 'text-gray-400 hover:text-red-500 hover:bg-gray-100' }}">
-                                            {{-- Icône Cœur SVG --}}
+                                            
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
                                             </svg>
@@ -374,37 +373,37 @@
                         </div>
                     </div>
                 @endforeach
-            </div> {{-- Fin de la div grid (interne) --}}
-            {{-- **** AJOUT DE LA PAGINATION **** --}}
+            </div> 
+            
             <div class="mt-10">
-                {{ $courses->links() }} {{-- Affiche les liens Précédent/Suivant et les numéros de page --}}
+                {{ $courses->links() }} 
             </div>
 
-        {{-- ** AJOUT DE L'ELSE ET ENDIF ** --}}
+        
         @else
-            {{-- Message si aucun cours n'est trouvé --}}
+            
             <div class="col-span-full text-center py-16 px-6 bg-white rounded-lg shadow border">
-                {{-- Vous pouvez garder l'icône ou la supprimer --}}
+                
                 <svg class="mx-auto h-12 w-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 12.75h4.5m-4.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /> </svg>
                 <h3 class="mt-2 text-sm font-medium text-gray-900">Aucun cours disponible pour le moment.</h3>
                 <p class="mt-1 text-sm text-gray-500">Revenez bientôt !</p>
             </div>
         @endif
-         {{-- ** FIN AJOUT ** --}}
+         
 
-    </div> {{-- Fin de la div container --}}
-</div> {{-- Fin de la div bg-gray-50 --}}
+    </div> 
+</div> 
 <footer class="bg-gray-800 text-white py-8 mt-20">
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
 
-            <!-- Section 1: Logo et Description -->
+            
             <div>
                 <h3 class="text-xl font-bold mb-4">EduQuest</h3>
                 <p class="text-gray-400">Votre plateforme d'apprentissage en ligne pour un avenir meilleur.</p>
             </div>
 
-            <!-- Section 2: Liens Rapides -->
+            
             <div>
                 <h3 class="text-xl font-bold mb-4">Liens Rapides</h3>
                 <ul class="list-none pl-0">
@@ -415,7 +414,7 @@
                 </ul>
             </div>
 
-            <!-- Section 3: Ressources -->
+            
             <div>
                 <h3 class="text-xl font-bold mb-4">Ressources</h3>
                 <ul class="list-none pl-0">
@@ -426,7 +425,7 @@
                 </ul>
             </div>
 
-            <!-- Section 4: Newsletter -->
+            
             <div>
                 <h3 class="text-xl font-bold mb-4">Abonnez-vous à notre Newsletter</h3>
                 <p class="text-gray-400 mb-2">Recevez les dernières nouvelles et mises à jour.</p>

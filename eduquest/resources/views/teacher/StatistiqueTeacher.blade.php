@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Statistiques Enseignant - EduQuest</title>
-    <!-- Tailwind CSS CDN -->
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome CDN for icons (required by the new sidebar) -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Chart.js CDN -->
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
-        /* Styles scrollbar (ajusté pour le thème sombre du nouveau sidebar) */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #333; border-radius: 10px; } /* Ajusté pour thème sombre */
         ::-webkit-scrollbar-thumb { background: #555; border-radius: 10px; } /* Ajusté pour thème sombre */
@@ -21,21 +20,21 @@
 </head>
 <body class="bg-gray-100 flex antialiased">
 
-    <!-- Nouveau Panneau Latéral (Sidebar) -->
+    
     <aside class="w-64 h-screen bg-gray-900 text-gray-100 shadow-lg fixed top-0 left-0 z-20 flex flex-col overflow-y-auto">
-        <!-- Header Sidebar -->
+        
         <div class="flex justify-between items-center px-5 py-4 border-b border-gray-700">
             <h1 class="text-2xl font-bold text-white">EduQuest</h1>
              <i class="fas fa-bars text-xl text-gray-400 cursor-pointer hover:text-white"></i>
         </div>
 
-        <!-- Barre de recherche -->
+        
         <div class="relative px-4 mt-6">
             <input type="text" placeholder="Search..." class="w-full px-4 py-2 pl-10 bg-gray-800 border border-gray-700 rounded-lg text-sm text-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-600 focus:ring-blue-600">
             <i class="fas fa-magnifying-glass absolute left-7 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm"></i>
         </div>
 
-        <!-- Navigation Principale -->
+        
         <nav class="mt-6 space-y-3 flex-grow px-4">
             <a href="{{ route('teacher.StatistiqueTeacher') }}" class="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out
                {{ request()->routeIs('teacher.StatistiqueTeacher') ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
@@ -54,10 +53,10 @@
             </a>
         </nav>
 
-        <!-- Séparateur visuel avant le profil -->
+        
         <div class="border-t border-gray-700 mt-auto pt-4 mx-4"></div>
 
-        <!-- Section Profil Utilisateur -->
+        
         <div class="px-4 pb-4 pt-2">
              @auth
              <div class="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg">
@@ -71,7 +70,7 @@
                 <i class="fas fa-ellipsis text-gray-400 text-lg cursor-pointer hover:text-white"></i>
              </div>
              @endauth
-             {{-- Logout --}}
+             
              <div class="mt-4">
                  <form action="{{ route('logout') }}" method="POST">
                      @csrf
@@ -83,25 +82,25 @@
              </div>
         </div>
     </aside>
-    <!-- ================================================== -->
+    
 
-    <!-- CONTENU PRINCIPAL -->
+    
     <main class="ml-64 w-full p-6 md:p-8 lg:p-10">
         <div class="max-w-7xl mx-auto">
 
-            <!-- Header Page -->
+            
             <div class="mb-8">
                 <h1 class="text-3xl font-bold text-gray-900">Tableau de Bord & Statistiques</h1>
                 <p class="mt-1 text-sm text-gray-600">Aperçu de votre activité d'enseignant.</p>
             </div>
 
-            <!-- Grille de Statistiques (Utilise le NOUVEAU design des cartes) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"> {{-- Nouvelle grille lg:grid-cols-4 --}}
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"> 
 
-                {{-- Carte : Nombre de Cours (Adaptée au nouveau design) --}}
+                
                 <div class="bg-white p-6 rounded-lg shadow border border-gray-200 flex items-center space-x-4">
-                    <div class="flex-shrink-0 p-3 rounded-full bg-blue-100 text-blue-600"> {{-- Couleur bleue pour les cours --}}
-                        {{-- Icône Cours --}}
+                    <div class="flex-shrink-0 p-3 rounded-full bg-blue-100 text-blue-600"> 
+                        
                         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
                         </svg>
@@ -112,10 +111,10 @@
                     </div>
                 </div>
 
-                {{-- Carte : Likes Totaux (Adaptée au nouveau design) --}}
+                
                 <div class="bg-white p-6 rounded-lg shadow border border-gray-200 flex items-center space-x-4">
-                     <div class="flex-shrink-0 p-3 rounded-full bg-red-100 text-red-600"> {{-- Couleur rouge pour les likes --}}
-                         {{-- Icône cœur (like) --}}
+                     <div class="flex-shrink-0 p-3 rounded-full bg-red-100 text-red-600"> 
+                         
                          <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                               <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                          </svg>
@@ -129,19 +128,19 @@
 
             </div>
 
-            {{-- Section pour le graphique du nombre de cours par jour (Fake Data) --}}
+            
             <div class="mt-10 bg-white overflow-hidden shadow rounded-lg border border-gray-200 p-6">
                 <h2 class="text-xl font-semibold text-gray-900 mb-4">Nombre de Cours Créés par Jour (Simulation)</h2>
                 <div class="chart-container" style="position: relative; height: 400px; width: 100%;">
-                     <canvas id="coursesPerDayChart"></canvas> {{-- Canvas for Chart 1 --}}
+                     <canvas id="coursesPerDayChart"></canvas> 
                 </div>
             </div>
 
-            {{-- Section pour le graphique du pourcentage de likes (Fake Data) --}}
+            
              <div class="mt-10 bg-white overflow-hidden shadow rounded-lg border border-gray-200 p-6">
                  <h2 class="text-xl font-semibold text-gray-900 mb-4">Proportion Likes Totaux vs Cours Totaux (Simulation)</h2>
                  <div class="chart-container" style="position: relative; height: 300px; width: 100%;">
-                      <canvas id="likesPercentageChart"></canvas> {{-- Canvas for Chart 2 --}}
+                      <canvas id="likesPercentageChart"></canvas> 
                  </div>
              </div>
 
@@ -149,7 +148,7 @@
         </div>
     </main>
 
-    {{-- Scripts JS avec Fake Data --}}
+    
     <script>
         // Attendre que le DOM soit complètement chargé
         document.addEventListener('DOMContentLoaded', function() {

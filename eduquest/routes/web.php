@@ -101,23 +101,13 @@ Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])
     Route::get('/AllCourses', [StudentController::class, 'index'])->name('courses.index');
     Route::get('/courses/{course}', [StudentController::class, 'showCourse'])->name('student.courses.show');
 
-    // Route::get('/courses/favorites', [LikesController::class, 'showFavorites'])->name('courses.favorites');
-
-    // Idem pour la route toggleLike
-    // Route::get('/courses/favorites', [LikesController::class, 'showFavorites'])
-    // ->name('student.courses.favorites');
-    // Route::post('/courses/{course}/like', [LikesController::class, 'toggleLike'])
-    //      ->name('student.courses.like'); 
-    // Route::get('/courses/favorites', [LikesController::class, 'showFavorites'])->name('student.courses.favorites');
-
-// DÉFINIR LA ROUTE GÉNÉRIQUE APRES
 Route::get('/courses/{course}', [StudentController::class, 'showCourse'])->name('student.courses.show');
 
 
 
 Route::get('/google/redirect', [GoogleAuthController::class, 'redirect'])->name('google.redirect');
 Route::get('/google/callback', [GoogleAuthController::class, 'callback'])->name('google.callback');
-// Pour la fonctionnalité like/unlike
+
 Route::post('/courses/{course}/like', [LikesController::class, 'toggleLike'])
      ->name('student.courses.like');
 

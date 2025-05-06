@@ -27,13 +27,13 @@
             }
         }
 
-        /* Appliquer l'animation au texte */
+
         .typing {
             display: inline-block;
-            white-space: nowrap; /* Empêche le texte de passer à la ligne */
-            overflow: hidden; /* Cache tout le texte qui dépasse */
-            width: 0; /* Commence avec une largeur de 0 */
-            animation: typing 5s steps(30) infinite; /* Animation avec suppression et réécriture */
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 5s steps(30) infinite;
         }
     </style>
 </head>
@@ -56,7 +56,7 @@
 <div class="py-20">
     <div class="container mx-auto px-4 lg:px-16 grid grid-cols-1 lg:grid-cols-2 items-center gap-8">
 
-        <!-- Section Texte -->
+        
         <div class="text-white lg:text-left">
             
             <h1 class="text-5xl lg:text-6xl text-gray-800 font-bold mb-4">Bienvenue sur EduQuest</h1>
@@ -77,14 +77,14 @@
                 </div>
             </div>
 
-            <!-- Ajout des boutons sous les statistiques -->
+            
             <div class="flex justify-center space-x-4 mt-8">
                 <a href="/login" class="bg-black text-white py-3 px-6 rounded-full inline-block hover:bg-gray-800 transition duration-200">Get Started</a>
                 <a href="#" class="bg-white text-black py-3 px-6 rounded-full inline-block hover:bg-gray-200 transition duration-200 border border-black">Learn More</a>
             </div>
         </div>
 
-        <!-- Section Image -->
+        
         <div class="h-full flex items-center justify-center">
             <img src="https://harshk8853.github.io/DigitalMarketing/assets/header.png" alt="Man with Laptop" class="max-w-md mx-auto">
         </div>
@@ -96,63 +96,76 @@
 
 
 
-  <div class="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
+<div class="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
   <div class="text-center mb-8">
-    <h2 class="text-2xl font-semibold text-gray-800">Spécialisations et Certificat professionnel</h2>
-    <p class="text-gray-600">Certificats les plus appréciés</p>
+    <h2 class="text-2xl font-semibold text-gray-800">Spécialisations professionnel</h2>
+    <p class="text-gray-600">Courses les plus appréciés</p>
     <p class="text-gray-500">Explorez nos programmes les plus populaires et préparez-vous à une carrière en demande.</p>
   </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    <div class="rounded-xl shadow-md overflow-hidden">
-      <div class="bg-gray-200 h-40"></div> <!-- Placeholder Image -->
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    
+    <div class="rounded-xl shadow-md overflow-hidden bg-white">
+      <img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/Data-Science-vs.-Big-Data-vs.jpg" alt="Spécialisation Data Science" class="w-full h-40 object-cover">
       <div class="p-4">
-        <h3 class="font-semibold text-gray-700">Spécialisation 1</h3>
-        <p class="text-gray-500">Description de la spécialisation.</p>
+        <h3 class="font-semibold text-gray-700">Data Science</h3>
+        <p class="text-gray-500">Maîtrisez l'analyse de données, Python, et le machine learning pour des carrières techniques.</p>
       </div>
     </div>
 
-    <div class="rounded-xl shadow-md overflow-hidden">
-      <div class="bg-gray-200 h-40"></div> <!-- Placeholder Image -->
+    
+    <div class="rounded-xl shadow-md overflow-hidden bg-white">
+      <img src="https://static.ib-formation.fr/content/uploads/2024/04/15110010/tendances-developpement-web-2024-ib-cegos-1.jpg" alt="Spécialisation Développement Web" class="w-full h-40 object-cover">
       <div class="p-4">
-        <h3 class="font-semibold text-gray-700">Spécialisation 2</h3>
-        <p class="text-gray-500">Description de la spécialisation.</p>
+        <h3 class="font-semibold text-gray-700">Développement Web</h3>
+        <p class="text-gray-500">Créez des sites interactifs avec HTML, CSS, JavaScript, et frameworks modernes.</p>
       </div>
     </div>
 
-    <div class="rounded-xl shadow-md overflow-hidden">
-      <div class="bg-gray-200 h-40"></div> <!-- Placeholder Image -->
+    
+    <div class="rounded-xl shadow-md overflow-hidden bg-white">
+      <img src="https://mvnu.edu/content/uploads/2024/01/mvnu-online-difference-between-admin-and-business-management.jpeg.webp" alt="Spécialisation Business" class="w-full h-40 object-cover">
       <div class="p-4">
-        <h3 class="font-semibold text-gray-700">Spécialisation 3</h3>
-        <p class="text-gray-500">Description de la spécialisation.</p>
+        <h3 class="font-semibold text-gray-700">Business & Management</h3>
+        <p class="text-gray-500">Développez des compétences en gestion de projet, marketing, et stratégie d’entreprise.</p>
       </div>
     </div>
   </div>
 
   <div class="text-center mt-8">
-    <a href="#" class="bg-black text-white py-3 px-6 rounded-full inline-block hover:bg-gray-800 transition duration-200">Afficher tout -></a>
+    <a href="#" class="bg-black text-white py-3 px-6 rounded-full inline-block hover:bg-gray-800 transition duration-200">Afficher tout →</a>
   </div>
 </div>
-<div class="bg-gray-100 flex flex-col min-h-screen w-full">
+
+<div class="bg-gray-100 flex flex-col w-full">
+
   <div class="px-8 py-12 flex items-center w-full">
-        <!-- Images -->
-        <div class="grid grid-cols-2 gap-4 flex-1">
-            <div class="bg-gray-300 h-32 sm:h-40 md:h-48 rounded-lg"></div>
-            <div class="bg-gray-300 h-32 sm:h-40 md:h-48 rounded-lg"></div>
-            <div class="bg-gray-300 h-32 sm:h-40 md:h-48 col-span-2 rounded-lg"></div>
-        </div>
+    
+    <!-- Partie images -->
+    <div class="grid grid-cols-2 gap-4 flex-1">
+      <img src="https://st.depositphotos.com/1017986/2807/i/450/depositphotos_28072165-stock-photo-students-showing-thumbs-up-at.jpg" alt="Étudiant heureux" class="h-32 sm:h-40 md:h-48 w-full object-cover rounded-lg">
+      
+      <img src="https://www.rbcroyalbank.com/fr-ca/wp-content/uploads/sites/13/2023/09/Untitled-design-2023-08-17T165106.356.jpg?quality=80" alt="Étude en ligne" class="h-32 sm:h-40 md:h-48 w-full object-cover rounded-lg">
 
-        <div class="flex-1 pl-6">
-            <h2 class="text-2xl font-bold text-gray-800">Résultats des étudiants sur EduQuest</h2>
-            <p class="text-gray-600 mt-2 text-lg">
-                77 % des étudiants font état d'avantages en termes de carrière, tels que de nouvelles compétences,
-                une augmentation de salaire et de nouvelles possibilités d'emploi.
-                <a href="#" class="text-black font-semibold underline">Rapport de 2025 sur les résultats des étudiants EduQuest</a>
-            </p>
-            <button class="mt-6 bg-black text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition duration-200">Inscrivez-vous maintenant</button>
-        </div>
+      <img src="https://www.welovebuzz.com/wp-content/uploads/2015/03/hhh-1024x682.jpg" alt="Groupe d'étudiants" class="h-32 sm:h-40 md:h-48 w-full object-cover col-span-2 rounded-lg">
+    </div>
+
+    <!-- Partie texte -->
+    <div class="flex-1 pl-6">
+      <h2 class="text-2xl font-bold text-gray-800">Résultats des étudiants sur EduQuest</h2>
+      <p class="text-gray-600 mt-2 text-lg">
+        77 % des étudiants font état d'avantages en termes de carrière, tels que de nouvelles compétences,
+        une augmentation de salaire et de nouvelles possibilités d'emploi.
+        <a href="#" class="text-black font-semibold underline">Rapport de 2025 sur les résultats des étudiants EduQuest</a>
+      </p>
+      <button class="mt-6 bg-black text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition duration-200">
+        Inscrivez-vous maintenant
+      </button>
+    </div>
 
   </div>
 </div>
+
 <div class="bg-white py-12">
   <div class="container mx-auto text-center">
     <h2 class="text-2xl font-semibold text-gray-800 mb-2">Provenant de la communauté EduQuest</h2>
@@ -160,21 +173,18 @@
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-      <!-- Cercle 1 -->
       <div>
-        <div class="rounded-full bg-gray-200 w-64 h-64 mx-auto"></div>
+        <img src="http://media.licdn.com/dms/image/v2/D4D03AQHrGxFD1tIM3w/profile-displayphoto-shrink_200_200/B4DZQIYZb_HMAY-/0/1735307402229?e=2147483647&v=beta&t=y-z4OGTfDyGagW_G9juwBzNAiDgLMCboYEbwM4GMddQ" alt="Hamza Atig" class="rounded-full w-64 h-64 mx-auto object-cover">
         <p class="text-gray-700 mt-4 uppercase text-sm">HAMZA ATIG</p>
       </div>
 
-      <!-- Cercle 2 -->
       <div>
-        <div class="rounded-full bg-gray-200 w-64 h-64 mx-auto"></div>
+        <img src="https://as1.ftcdn.net/jpg/02/95/58/22/1000_F_295582214_IJrBXV3TJeNavfozclGX88TMVESBMWAV.jpg" alt="Kenia Beccer" class="rounded-full w-64 h-64 mx-auto object-cover">
         <p class="text-gray-700 mt-4 uppercase text-sm">KENIA BECCER</p>
       </div>
 
-      <!-- Cercle 3 -->
       <div>
-        <div class="rounded-full bg-gray-200 w-64 h-64 mx-auto"></div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Outdoors-man-portrait_%28cropped%29.jpg/1200px-Outdoors-man-portrait_%28cropped%29.jpg" alt="James Rodreges" class="rounded-full w-64 h-64 mx-auto object-cover">
         <p class="text-gray-700 mt-4 uppercase text-sm">JAMES RODREGES</p>
       </div>
 
@@ -183,25 +193,26 @@
 </div>
 
 
+
 <div class="tag-list w-full max-w-full font-montserrat relative overflow-hidden mx-auto mt-16">
     <div class="inner flex gap-4 animate-loop">
-        <!-- Tag 1 -->
+        
         <div class="tag flex items-center gap-1 text-black text-sm bg-white py-3 px-4 rounded-lg border border-black shadow-md hover:bg-gray-200 transition duration-200">
             <span class="text-lg">#education</span>
         </div>
-        <!-- Tag 2 -->
+        
         <div class="tag flex items-center gap-1 text-black text-sm bg-white py-3 px-4 rounded-lg border border-black shadow-md hover:bg-gray-200 transition duration-200">
             <span class="text-lg">#learning</span>
         </div>
-        <!-- Tag 3 -->
+        
         <div class="tag flex items-center gap-1 text-black text-sm bg-white py-3 px-4 rounded-lg border border-black shadow-md hover:bg-gray-200 transition duration-200">
             <span class="text-lg">#onlinelearning</span>
         </div>
-        <!-- Tag 4 -->
+        
         <div class="tag flex items-center gap-1 text-black text-sm bg-white py-3 px-4 rounded-lg border border-black shadow-md hover:bg-gray-200 transition duration-200">
             <span class="text-lg">#eLearning</span>
         </div>
-        <!-- Répéter les tags -->
+        
         <div class="tag flex items-center gap-1 text-black text-sm bg-white py-3 px-4 rounded-lg border border-black shadow-md hover:bg-gray-200 transition duration-200">
             <span class="text-lg">#study</span>
         </div>
@@ -347,12 +358,11 @@
             <span class="text-lg">#exams</span>
         </div>
     </div>
-    <!-- Effet de dégradé -->
+    
     <div class="fade absolute bg-gradient-to-r from-black to-transparent inset-0 pointer-events-none"></div>
 </div>
 
 <style>
-    /* Animation du défilement horizontal infini */
     @keyframes loop {
         0% {
             transform: translateX(0);
@@ -362,21 +372,19 @@
         }
     }
 
-    /* Application de l'animation sur .inner */
     .animate-loop {
         animation: loop 10s linear infinite;
     }
 
-    /* Effet de dégradé à gauche */
     .fade {
         background: linear-gradient(to right, rgba(179, 179, 179, 0.7), rgba(0, 0, 0, 0));
     }
 </style>
 
 <div class="flex flex-wrap justify-center py-10 px-30 pt-56">
-    <!-- Ajout de px-4 pour le padding horizontal -->
+    
 
-    <!-- Fonctionnalités pour les étudiants -->
+    
     <div class="w-full sm:w-1/2 md:w-1/3 px-4 mb-4 text-center transform transition-all duration-300 hover:scale-105">
         <div class="text-gray-500 text-5xl">
             <i class="fas fa-user-graduate"></i>
@@ -405,10 +413,10 @@
         </p>
     </div>
 
-    <!-- Spacing -->
+    
     <div class="w-full h-14"></div>
 
-    <!-- Fonctionnalités pour les enseignants -->
+    
     <div class="w-full sm:w-1/2 md:w-1/3 px-4 mb-4 text-center transform transition-all duration-300 hover:scale-105 border-l border-gray-300">
         <div class="text-gray-500 text-5xl">
             <i class="fas fa-chalkboard-teacher"></i>
@@ -437,10 +445,10 @@
         </p>
     </div>
 
-    <!-- Spacing -->
+    
     <div class="w-full h-14"></div>
 
-    <!-- Fonctionnalités pour les administrateurs -->
+    
     <div class="w-full sm:w-1/2 md:w-1/3 px-4 mb-4 text-center transform transition-all duration-300 hover:scale-105 border-l border-gray-300">
         <div class="text-gray-500 text-5xl">
             <i class="fas fa-user-shield"></i>
@@ -470,8 +478,8 @@
     </div>
 </div>
 
-<!-- Pricing Section -->
-<!-- Section Tarification -->
+
+
 <div class="bg-gray-50 py-12 pr-26 pl-26">
     <div class="container mx-auto px-4 pt-32">
         <h1 class="text-6xl font-bold text-center text-black mb-4 font-sniglet mt-20">
@@ -481,7 +489,7 @@
             options adaptées à tous les profils, que vous soyez étudiant, enseignant ou administrateur.</p>
 
         <div class="flex flex-col gap-6 justify-center md:flex-row pt-22 mt-20">
-            <!-- Plan Étudiant (Gratuit) -->
+            
             <div class="bg-white rounded-2xl shadow-md p-6 w-full">
                 <h2 class="text-2xl font-bold text-center text-black mb-2 font-sniglet">
                     Étudiant (Essentiel)</h2>
@@ -536,7 +544,7 @@
 
             </div>
 
-            <!-- Plan Enseignant (Premium) -->
+            
             <div class="bg-gray-100 rounded-2xl shadow-md p-6 w-full relative">
                 <div class="absolute top-4 right-4 bg-black text-white text-xs font-bold py-1 px-2 rounded">
                     Recommandé
@@ -614,7 +622,7 @@
         </h2>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-16">
-            <!-- Web Browser -->
+            
             <div class="text-center">
                 <div class="mx-auto w-16 h-16 text-indigo-700">
                     <img src="https://cdn-icons-png.flaticon.com/512/3037/3037366.png" alt="Navigateur Web">
@@ -627,7 +635,7 @@
                 </p>
             </div>
 
-            <!-- iOS -->
+            
             <div class="text-center">
                 <div class="mx-auto w-16 h-16">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Logo Apple">
@@ -654,7 +662,7 @@
                 </button>
             </div>
 
-            <!-- Android -->
+            
             <div class="text-center">
                 <div class="mx-auto w-16 h-16">
                     <img src="https://cdn-icons-png.flaticon.com/512/61/61120.png" alt="Android Logo">
@@ -698,13 +706,13 @@
   <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
 
-      <!-- Section 1: Logo et Description -->
+      
       <div>
         <h3 class="text-xl font-bold mb-4">EduQuest</h3>
         <p class="text-gray-400">Votre plateforme d'apprentissage en ligne pour un avenir meilleur.</p>
       </div>
 
-      <!-- Section 2: Liens Rapides -->
+      
       <div>
         <h3 class="text-xl font-bold mb-4">Liens Rapides</h3>
         <ul class="list-none pl-0">
@@ -715,7 +723,7 @@
         </ul>
       </div>
 
-      <!-- Section 3: Ressources -->
+      
       <div>
         <h3 class="text-xl font-bold mb-4">Ressources</h3>
         <ul class="list-none pl-0">
@@ -726,7 +734,7 @@
         </ul>
       </div>
 
-      <!-- Section 4: Newsletter -->
+      
       <div>
         <h3 class="text-xl font-bold mb-4">Abonnez-vous à notre Newsletter</h3>
         <p class="text-gray-400 mb-2">Recevez les dernières nouvelles et mises à jour.</p>

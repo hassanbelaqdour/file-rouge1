@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Mes Cours Favoris - EduQuest</title>
-    <!-- Tailwind CSS CDN -->
+    
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Material Symbols CDN (pour les icônes du header) -->
+    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
@@ -41,22 +41,22 @@
              z-index: 20;
          }
     </style>
-     {{-- Aucun AlpineJS n'était dans le code fourni pour cette page, donc pas besoin de le laisser ou de le supprimer. --}}
-     {{-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
+     
+     
 </head>
-{{-- Removed flex antialiased from body class (it wasn't there anyway) --}}
+
 <body class="bg-gray-100 antialiased">
 
-    <!-- Header Global -->
+    
     <header
         class="bg-white py-4 px-6 flex justify-between items-center fixed top-0 left-0 w-full z-20 shadow-md border-b border-gray-200">
         <div class="text-2xl font-semibold text-black">EduQuest</div>
         <nav class="hidden md:flex items-center gap-6">
-            <!-- All Courses Dropdown -->
+            
             <div class="relative group">       
             <a href="{{ route('mesfavorites') }}"
                 class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
-                {{-- Icône pour les favoris (par exemple, 'favorite' ou 'heart_plus') --}}
+                
                 <span class="material-symbols-outlined">favorite</span> 
                 Mes cours favoris
             </a>
@@ -68,7 +68,7 @@
                 </a>
             </div>
             
-            <!-- Course Categories Dropdown -->
+            
             <div class="relative group">
                 <button
                     class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
@@ -76,14 +76,14 @@
                 </button>
                 <div
                     class="absolute left-0 -mt-1 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48">
-                    <!-- Liens dropdown header en vert -->
+                    
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Developpement</a>
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Design</a>
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Marketing</a>
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Management</a>
                 </div>
             </div>
-            <!-- Course Types Dropdown -->
+            
             <div class="relative group">
                 <button
                     class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
@@ -91,14 +91,14 @@
                 </button>
                 <div
                     class="absolute left-0 -mt-1 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48">
-                    <!-- Liens dropdown header en vert -->
+                    
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Gratuit</a>
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Payant</a>
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Certifie</a>
                 </div>
             </div>
         </nav>
-        <!-- Notifications & Profile -->
+        
         <div class="flex items-center space-x-4 relative">
             <button
                 class="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 hover:text-black hover:bg-gray-100">
@@ -112,15 +112,15 @@
                     <span class="material-symbols-outlined">person</span> </button>
                                 <div class="absolute right-0 -mt-1 w-48 bg-white shadow-lg rounded-lg border border-gray-200 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200 z-10">
                                 
-                                    {{-- Lien vers le profil (Adaptez le href si vous avez une route nommee) --}}
+                                    
                                     <a href="" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-sm">
                                         <span class="material-icons mr-2 align-middle">account_circle</span>
                                         {{ Auth::user()->email ?? 'admin@example.com' }}
                                     </a>
                                 
-                                    {{-- Formulaire de deconnexion Laravel --}}
+                                    
                                     <form method="POST" action="{{ route('logout') }}">
-                                        @csrf {{-- Directive Blade pour la protection CSRF --}}
+                                        @csrf 
                                 
                                         <button type="submit" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
                                             <span class="material-icons mr-2 align-middle">logout</span>
@@ -133,12 +133,12 @@
     </header>
 
 
-    {{-- Contenu Principal --}}
-    {{-- Retiré le ml-64 et le mt-16, le padding-top sur le body gère l'espace sous le header fixe --}}
+    
+    
     <div class="container mx-auto px-4 py-8">
         <h1 class="text-3xl font-bold text-gray-800 mb-8 sniglet">Mes Cours Favoris</h1>
 
-        {{-- Messages flash (Identique) --}}
+        
         @if (session('status'))
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
                 {{ session('status') }}
@@ -151,7 +151,7 @@
             </div>
         @endif
 
-        {{-- GRILLE DES COURS FAVORIS (Identique) --}}
+        
         @if ($courses && $courses->count() > 0)
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

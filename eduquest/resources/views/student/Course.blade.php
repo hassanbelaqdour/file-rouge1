@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contenu du Cours : {{ $course->title }} - EduQuest</title>
-    <!-- Tailwind CSS CDN -->
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
-    <!-- Tailwind Typography CDN (nécessaire pour l'affichage de la description si elle utilise prose) -->
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/typography@0.5.x/dist/typography.min.css"/>
 
-    <!-- AlpineJS CDN -->
+    
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
         [x-cloak] { display: none !important; }
-        /* Styles scrollbar (conservés) */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
@@ -28,41 +27,35 @@
         .aspect-h-9 { /* Combinable */ }
         .aspect-w-16 > *, .aspect-h-9 > * { position: absolute; height: 100%; width: 100%; top: 0; right: 0; bottom: 0; left: 0; }
 
-         /* Fix Material Symbols icon alignment if needed */
          .material-symbols-outlined, .material-icons {
             vertical-align: middle;
          }
 
-         /* Add padding to the body equal to header height to prevent content overlap */
-         /* Estimate header height based on py-4 and content, roughly 64px (4rem) + border/shadow */
-         /* Adjust this value if the header height changes */
          body {
              padding-top: 68px;
-             /* Remove flex layout used for sidebar */
              display: block;
          }
 
-         /* Ensure fixed header stays on top */
          header {
              z-index: 20;
          }
     </style>
 </head>
-{{-- Removed flex antialiased from body class --}}
+
 <body class="bg-gray-100 antialiased">
 
-    {{-- Remplacé la sidebar par le header global --}}
+    
 
-    <!-- Header Global -->
+    
     <header
         class="bg-white py-4 px-6 flex justify-between items-center fixed top-0 left-0 w-full z-20 shadow-md border-b border-gray-200">
         <div class="text-2xl font-semibold text-black">EduQuest</div>
         <nav class="hidden md:flex items-center gap-6">
-            <!-- All Courses Dropdown -->
+            
             <div class="relative group">       
             <a href="{{ route('mesfavorites') }}"
                 class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
-                {{-- Icône pour les favoris (par exemple, 'favorite' ou 'heart_plus') --}}
+                
                 <span class="material-symbols-outlined">favorite</span> 
                 Mes cours favoris
             </a>
@@ -74,7 +67,7 @@
                 </a>
             </div>
             
-            <!-- Course Categories Dropdown -->
+            
             <div class="relative group">
                 <button
                     class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
@@ -82,14 +75,14 @@
                 </button>
                 <div
                     class="absolute left-0 -mt-1 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48">
-                    <!-- Liens dropdown header en vert -->
+                    
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Developpement</a>
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Design</a>
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Marketing</a>
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Management</a>
                 </div>
             </div>
-            <!-- Course Types Dropdown -->
+            
             <div class="relative group">
                 <button
                     class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
@@ -97,14 +90,14 @@
                 </button>
                 <div
                     class="absolute left-0 -mt-1 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48">
-                    <!-- Liens dropdown header en vert -->
+                    
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Gratuit</a>
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Payant</a>
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Certifie</a>
                 </div>
             </div>
         </nav>
-        <!-- Notifications & Profile -->
+        
         <div class="flex items-center space-x-4 relative">
             <button
                 class="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 hover:text-black hover:bg-gray-100">
@@ -113,20 +106,21 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                 </svg> </button>
-            <div class="relative group"> <button
+            <div class="relative group"> 
+                <button
                     class="w-10 h-10 rounded-full bg-gray-200 focus:outline-none flex items-center justify-center text-gray-500">
                     <span class="material-symbols-outlined">person</span> </button>
                                 <div class="absolute right-0 -mt-1 w-48 bg-white shadow-lg rounded-lg border border-gray-200 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200 z-10">
                                 
-                                    {{-- Lien vers le profil (Adaptez le href si vous avez une route nommee) --}}
+                                    
                                     <a href="" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-sm">
                                         <span class="material-icons mr-2 align-middle">account_circle</span>
                                         {{ Auth::user()->email ?? 'admin@example.com' }}
                                     </a>
                                 
-                                    {{-- Formulaire de deconnexion Laravel --}}
+                                    
                                     <form method="POST" action="{{ route('logout') }}">
-                                        @csrf {{-- Directive Blade pour la protection CSRF --}}
+                                        @csrf 
                                 
                                         <button type="submit" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
                                             <span class="material-icons mr-2 align-middle">logout</span>
@@ -139,17 +133,17 @@
     </header>
 
 
-    {{-- Contenu Principal --}}
-    {{-- Suppression de la marge gauche ml-64 car la sidebar a été retirée --}}
-    {{-- Le padding-top sur le body gère l'espace sous le header fixe --}}
+    
+    
+    
     <main class="w-full p-6 md:p-8 lg:p-10">
         <div class="max-w-5xl mx-auto">
 
-            {{-- Header de la Page Détail (inchangé) --}}
+            
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 pb-4 border-b border-gray-200">
-                {{-- Colonne Gauche: Titre et Infos --}}
+                
                 <div>
-                    {{-- MODIFIÉ : Lien retour vers courses.index --}}
+                    
                     <a href="{{ route('courses.index') }}" class="text-sm text-blue-600 hover:underline mb-2 inline-block flex items-center">
                         <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /> </svg>
                         Retour au Catalogue
@@ -167,34 +161,34 @@
                     </p>
                 </div>
 
-                {{-- SUPPRIMÉ : Div contenant les boutons Modifier et Supprimer (Comme dans la demande précédente, cette section est supprimée ici aussi) --}}
+                
                 {{--
                 <div class="flex items-center space-x-2 mt-4 sm:mt-0 flex-shrink-0">
-                    <a><!-- Modifier --></a>
-                    <form><!-- Supprimer --></form>
+                    <a>
+                    <form>
                 </div>
                 --}}
             </div>
 
-            {{-- Contenu du Cours (Image, Vidéo, Description, PDF, Infos) (inchangé) --}}
+            
             <div class="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200">
 
-                 {{-- Image du cours --}}
+                 
                  @if($course->image_path)
                     <div class="w-full max-h-[450px] overflow-hidden bg-gray-200">
                          <img src="{{ Storage::url($course->image_path) }}" alt="Image du cours {{ $course->title }}" class="w-full h-full object-cover">
                     </div>
                  @endif
 
-                 {{-- Contenu principal (padding et sections) --}}
+                 
                  <div class="p-6 md:p-8 lg:p-10 space-y-8">
 
-                    {{-- Section Vidéo --}}
+                    
                     @if($course->video_path)
                         <section aria-labelledby="video-heading">
                             <h2 id="video-heading" class="text-2xl font-semibold text-gray-800 mb-4 border-l-4 border-blue-500 pl-3">Vidéo Principale</h2>
                             <div class="bg-black rounded-lg overflow-hidden shadow-md">
-                                <video controls controlslist="nodownload" class="w-full" poster="{{ $course->video_path ? Storage::url($course->video_path) : '' }}"> {{-- Poster optionnel --}}
+                                <video controls controlslist="nodownload" class="w-full" poster="{{ $course->video_path ? Storage::url($course->video_path) : '' }}"> 
                                     <source src="{{ Storage::url($course->video_path) }}" type="{{ Storage::mimeType($course->video_path) ?? 'video/mp4' }}">
                                     Votre navigateur ne supporte pas la balise vidéo.
                                     <a href="{{ Storage::url($course->video_path) }}" download class="text-blue-300 hover:text-blue-100 underline p-4 block">Télécharger la vidéo</a>
@@ -203,16 +197,16 @@
                         </section>
                     @endif
 
-                    {{-- Section Description --}}
+                    
                     <section aria-labelledby="description-heading">
                         <h2 id="description-heading" class="text-2xl font-semibold text-gray-800 mb-4 border-l-4 border-blue-500 pl-3">Description du Cours</h2>
-                        {{-- Utilisation de la classe prose pour le formatage Markdown ou HTML simple --}}
+                        
                         <article class="prose prose-indigo lg:prose-lg max-w-none text-gray-700">
-                            {!! nl2br(e($course->description)) !!} {{-- nl2br pour les sauts de ligne, e() pour échapper HTML --}}
+                            {!! nl2br(e($course->description)) !!} 
                         </article>
                     </section>
 
-                     {{-- Section PDF --}}
+                     
                      @if($course->pdf_path)
                         <section aria-labelledby="pdf-heading" class="pt-8 border-t border-gray-200">
                             <h2 id="pdf-heading" class="text-2xl font-semibold text-gray-800 mb-4 border-l-4 border-blue-500 pl-3">Documents Associés</h2>
@@ -231,7 +225,7 @@
                         </section>
                      @endif
 
-                     {{-- Section Infos Clés --}}
+                     
                      <section aria-labelledby="info-heading" class="pt-8 border-t border-gray-200">
                         <h3 id="info-heading" class="text-lg font-semibold text-gray-700 mb-3">Informations Clés</h3>
                         <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-sm">
@@ -243,10 +237,10 @@
                             <div class="sm:col-span-1"> <dt class="font-medium text-gray-500">Dernière mise à jour</dt> <dd class="mt-1 text-gray-900" title="{{ $course->updated_at->isoFormat('LLLL') }}">{{ $course->updated_at->diffForHumans() }}</dd> </div>
                         </dl>
                      </section>
-                 </div> {{-- Fin p-6/8/10 --}}
-            </div> {{-- Fin bg-white --}}
+                 </div> 
+            </div> 
 
-        </div> {{-- Fin max-w-5xl --}}
+        </div> 
     </main>
 
     <script>

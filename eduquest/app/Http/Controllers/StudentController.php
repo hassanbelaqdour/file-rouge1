@@ -11,13 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
-    /**
-     * Affiche la liste de TOUS les cours disponibles (catalogue),
-     * potentiellement filtrée par catégorie et/ou prix.
-     *
-     * @param  \Illuminate\Http\Request  $request L'objet requête entrant
-     * @return \Illuminate\View\View
-     */
+    
     public function index(Request $request)
 {
     $categories = Category::orderBy('name')->get();
@@ -62,15 +56,15 @@ public function showCourse(Course $course)
 {
     $course->load(['category', 'teacher']);
 
-    // Vérifier si l'utilisateur a accès au cours
+    
     $hasAccess = false;
 
     if (Auth::check()) {
-        // Cours gratuit = accès direct
+        
         if ($course->type == 'free' || $course->price <= 0) {
             $hasAccess = true;
         } else {
-            // Vérifier si l'utilisateur a payé
+            
             $hasAccess = Enrollment::where('user_id', Auth::id())
                 ->where('course_id', $course->id)
                 ->where('status', 'completed')

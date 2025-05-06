@@ -8,13 +8,7 @@ use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
 {
-    /**
-     * Affiche la page principale de gestion des catégories.
-     * Cette méthode est appelée par la route GET /categories (categories.index).
-     * Elle récupère toutes les catégories et les passe à la vue unique.
-     *
-     * @return \Illuminate\View\View
-     */
+    
     public function index()
     {
         
@@ -26,13 +20,7 @@ class CategoryController extends Controller
         
     }
 
-    /**
-     * Enregistre une nouvelle catégorie soumise via le formulaire d'ajout.
-     * Cette méthode est appelée par la route POST /categories (categories.store).
-     *
-     * @param  \Illuminate\Http\Request  $request L'objet requête contenant les données du formulaire.
-     * @return \Illuminate\Http\RedirectResponse Redirige vers la page de gestion avec un message.
-     */
+    
     public function store(Request $request)
     {
         
@@ -92,10 +80,6 @@ class CategoryController extends Controller
         
         $categoryName = $category->name;
 
-        
-        
-        
-        
         $category->delete();
 
         

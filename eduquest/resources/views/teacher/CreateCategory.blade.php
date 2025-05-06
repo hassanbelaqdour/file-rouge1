@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gérer les Catégories - EduQuest</title>
-    <!-- Tailwind CSS CDN -->
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome CDN for icons -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- AlpineJS CDN -->
+    
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         [x-cloak] { display: none !important; }
@@ -21,62 +21,62 @@
 </head>
 <body class="bg-gray-100 flex antialiased" x-data="{ isModalOpen: {{ $errors->has('name') && !old('_method') ? 'true' : 'false' }} }">
 
-    <!-- Nouveau Panneau Latéral (Sidebar) - Inspiré de Jobsly -->
+    
     <aside class="w-64 h-screen bg-gray-900 text-gray-100 shadow-lg fixed top-0 left-0 z-20 flex flex-col overflow-y-auto">
 
-        <!-- Header Sidebar -->
+        
         <div class="flex justify-between items-center px-5 py-4 border-b border-gray-700">
-            <!-- Remplacé le logo SVG par un titre simple -->
+            
             <h1 class="text-2xl font-bold text-white">EduQuest</h1>
-            <!-- Icône Menu Hamburger -->
+            
              <i class="fas fa-bars text-xl text-gray-400 cursor-pointer hover:text-white"></i>
         </div>
 
-        <!-- Barre de recherche -->
+        
         <div class="relative px-4 mt-6">
             <input type="text" placeholder="Search..." class="w-full px-4 py-2 pl-10 bg-gray-800 border border-gray-700 rounded-lg text-sm text-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-600 focus:ring-blue-600">
-            <!-- Icône Loupe -->
+            
             <i class="fas fa-magnifying-glass absolute left-7 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm"></i>
         </div>
 
-        <!-- Navigation Principale -->
+        
         <nav class="mt-6 space-y-3 flex-grow px-4">
-            {{-- Item Statistiques --}}
+            
             <a href="{{ route('teacher.StatistiqueTeacher') }}" class="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out
                {{ request()->routeIs('teacher.StatistiqueTeacher') ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
-                <!-- Icône Statistiques (Font Awesome) -->
+                
                 <i class="fas fa-chart-simple text-lg"></i>
                 <span>Statistiques</span>
             </a>
 
-            {{-- Item Tous les cours --}}
+            
             <a href="{{ route('teacher.courses') }}" class="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out
                {{ request()->routeIs('teacher.courses') ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
-                <!-- Icône Tous les cours (Font Awesome) -->
+                
                  <i class="fas fa-book text-lg"></i>
                  <span>Tous les cours</span>
             </a>
 
-            {{-- Item Catégories --}}
+            
              <a href="{{ route('categories.index') }}" class="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out
                {{ request()->routeIs('categories.index') ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
-                <!-- Icône Catégories (Font Awesome) -->
+                
                  <i class="fas fa-tags text-lg"></i>
                  <span>Catégories</span>
             </a>
-            {{-- Autres liens (Etudiants, etc.) pourraient être ajoutés ici --}}
+            
 
         </nav>
 
-        <!-- Séparateur visuel avant le profil -->
+        
         <div class="border-t border-gray-700 mt-auto pt-4 mx-4"></div>
 
-        <!-- Section Profil Utilisateur -->
+        
         <div class="px-4 pb-4 pt-2">
-             {{-- Utilisation des données d'authentification pour le profil si l'utilisateur est connecté --}}
+             
              @auth
              <div class="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg">
-                <!-- Avatar Utilisateur (Utilise les initiales ou un placeholder) -->
+                
                  <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0 border border-gray-600">
                       {{ strtoupper(substr(Auth::user()->first_name ?? 'A', 0, 1)) }}{{ strtoupper(substr(Auth::user()->last_name ?? 'D', 0, 1)) }}
                  </div>
@@ -84,11 +84,11 @@
                     <p class="text-sm font-semibold text-white">{{ Auth::user()->first_name ?? 'Admin' }} {{ Auth::user()->last_name ?? '' }}</p>
                     <p class="text-xs text-gray-400">{{ Auth::user()->email ?? 'admin@example.com' }}</p>
                 </div>
-                <!-- Icône Plus d'options -->
+                
                 <i class="fas fa-ellipsis text-gray-400 text-lg cursor-pointer hover:text-white"></i>
              </div>
              @endauth
-             {{-- Logout --}}
+             
              <div class="mt-4">
                  <form action="{{ route('logout') }}" method="POST">
                      @csrf
@@ -101,14 +101,14 @@
         </div>
 
     </aside>
-    <!-- ================================================== -->
+    
 
 
-    {{-- Contenu Principal --}}
+    
     <main class="ml-64 w-full p-6 md:p-8 lg:p-10">
         <div class="max-w-5xl mx-auto">
 
-            {{-- Header de la page (Identique) --}}
+            
             <div class="flex items-center justify-between mb-8">
                 <h1 class="text-3xl font-bold text-gray-900">Gestion des Catégories</h1>
                 <button @click="isModalOpen = true" type="button" class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
@@ -117,7 +117,7 @@
                 </button>
             </div>
 
-             {{-- Messages flash (Identique) --}}
+             
              @if (session('success'))
                  <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show" x-transition.opacity.duration.500ms class="mb-4 p-4 border border-green-300 bg-green-50 text-green-700 rounded-md"> <p class="text-sm font-medium">{{ session('success') }}</p> </div>
              @endif
@@ -130,21 +130,21 @@
                 @endif
              @enderror
 
-            {{-- GRILLE DES CATÉGORIES EXISTANTES --}}
+            
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
                  @isset($categories)
                     @forelse ($categories as $category)
-                        {{-- Suppression de isDropdownOpen dans x-data --}}
+                        
                         <div x-data="{
                                 isEditing: {{ $errors->has('name') && old('_token') && session('edit_category_id') == $category->id ? 'true' : 'false' }},
                                 editName: '{{ addslashes(old('name', $category->name)) }}'
                              }"
                              class="bg-white border border-gray-200 rounded-lg shadow-sm p-5 flex flex-col relative hover:shadow-md transition-shadow duration-200">
 
-                            {{-- SUPPRESSION du dropdown menu et du bouton 3 points --}}
+                            
 
-                            {{-- Affichage Titre OU Formulaire d'édition --}}
+                            
                             <div class="mb-1">
                                 <h2 x-show="!isEditing"
                                     class="text-lg font-semibold text-gray-800">
@@ -164,14 +164,14 @@
                                 </form>
                             </div>
 
-                            {{-- Date de création --}}
+                            
                             <p class="text-sm text-gray-600 mb-4">
                                 Créé le : {{ $category->created_at->format('d/m/Y') }}
                             </p>
 
-                            {{-- MODIFICATION: Ligne inférieure avec Créateur et Icônes Edit/Delete --}}
+                            
                             <div class="mt-auto flex items-center justify-between text-xs text-gray-500">
-                                {{-- Affichage du nom du créateur (à gauche) --}}
+                                
                                 <span class="inline-flex items-center" title="ID Créateur: {{ $category->creator->id ?? 'N/A' }}">
                                     <svg class="mr-1 w-3 h-3 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"> <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-5.5-2.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM10 12a5.99 5.99 0 00-4.793 2.39A6.483 6.483 0 0010 16.5a6.483 6.483 0 004.793-2.11A5.99 5.99 0 0010 12z" clip-rule="evenodd" /> </svg>
                                     @if($category->creator)
@@ -181,9 +181,9 @@
                                     @endif
                                 </span>
 
-                                {{-- Conteneur pour les icônes d'action (à droite) --}}
+                                
                                 <div class="flex items-center space-x-2">
-                                    {{-- Icône Modifier (visible si PAS en édition) --}}
+                                    
                                     <button x-show="!isEditing"
                                             @click.prevent="isEditing = true; $nextTick(() => $refs.editInput{{ $category->id }}.focus())"
                                             type="button"
@@ -192,7 +192,7 @@
                                         <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /> </svg>
                                     </button>
 
-                                    {{-- Icône Supprimer (Formulaire, visible si PAS en édition) --}}
+                                    
                                     <form x-show="!isEditing"
                                           method="POST" action="{{ route('categories.destroy', $category->id) }}"
                                           onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer la catégorie \'{{ addslashes($category->name) }}\' ?\nCette action ne peut pas être annulée.')">
@@ -214,11 +214,11 @@
                     <p class="text-center text-gray-500 py-6 px-4 col-span-full">Chargement des catégories...</p>
                  @endisset
 
-            </div> {{-- Fin de la grille --}}
-        </div> {{-- Fin max-w --}}
+            </div> 
+        </div> 
     </main>
 
-    {{-- Modal d'ajout de catégorie (Identique) --}}
+    
     <div x-show="isModalOpen" x-cloak @keydown.escape.window="isModalOpen = false" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div @click.outside="isModalOpen = false" x-show="isModalOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-95" class="bg-white rounded-lg shadow-xl w-full max-w-md p-6 relative">
             <div class="flex justify-between items-center mb-6">
