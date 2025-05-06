@@ -6,9 +6,6 @@
     <title>Contenu du Cours : {{ $course->title }} - EduQuest</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome CDN (Retiré car le header fourni utilise Material Icons, si vous utilisez FA ailleurs dans la page, remettez ce lien) -->
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> --}}
-    <!-- Material Symbols CDN (pour les icônes du header) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
@@ -58,34 +55,33 @@
 
     <!-- Header Global -->
     <header
-        class="bg-white py-4 px-6 flex justify-between items-center fixed top-0 left-0 w-full shadow-md border-b border-gray-200">
+        class="bg-white py-4 px-6 flex justify-between items-center fixed top-0 left-0 w-full z-20 shadow-md border-b border-gray-200">
         <div class="text-2xl font-semibold text-black">EduQuest</div>
         <nav class="hidden md:flex items-center gap-6">
             <!-- All Courses Dropdown -->
-            <div class="relative group">
+            <div class="relative group">       
             <a href="{{ route('mesfavorites') }}"
                 class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
                 {{-- Icône pour les favoris (par exemple, 'favorite' ou 'heart_plus') --}}
-                <span class="material-symbols-outlined">favorite</span>
+                <span class="material-symbols-outlined">favorite</span> 
                 Mes cours favoris
             </a>
-            </div>
+            </div> 
             <div class="relative group">
                 <a href="{{ route('courses.index') }}"
                     class="flex items-center gap-2 py-2 px-4 rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
                     <span class="material-symbols-outlined">menu_book</span> All Courses
                 </a>
             </div>
-
+            
             <!-- Course Categories Dropdown -->
             <div class="relative group">
                 <button
-                    class="flex items-center gap-2 py-2 px-4 rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
+                    class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
                     <span class="material-symbols-outlined">category</span> Categories
-                     <svg class="ml-1 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
                 </button>
                 <div
-                    class="absolute left-0 mt-0 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48 overflow-hidden">
+                    class="absolute left-0 -mt-1 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48">
                     <!-- Liens dropdown header en vert -->
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Developpement</a>
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Design</a>
@@ -96,12 +92,11 @@
             <!-- Course Types Dropdown -->
             <div class="relative group">
                 <button
-                    class="flex items-center gap-2 py-2 px-4 rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
+                    class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
                     <span class="material-symbols-outlined">local_offer</span> Types de Cours
-                     <svg class="ml-1 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
                 </button>
                 <div
-                    class="absolute left-0 mt-0 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48 overflow-hidden">
+                    class="absolute left-0 -mt-1 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48">
                     <!-- Liens dropdown header en vert -->
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Gratuit</a>
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Payant</a>
@@ -121,19 +116,19 @@
             <div class="relative group"> <button
                     class="w-10 h-10 rounded-full bg-gray-200 focus:outline-none flex items-center justify-center text-gray-500">
                     <span class="material-symbols-outlined">person</span> </button>
-                                <div class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg border border-gray-200 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200 z-10 overflow-hidden">
-
+                                <div class="absolute right-0 -mt-1 w-48 bg-white shadow-lg rounded-lg border border-gray-200 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200 z-10">
+                                
                                     {{-- Lien vers le profil (Adaptez le href si vous avez une route nommee) --}}
                                     <a href="{{-- route('profile.show') --}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                                        <span class="material-icons mr-2 align-middle text-base">account_circle</span> Voir Profil
+                                        <span class="material-icons mr-2 align-middle">account_circle</span> Voir Profil
                                     </a>
-
+                                
                                     {{-- Formulaire de deconnexion Laravel --}}
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf {{-- Directive Blade pour la protection CSRF --}}
-
+                                
                                         <button type="submit" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
-                                            <span class="material-icons mr-2 align-middle text-base">logout</span>
+                                            <span class="material-icons mr-2 align-middle">logout</span>
                                             Logout
                                         </button>
                                     </form>

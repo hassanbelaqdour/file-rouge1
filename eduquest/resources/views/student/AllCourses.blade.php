@@ -337,7 +337,7 @@
                                     {{-- Ligne nombre inscrits supprimée comme demandé --}}
                                 </div>
                                 {{-- Bouton générique (remplacer par votre logique d'inscription si besoin) --}}
-                                <div>
+                                <div class="flex space-x-2 items-center">
                                 <form action="{{ route('student.courses.like', $course->id) }}" method="POST" class="inline-block align-middle">
                                         @csrf
                                         <button type="submit"
