@@ -86,17 +86,21 @@
 
         <!-- Section Profil Utilisateur -->
         <div class="px-4 pb-4 pt-2">
+             {{-- Utilisation des données d'authentification pour le profil si l'utilisateur est connecté --}}
+             @auth
              <div class="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg">
-                <!-- Avatar Utilisateur (Utilise un placeholder) -->
-                <img src="https://via.placeholder.com/32/ffffff/000000?text=U" alt="User Avatar" class="w-8 h-8 rounded-full object-cover border border-gray-600">
+                <!-- Avatar Utilisateur (Utilise les initiales ou un placeholder) -->
+                 <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0 border border-gray-600">
+                      {{ strtoupper(substr(Auth::user()->first_name ?? 'A', 0, 1)) }}{{ strtoupper(substr(Auth::user()->last_name ?? 'D', 0, 1)) }}
+                 </div>
                 <div class="flex-grow">
-                    <!-- Remplacez par le nom et l'email de l'utilisateur connecté si disponible -->
-                    <p class="text-sm font-semibold text-white">Nom Utilisateur</p>
-                    <p class="text-xs text-gray-400">email@exemple.com</p>
+                    <p class="text-sm font-semibold text-white">{{ Auth::user()->first_name ?? 'Admin' }} {{ Auth::user()->last_name ?? '' }}</p>
+                    <p class="text-xs text-gray-400">{{ Auth::user()->email ?? 'admin@example.com' }}</p>
                 </div>
                 <!-- Icône Plus d'options -->
                 <i class="fas fa-ellipsis text-gray-400 text-lg cursor-pointer hover:text-white"></i>
              </div>
+             @endauth
              {{-- Logout --}}
              <div class="mt-4">
                  <form action="{{ route('logout') }}" method="POST">

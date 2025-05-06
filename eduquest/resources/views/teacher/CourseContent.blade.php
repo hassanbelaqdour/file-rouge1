@@ -3,18 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>Contenu du Cours : {{ $course->title }} - EduQuest</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+    <!-- Font Awesome CDN for icons (required by the new sidebar) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Tailwind Typography CDN (nécessaire pour l'affichage de la description si elle utilise prose) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/typography@0.5.x/dist/typography.min.css"/>
+
     <style>
-        /* Styles scrollbar (optionnel) */
+        /* Styles scrollbar (ajusté pour le thème sombre du nouveau sidebar) */
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-        /* Assurer que la vidéo prend la largeur et style de base */
+        ::-webkit-scrollbar-track { background: #333; border-radius: 10px; } /* Ajusté pour thème sombre */
+        ::-webkit-scrollbar-thumb { background: #555; border-radius: 10px; } /* Ajusté pour thème sombre */
+        ::-webkit-scrollbar-thumb:hover { background: #777; } /* Ajusté pour thème sombre */
+
+        /* Styles spécifiques au contenu principal (inchangés) */
         video { max-width: 100%; height: auto; border-radius: 0.5rem; /* rounded-lg */ box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* shadow */}
          /* Styles pour l'aspect ratio (si non inclus dans Tailwind par défaut) */
         .aspect-w-16 { position: relative; padding-bottom: 56.25%; /* 16:9 */ }
@@ -22,46 +28,117 @@
         .aspect-w-16 > *, .aspect-h-9 > * { position: absolute; height: 100%; width: 100%; top: 0; right: 0; bottom: 0; left: 0; }
          /* Alerte auto-dismiss (si AlpineJS est utilisé) */
         [x-cloak] { display: none !important; }
+
+         /* Fix Material Symbols icon alignment if needed (though likely not used with FA sidebar) */
+         .material-symbols-outlined, .material-icons {
+            vertical-align: middle;
+         }
     </style>
-    
+
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-gray-100 flex antialiased">
 
-    
-    
-    
-    <aside class="w-64 h-screen bg-white shadow-md fixed top-0 left-0 border-r border-gray-200 z-20 flex flex-col">
-        
-        <div class="p-5 border-b border-gray-200 flex items-center space-x-2"> <svg class="w-8 h-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /> </svg> <h1 class="text-xl font-bold text-gray-800">EduQuest</h1> </div>
-        
-        <nav class="flex-grow p-4 space-y-2 overflow-y-auto">
-            <a href="{{ route('teacher.StatistiqueTeacher') }}" class="flex items-center px-3 py-2.5 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out {{ request()->routeIs('teacher.StatistiqueTeacher') ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}"> <svg class="w-5 h-5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75c0 .621-.504 1.125-1.125 1.125h-2.25A1.125 1.125 0 013 21v-7.875zM12.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v12.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM21 4.125c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v17.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg> Statistiques </a>
-            
-            <a href="{{ route('teacher.courses') }}" class="flex items-center px-3 py-2.5 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out {{ request()->routeIs('teacher.courses*') ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}"> <svg class="w-5 h-5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" /></svg> Tous les cours </a>
-            <a href="{{ route('categories.index') }}" class="flex items-center px-3 py-2.5 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out {{ request()->routeIs('categories.index') ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}"> <svg class="w-5 h-5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" > <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" /> <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" /> </svg> Catégories </a>
-        </nav>
-        
-        <div class="p-4 mt-auto border-t border-gray-200"> <form action="{{ route('logout') }}" method="POST"> @csrf <button type="submit" class="w-full flex items-center justify-center text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 px-3 py-2.5 rounded-md group"> <svg class="w-5 h-5 mr-2 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" /> </svg> Déconnexion </button> </form> </div>
-    </aside>
-    
+    <!-- Nouveau Panneau Latéral (Sidebar) - Inspiré de Jobsly -->
+    <aside class="w-64 h-screen bg-gray-900 text-gray-100 shadow-lg fixed top-0 left-0 z-20 flex flex-col overflow-y-auto">
 
-    
+        <!-- Header Sidebar -->
+        <div class="flex justify-between items-center px-5 py-4 border-b border-gray-700">
+            <!-- Remplacé le logo SVG par un titre simple -->
+            <h1 class="text-2xl font-bold text-white">EduQuest</h1>
+            <!-- Icône Menu Hamburger -->
+             <i class="fas fa-bars text-xl text-gray-400 cursor-pointer hover:text-white"></i>
+        </div>
+
+        <!-- Barre de recherche -->
+        <div class="relative px-4 mt-6">
+            <input type="text" placeholder="Search..." class="w-full px-4 py-2 pl-10 bg-gray-800 border border-gray-700 rounded-lg text-sm text-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-600 focus:ring-blue-600">
+            <!-- Icône Loupe -->
+            <i class="fas fa-magnifying-glass absolute left-7 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm"></i>
+        </div>
+
+        <!-- Navigation Principale -->
+        <nav class="mt-6 space-y-3 flex-grow px-4">
+            {{-- Item Statistiques --}}
+            <a href="{{ route('teacher.StatistiqueTeacher') }}" class="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out
+               {{ request()->routeIs('teacher.StatistiqueTeacher') ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
+                <!-- Icône Statistiques (Font Awesome) -->
+                <i class="fas fa-chart-simple text-lg"></i>
+                <span>Statistiques</span>
+            </a>
+
+            {{-- Item Tous les cours (Actif pour cette page si route est teacher.courses*) --}}
+            <a href="{{ route('teacher.courses') }}" class="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out
+               {{ request()->routeIs('teacher.courses*') ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
+                <!-- Icône Tous les cours (Font Awesome) -->
+                 <i class="fas fa-book text-lg"></i>
+                 <span>Tous les cours</span>
+            </a>
+
+            {{-- Item Catégories --}}
+             <a href="{{ route('categories.index') }}" class="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out
+               {{ request()->routeIs('categories.index') ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
+                <!-- Icône Catégories (Font Awesome) -->
+                 <i class="fas fa-tags text-lg"></i>
+                 <span>Catégories</span>
+            </a>
+             {{-- Lien Catalogue Cours (si Teacher peut aussi voir le catalogue public) --}}
+             {{-- Le lien ci-dessous n'était pas dans votre sidebar d'origine pour cette page, je le laisse commenté --}}
+             {{-- <a href="{{ route('courses.index') }}" class="flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out {{ request()->routeIs('courses.index') ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}"> <svg class="w-5 h-5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m.75 12.75h4.5m-4.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg> Catalogue Cours </a> --}}
+
+        </nav>
+
+        <!-- Séparateur visuel avant le profil -->
+        <div class="border-t border-gray-700 mt-auto pt-4 mx-4"></div>
+
+        <!-- Section Profil Utilisateur -->
+        <div class="px-4 pb-4 pt-2">
+             {{-- Utilisation des données d'authentification pour le profil si l'utilisateur est connecté --}}
+             @auth
+             <div class="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg">
+                <!-- Avatar Utilisateur (Utilise les initiales ou un placeholder) -->
+                 <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0 border border-gray-600">
+                      {{ strtoupper(substr(Auth::user()->first_name ?? 'U', 0, 1)) }}{{ strtoupper(substr(Auth::user()->last_name ?? 's', 0, 1)) }}
+                 </div>
+                <div class="flex-grow">
+                    <p class="text-sm font-semibold text-white">{{ Auth::user()->first_name ?? 'Utilisateur' }} {{ Auth::user()->last_name ?? '' }}</p>
+                    <p class="text-xs text-gray-400">{{ Auth::user()->email ?? 'email@exemple.com' }}</p>
+                </div>
+                <!-- Icône Plus d'options -->
+                <i class="fas fa-ellipsis text-gray-400 text-lg cursor-pointer hover:text-white"></i>
+             </div>
+             @endauth
+             {{-- Logout --}}
+             <div class="mt-4">
+                 <form action="{{ route('logout') }}" method="POST">
+                     @csrf
+                     <button type="submit" class="w-full flex items-center justify-center text-sm font-medium text-red-400 bg-gray-800 hover:bg-gray-700 px-3 py-2 rounded-md group transition-colors duration-200">
+                         <i class="fas fa-sign-out-alt w-5 h-5 mr-2 text-red-500"></i>
+                         Déconnexion
+                     </button>
+                 </form>
+             </div>
+        </div>
+
+    </aside>
+
+
+    <!-- CONTENU PRINCIPAL -->
     <main class="ml-64 w-full p-6 md:p-8 lg:p-10">
         <div class="max-w-5xl mx-auto">
 
-            
+            <!-- Header de la Page Détail (inchangé) -->
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 pb-4 border-b border-gray-200">
-                
+                {{-- Colonne Gauche: Titre et Infos --}}
                 <div>
-                    
+                    {{-- Lien retour vers teacher.courses --}}
                     <a href="{{ route('teacher.courses') }}" class="text-sm text-blue-600 hover:underline mb-2 inline-block flex items-center">
                         <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /> </svg>
                         Retour à Mes Cours
                     </a>
-                    
+
                     <h1 class="text-3xl font-bold text-gray-900 leading-tight">{{ $course->title }}</h1>
-                    
+
                     <p class="mt-2 text-sm text-gray-500 space-x-2">
                         @if($course->category)
                             <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-indigo-100 text-indigo-800"> {{ $course->category->name }} </span>
@@ -72,7 +149,8 @@
                         <span class="capitalize font-medium {{ $course->type == 'free' ? 'text-green-600' : 'text-yellow-700' }}"> {{ $course->type == 'paid' && $course->price ? number_format($course->price, 2) . ' €' : 'Gratuit' }} </span>
                     </p>
                 </div>
-                
+
+                {{-- Boutons Modifier et Supprimer --}}
                 <div class="flex items-center space-x-2 mt-4 sm:mt-0 flex-shrink-0">
                     <a href="{{ route('teacher.courses.edit', $course->id) }}" class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         <svg class="-ml-1 mr-2 h-4 w-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /> </svg>
@@ -87,26 +165,26 @@
                 </div>
             </div>
 
-            
+            {{-- Contenu du Cours (Image, Vidéo, Description, PDF, Infos) (inchangé) --}}
             <div class="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200">
 
-                 
+                 {{-- Image du cours --}}
                  @if($course->image_path)
-                    <div class="w-full max-h-[450px] overflow-hidden bg-gray-200"> 
+                    <div class="w-full max-h-[450px] overflow-hidden bg-gray-200">
                          <img src="{{ Storage::url($course->image_path) }}" alt="Image du cours {{ $course->title }}" class="w-full h-full object-cover">
                     </div>
                  @endif
 
-                 
+                 {{-- Contenu principal (padding et sections) --}}
                  <div class="p-6 md:p-8 lg:p-10 space-y-8">
 
-                    
+                    {{-- Section Vidéo --}}
                     @if($course->video_path)
                         <section aria-labelledby="video-heading">
                             <h2 id="video-heading" class="text-2xl font-semibold text-gray-800 mb-4 border-l-4 border-blue-500 pl-3">Vidéo Principale</h2>
-                            <div class="bg-black rounded-lg overflow-hidden shadow-md"> 
+                            <div class="bg-black rounded-lg overflow-hidden shadow-md">
                                 <video controls controlslist="nodownload" class="w-full" poster="{{ $course->video_path ? Storage::url($course->video_path) : '' }}">
-                                    <source src="{{ Storage::url($course->video_path) }}" type="{{ Storage::mimeType($course->video_path) ?? 'video/mp4' }}"> 
+                                    <source src="{{ Storage::url($course->video_path) }}" type="{{ Storage::mimeType($course->video_path) ?? 'video/mp4' }}">
                                     Votre navigateur ne supporte pas la balise vidéo.
                                     <a href="{{ Storage::url($course->video_path) }}" download class="text-blue-300 hover:text-blue-100 underline p-4 block">Télécharger la vidéo</a>
                                 </video>
@@ -114,16 +192,16 @@
                         </section>
                     @endif
 
-                    
+                    {{-- Section Description --}}
                     <section aria-labelledby="description-heading">
                         <h2 id="description-heading" class="text-2xl font-semibold text-gray-800 mb-4 border-l-4 border-blue-500 pl-3">Description du Cours</h2>
-                        
+
                         <article class="prose prose-indigo lg:prose-lg max-w-none text-gray-700">
                             {!! nl2br(e($course->description)) !!}
                         </article>
                     </section>
 
-                     
+                     {{-- Section PDF --}}
                      @if($course->pdf_path)
                         <section aria-labelledby="pdf-heading" class="pt-8 border-t border-gray-200">
                             <h2 id="pdf-heading" class="text-2xl font-semibold text-gray-800 mb-4 border-l-4 border-blue-500 pl-3">Documents Associés</h2>
@@ -142,7 +220,7 @@
                         </section>
                      @endif
 
-                     
+                     {{-- Section Infos Clés --}}
                      <section aria-labelledby="info-heading" class="pt-8 border-t border-gray-200">
                         <h3 id="info-heading" class="text-lg font-semibold text-gray-700 mb-3">Informations Clés</h3>
                         <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-sm">
@@ -154,19 +232,16 @@
                             <div class="sm:col-span-1"> <dt class="font-medium text-gray-500">Dernière mise à jour</dt> <dd class="mt-1 text-gray-900" title="{{ $course->updated_at->isoFormat('LLLL') }}">{{ $course->updated_at->diffForHumans() }}</dd> </div>
                         </dl>
                      </section>
-                 </div> 
-            </div> 
+                 </div>
+            </div>
 
         </div>
     </main>
 
-    
-    
-    
+    {{-- Scripts JS (inchangés) --}}
     <script>
-        // Votre script closeAlert et son initialisation ici...
-        // function closeAlert(alertId) { ... }
-        // document.addEventListener('DOMContentLoaded', function() { ... });
+        // Aucun script spécifique à la sidebar n'était présent ici, donc rien à modifier.
+        // Les scripts potentiels pour des alertes ou autres peuvent rester.
     </script>
 
 </body>
