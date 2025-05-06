@@ -49,17 +49,10 @@
             </a>
             </div> 
             <div class="relative group">
-                <button
-                    class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
+                <a href="{{ route('courses.index') }}"
+                    class="flex items-center gap-2 py-2 px-4 rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
                     <span class="material-symbols-outlined">menu_book</span> All Courses
-                </button>
-                <div
-                    class="absolute left-0 -mt-1 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48">
-                    <!-- Liens dropdown header en vert -->
-                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Tous les cours</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Populaires</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Nouveaux cours</a>
-                </div>
+                </a>
             </div>
             
             <!-- Course Categories Dropdown -->

@@ -71,18 +71,10 @@
             </a>
             </div>
             <div class="relative group">
-                <button
+                <a href="{{ route('courses.index') }}"
                     class="flex items-center gap-2 py-2 px-4 rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
                     <span class="material-symbols-outlined">menu_book</span> All Courses
-                     <svg class="ml-1 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
-                </button>
-                <div
-                    class="absolute left-0 mt-0 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48 overflow-hidden">
-                    <!-- Liens dropdown header en vert -->
-                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Tous les cours</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Populaires</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Nouveaux cours</a>
-                </div>
+                </a>
             </div>
 
             <!-- Course Categories Dropdown -->
