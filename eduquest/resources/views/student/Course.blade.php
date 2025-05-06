@@ -4,45 +4,160 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contenu du Cours : {{ $course->title }} - EduQuest</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN (Retiré car le header fourni utilise Material Icons, si vous utilisez FA ailleurs dans la page, remettez ce lien) -->
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> --}}
+    <!-- Material Symbols CDN (pour les icônes du header) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+    <!-- Tailwind Typography CDN (nécessaire pour l'affichage de la description si elle utilise prose) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/typography@0.5.x/dist/typography.min.css"/>
+
+    <!-- AlpineJS CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <style>
-        /* Styles scrollbar (optionnel) */
+        [x-cloak] { display: none !important; }
+        /* Styles scrollbar (conservés) */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
         video { max-width: 100%; height: auto; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
         .aspect-w-16 { position: relative; padding-bottom: 56.25%; }
         .aspect-h-9 { /* Combinable */ }
         .aspect-w-16 > *, .aspect-h-9 > * { position: absolute; height: 100%; width: 100%; top: 0; right: 0; bottom: 0; left: 0; }
-        [x-cloak] { display: none !important; }
+
+         /* Fix Material Symbols icon alignment if needed */
+         .material-symbols-outlined, .material-icons {
+            vertical-align: middle;
+         }
+
+         /* Add padding to the body equal to header height to prevent content overlap */
+         /* Estimate header height based on py-4 and content, roughly 64px (4rem) + border/shadow */
+         /* Adjust this value if the header height changes */
+         body {
+             padding-top: 68px;
+             /* Remove flex layout used for sidebar */
+             display: block;
+         }
+
+         /* Ensure fixed header stays on top */
+         header {
+             z-index: 20;
+         }
     </style>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="bg-gray-100 flex antialiased">
+{{-- Removed flex antialiased from body class --}}
+<body class="bg-gray-100 antialiased">
 
-    <aside class="w-64 h-screen bg-white shadow-md fixed top-0 left-0 border-r border-gray-200 z-20 flex flex-col">
-        {{-- Sidebar Header --}}
-        <div class="p-5 border-b border-gray-200 flex items-center space-x-2"> <svg class="w-8 h-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /> </svg> <h1 class="text-xl font-bold text-gray-800">EduQuest</h1> </div>
-        {{-- Navigation --}}
-        <nav class="flex-grow p-4 space-y-2 overflow-y-auto">
-             {{-- Liens Sidebar (vérifiez les routes) --}}
-            <a href="{{ route('teacher.StatistiqueTeacher') }}" class="flex items-center px-3 py-2.5 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out {{ request()->routeIs('teacher.StatistiqueTeacher') ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}"> <svg class="w-5 h-5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75c0 .621-.504 1.125-1.125 1.125h-2.25A1.125 1.125 0 013 21v-7.875zM12.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v12.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM21 4.125c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v17.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg> Statistiques </a>
-            {{-- Lien "Mes Cours" (pour Teacher) --}}
-            <a href="{{ route('teacher.courses') }}" class="flex items-center px-3 py-2.5 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out {{ request()->routeIs('teacher.courses*') ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}"> <svg class="w-5 h-5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" /></svg> Mes Cours </a>
-            {{-- Lien vers le catalogue général --}}
-             <a href="{{ route('courses.index') }}" class="flex items-center px-3 py-2.5 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out {{ request()->routeIs('courses.index') ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}"> <svg class="w-5 h-5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m.75 12.75h4.5m-4.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg> Catalogue Cours </a>
-            <a href="{{ route('categories.index') }}" class="flex items-center px-3 py-2.5 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out {{ request()->routeIs('categories.index') ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}"> <svg class="w-5 h-5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" > <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" /> <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" /> </svg> Catégories </a>
+    {{-- Remplacé la sidebar par le header global --}}
+
+    <!-- Header Global -->
+    <header
+        class="bg-white py-4 px-6 flex justify-between items-center fixed top-0 left-0 w-full shadow-md border-b border-gray-200">
+        <div class="text-2xl font-semibold text-black">EduQuest</div>
+        <nav class="hidden md:flex items-center gap-6">
+            <!-- All Courses Dropdown -->
+            <div class="relative group">
+            <a href="{{ route('mesfavorites') }}"
+                class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
+                {{-- Icône pour les favoris (par exemple, 'favorite' ou 'heart_plus') --}}
+                <span class="material-symbols-outlined">favorite</span>
+                Mes cours favoris
+            </a>
+            </div>
+            <div class="relative group">
+                <button
+                    class="flex items-center gap-2 py-2 px-4 rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
+                    <span class="material-symbols-outlined">menu_book</span> All Courses
+                     <svg class="ml-1 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                </button>
+                <div
+                    class="absolute left-0 mt-0 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48 overflow-hidden">
+                    <!-- Liens dropdown header en vert -->
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Tous les cours</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Populaires</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Nouveaux cours</a>
+                </div>
+            </div>
+
+            <!-- Course Categories Dropdown -->
+            <div class="relative group">
+                <button
+                    class="flex items-center gap-2 py-2 px-4 rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
+                    <span class="material-symbols-outlined">category</span> Categories
+                     <svg class="ml-1 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                </button>
+                <div
+                    class="absolute left-0 mt-0 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48 overflow-hidden">
+                    <!-- Liens dropdown header en vert -->
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Developpement</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Design</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Marketing</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Management</a>
+                </div>
+            </div>
+            <!-- Course Types Dropdown -->
+            <div class="relative group">
+                <button
+                    class="flex items-center gap-2 py-2 px-4 rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
+                    <span class="material-symbols-outlined">local_offer</span> Types de Cours
+                     <svg class="ml-1 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                </button>
+                <div
+                    class="absolute left-0 mt-0 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48 overflow-hidden">
+                    <!-- Liens dropdown header en vert -->
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Gratuit</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Payant</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Certifie</a>
+                </div>
+            </div>
         </nav>
-        {{-- Logout --}}
-        <div class="p-4 mt-auto border-t border-gray-200"> <form action="{{ route('logout') }}" method="POST"> @csrf <button type="submit" class="w-full flex items-center justify-center text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 px-3 py-2.5 rounded-md group"> <svg class="w-5 h-5 mr-2 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" /> </svg> Déconnexion </button> </form> </div>
-    </aside>
+        <!-- Notifications & Profile -->
+        <div class="flex items-center space-x-4 relative">
+            <button
+                class="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 hover:text-black hover:bg-gray-100">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg> </button>
+            <div class="relative group"> <button
+                    class="w-10 h-10 rounded-full bg-gray-200 focus:outline-none flex items-center justify-center text-gray-500">
+                    <span class="material-symbols-outlined">person</span> </button>
+                                <div class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg border border-gray-200 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200 z-10 overflow-hidden">
 
-    <main class="ml-64 w-full p-6 md:p-8 lg:p-10">
+                                    {{-- Lien vers le profil (Adaptez le href si vous avez une route nommee) --}}
+                                    <a href="{{-- route('profile.show') --}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                        <span class="material-icons mr-2 align-middle text-base">account_circle</span> Voir Profil
+                                    </a>
+
+                                    {{-- Formulaire de deconnexion Laravel --}}
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf {{-- Directive Blade pour la protection CSRF --}}
+
+                                        <button type="submit" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                            <span class="material-icons mr-2 align-middle text-base">logout</span>
+                                            Logout
+                                        </button>
+                                    </form>
+                                </div>
+            </div>
+        </div>
+    </header>
+
+
+    {{-- Contenu Principal --}}
+    {{-- Suppression de la marge gauche ml-64 car la sidebar a été retirée --}}
+    {{-- Le padding-top sur le body gère l'espace sous le header fixe --}}
+    <main class="w-full p-6 md:p-8 lg:p-10">
         <div class="max-w-5xl mx-auto">
 
-            {{-- Header de la Page Détail --}}
+            {{-- Header de la Page Détail (inchangé) --}}
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 pb-4 border-b border-gray-200">
                 {{-- Colonne Gauche: Titre et Infos --}}
                 <div>
@@ -64,7 +179,7 @@
                     </p>
                 </div>
 
-                {{-- SUPPRIMÉ : Div contenant les boutons Modifier et Supprimer --}}
+                {{-- SUPPRIMÉ : Div contenant les boutons Modifier et Supprimer (Comme dans la demande précédente, cette section est supprimée ici aussi) --}}
                 {{--
                 <div class="flex items-center space-x-2 mt-4 sm:mt-0 flex-shrink-0">
                     <a><!-- Modifier --></a>
@@ -73,7 +188,7 @@
                 --}}
             </div>
 
-            {{-- Contenu du Cours (Image, Vidéo, Description, PDF, Infos) --}}
+            {{-- Contenu du Cours (Image, Vidéo, Description, PDF, Infos) (inchangé) --}}
             <div class="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200">
 
                  {{-- Image du cours --}}
@@ -147,7 +262,7 @@
     </main>
 
     <script>
-        // Scripts JS (si besoin pour alerte ou autre)
+        // Scripts JS (inchangés)
     </script>
 
 </body>

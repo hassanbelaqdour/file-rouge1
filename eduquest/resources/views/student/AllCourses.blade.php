@@ -61,34 +61,7 @@
                     <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Nouveaux cours</a>
                 </div>
             </div>
-            <!-- My Courses Dropdown -->
-            <div class="relative group">
-                <button
-                    class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
-                    <span class="material-symbols-outlined">school</span> My Courses
-                </button>
-                <div
-                    class="absolute left-0 -mt-1 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48">
-                    <!-- Liens dropdown header en vert -->
-                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Cours en cours</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Favoris</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Historique</a>
-                </div>
-            </div>
-            <!-- FAQ Dropdown -->
-            <div class="relative group">
-                <button
-                    class="flex items-center gap-2 py-2 px-4 w-full rounded-md text-gray-700 hover:bg-gray-100 hover:text-black">
-                    <span class="material-symbols-outlined">help</span> Support & FAQ
-                </button>
-                <div
-                    class="absolute left-0 -mt-1 hidden group-hover:block bg-white border border-gray-200 rounded-md shadow-lg z-10 w-48">
-                    <!-- Liens dropdown header en vert -->
-                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Questions generales</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Paiement</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-green-700 hover:bg-gray-100">Support technique</a>
-                </div>
-            </div>
+            
             <!-- Course Categories Dropdown -->
             <div class="relative group">
                 <button
