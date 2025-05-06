@@ -148,7 +148,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {{-- Graphique Statut Utilisateurs --}}
                 <div class="bg-white p-6 rounded-lg shadow border border-gray-200">
-                    <h2 class="text-lg font-semibold text-gray-800 mb-4">Répartition des Statuts Utilisateurs</h2>
+                    <h2 class="text-lg font-semibold text-gray-800 mb-4">Repartition des Statuts Utilisateurs</h2>
                     <div class="h-64 md:h-80"> {{-- Hauteur fixe pour le conteneur du canvas --}}
                         <canvas id="userStatusChart"></canvas>
                     </div>
@@ -156,7 +156,7 @@
 
                 {{-- Graphique Statut Cours --}}
                 <div class="bg-white p-6 rounded-lg shadow border border-gray-200">
-                     <h2 class="text-lg font-semibold text-gray-800 mb-4">Répartition des Statuts Cours</h2>
+                     <h2 class="text-lg font-semibold text-gray-800 mb-4">Repartition des Statuts Cours</h2>
                      <div class="h-64 md:h-80"> {{-- Hauteur fixe --}}
                         <canvas id="courseStatusChart"></canvas>
                     </div>
