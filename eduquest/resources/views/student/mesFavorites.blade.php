@@ -115,12 +115,6 @@
                 @endforeach
             </div>
 
-            
-            
-            
-                 {{ $courses->links() }}
-            </div> --}}
-
         @else
             
             <div class="text-center py-16 px-6 bg-white rounded-lg shadow border">

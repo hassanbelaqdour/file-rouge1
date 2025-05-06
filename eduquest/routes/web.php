@@ -117,6 +117,7 @@ Route::get('/courses/{course}', [StudentController::class, 'showCourse'])->name(
 
 Route::get('/google/redirect', [GoogleAuthController::class, 'redirect'])->name('google.redirect');
 Route::get('/google/callback', [GoogleAuthController::class, 'callback'])->name('google.callback');
+// Pour la fonctionnalité like/unlike
 Route::post('/courses/{course}/like', [LikesController::class, 'toggleLike'])
      ->name('student.courses.like');
 
