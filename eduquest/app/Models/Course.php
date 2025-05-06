@@ -1,17 +1,20 @@
 <?php
 
-namespace App\Models; // Vérifiez ce namespace
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo; // Assurez-vous d'importer BelongsTo
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Auth;
 
 class Course extends Model
 {
     use HasFactory;
 
     /**
-     * Les attributs qui sont assignables en masse.
+     * The attributes that are mass assignable.
      */
     protected $fillable = [
         'title',
@@ -23,12 +26,12 @@ class Course extends Model
         'image_path',
         'video_path',
         'pdf_path',
-        'category_id', // Doit être ici
+        'category_id',
         'teacher_id',
     ];
 
     /**
-     * Relation avec l'enseignant (User).
+     * Relationship with the teacher (User).
      */
     public function teacher(): BelongsTo
     {
@@ -36,17 +39,45 @@ class Course extends Model
     }
 
     /**
-     * Relation avec la catégorie.
-     * ASSUREZ-VOUS QUE CETTE MÉTHODE EXISTE EXACTEMENT COMME CECI.
+     * Relationship with the category.
      */
     public function category(): BelongsTo
     {
-        // 'Category::class' doit pointer vers votre modèle Category.
-        // Vérifiez que le modèle Category existe bien dans App\Models\Category.
         return $this->belongsTo(Category::class);
     }
-    public function enrollments()
+
+    /**
+     * Relationship with enrollments.
+     */
+    public function enrollments(): HasMany
     {
         return $this->hasMany(Enrollment::class);
+    }
+
+    /**
+     * Many-to-many relationship with users who liked the course.
+     */
+    public function likingUsers()
+{
+    return $this->belongsToMany(User::class, 'likes', 'course_id', 'user_id');
+}
+
+    /**
+     * Relationship with likes.
+     */
+    public function likes(): HasMany
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    /**
+     * Check if the currently authenticated user liked this course.
+     */
+    public function isLikedByCurrentUser(): bool
+    {
+        if (!Auth::check()) {
+            return false;
+        }
+        return $this->likingUsers()->where('user_id', Auth::id())->exists();
     }
 }

@@ -38,6 +38,7 @@
     <header
         class="bg-white py-4 px-6 flex justify-between items-center fixed top-0 left-0 w-full z-20 shadow-md border-b border-gray-200">
         <div class="text-2xl font-semibold text-black">EduQuest</div>
+        <a href="{{ route('mesfavorites') }}">Mes cours favoris</a>
         <nav class="hidden md:flex items-center gap-6">
             <!-- All Courses Dropdown -->
             <div class="relative group">
@@ -364,6 +365,17 @@
                                 </div>
                                 {{-- Bouton générique (remplacer par votre logique d'inscription si besoin) --}}
                                 <div>
+                                <form action="{{ route('student.courses.like', $course->id) }}" method="POST" class="inline-block align-middle">
+                                        @csrf
+                                        <button type="submit"
+                                                title="{{ $course->isLikedByCurrentUser() ? 'Ne plus aimer ce cours' : 'Aimer ce cours' }}"
+                                                class="p-2 rounded-full transition-colors duration-200 ease-in-out {{ $course->isLikedByCurrentUser() ? 'text-red-500 bg-red-100 hover:bg-red-200' : 'text-gray-400 hover:text-red-500 hover:bg-gray-100' }}">
+                                            {{-- Icône Cœur SVG --}}
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                                            </svg>
+                                        </button>
+                                    </form>
                                 <div>
     @if($course->type == 'free' || $course->price <= 0)
         <a href="{{ route('student.courses.show', $course->id) }}" 
